@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include "connecter.h"
-//void ScanData_TXT(int input_year, states *usa);
+#include "../connecter.h"
 
 void test_do_next_op_case1(void);
 //void test_do_next_op_case2(void);

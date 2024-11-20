@@ -8,3 +8,6 @@ add_executable(P1 main.c
         scan_data.c
         winner_of_election.c
 )
+
+# Add the test directory
+add_subdirectory(test_of_program)
