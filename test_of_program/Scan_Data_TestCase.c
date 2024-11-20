@@ -16,6 +16,8 @@ int main(void) {
   //  test_do_next_op_case2();
 }
 
+
+
 void test_do_next_op_case1(void) {
     /* Arrange */
     states USA[STATES];
