@@ -4,5 +4,7 @@
 
 #ifndef SCAN_DATA_TXT_H
 #define SCAN_DATA_TXT_H
+void ScanData_TXT();
+
 
 #endif //SCAN_DATA_TXT_H

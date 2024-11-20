@@ -1,10 +1,14 @@
 #include <stdio.h>
+#include "Scan_Data_TXT.h"
 
 
 
 
 int main(void) {
-    printf("Hello, World!\n");
-    printf("test");
+     ScanData_TXT();
+
+
+
+
     return 0;
 }
