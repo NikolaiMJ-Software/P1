@@ -14,5 +14,6 @@ int main(void) {
     char* result = Winner_of_election(USA);
     printf("The winner was %s\n", result);
 
+    free(USA);
     return 0;
 }
