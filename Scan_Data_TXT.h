@@ -14,6 +14,7 @@ typedef struct states {
     double republicans;
     int population;
 }states;
+
 void ScanData_TXT(int input_year);
 char Winner_of_election();
 

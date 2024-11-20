@@ -1,4 +1,4 @@
 
-char Winner_of_election(); {
+char Winner_of_election() {
 
 }
