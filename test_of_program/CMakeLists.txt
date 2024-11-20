@@ -1,10 +1,8 @@
-add_executable(Scan_Data_TestCase Scan_Data_TestCase.c)
+# Create an executable for your test case (this is an executable, not a library)
+add_executable(Scan_Data_TestCase Scan_Data_TestCase.c connecter.c)
 
-# Link the test executable to your source files
-target_link_libraries(Scan_Data_TestCase
-        connecter.c
-        m
-)
+# Link the executable to necessary libraries (e.g., math library, if needed)
+target_link_libraries(Scan_Data_TestCase m)
 
-# Register the test with CTest
+# Register the test with CTest (so it can be run as part of CMake's testing framework)
 add_test(NAME Scan_Data_TestCase COMMAND Scan_Data_TestCase)
