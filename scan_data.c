@@ -17,7 +17,12 @@ states* ScanData_TXT(input_year) {
         exit(EXIT_FAILURE);
     }
     // define the struct as USA and set the size to the number of states
-    states USA[STATES];
+    states* USA = malloc(STATES * sizeof(states));
+    if (USA == NULL) {
+        perror("Memory allocation failed!");
+        fclose(inputFile);
+        exit(EXIT_FAILURE);
+    }
 
     for(int i = 0; i<STATES; i++) {
         //scan inputfile
