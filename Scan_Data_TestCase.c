@@ -1,7 +1,8 @@
 
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
-#include "Scan_data_TXT.h"
+#include "connecter.h"
 void test_do_next_op_case1(void);
 void test_do_next_op_case2(void);
 #define STATES 50
@@ -13,6 +14,8 @@ int main(void) {
     test_do_next_op_case1();
     test_do_next_op_case2();
 }
+
+void ScanData_TXT(int input_year, states * usa);
 
 void test_do_next_op_case1(void) {
     /* Arrange */
