@@ -5,6 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(P1 main.c
         connecter.h
-        Scan_Data.c
+        scan_data.c
         Scan_Data_TestCase.c
-        Winner_of_election.c)
+        winner_of_election.c)
