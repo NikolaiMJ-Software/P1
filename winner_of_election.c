@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 char* Winner_of_election(states* USA) {
-    int democrats = 0, republicans = 0;
+    int democrats = 0, republicans = 0, third_party = 0;
 
     //Count electors, from the percent of votes
     for (int i = 0; i < STATES; i++) {
