@@ -25,13 +25,13 @@ void test_do_next_op_case1(void) {
     ScanData_TXT(2016, USA); // Fixed: Missing semicolon here
 
     // Assertions to check that the first state's data is correct
-    assert(strcmp(USA[0].stateName, "Nebraska") == 0);
-    assert(USA[0].electors == 5);
-    assert(USA[0].democrats == 33.7);
-    assert(USA[0].republicans == 58.7);
-    assert(USA[0].population == 1905616);
+    assert(strcmp(USA[0].stateName, "Alabama") == 0);
+    assert(USA[0].electors == 9);
+    assert(USA[0].democrats == 34.4);
+    assert(USA[0].republicans == 62.1);
+    assert(USA[0].population == 4863525);
 
     /* If everything is correct, the assertions will pass and the test will succeed. */
 }
 
-}
+
