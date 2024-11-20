@@ -5,7 +5,11 @@
 
 
 int main(void) {
-     ScanData_TXT();
+    int input_year;
+    printf("Which year do you want to investigate? ");
+    scanf("%d", &input_year);
+    // Get data from year file
+    ScanData_TXT(input_year);
 
 
 
