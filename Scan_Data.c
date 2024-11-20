@@ -1,4 +1,3 @@
-
 #include "connecter.h"
 #include <stdio.h>
 #include <stdlib.h>

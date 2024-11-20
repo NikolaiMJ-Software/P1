@@ -1,6 +1,6 @@
+#include "connecter.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "connecter.h"
 
 int main(void) {
     int input_year;
