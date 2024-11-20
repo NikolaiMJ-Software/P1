@@ -4,7 +4,7 @@
 
 int main(void) {
     int input_year;
-    printf("Which year do you want to investigate? ");
+    printf("Which year do you want to investigate?");
     scanf("%d", &input_year);
 
     // Get data from year file, and return USA array
@@ -12,7 +12,7 @@ int main(void) {
 
     // Determine the winner
     char* result = Winner_of_election(USA);
-    printf("The winner was %s\n", result);
+    printf("The winner was the %s\n", result);
 
     free(USA);
     return 0;
