@@ -5,6 +5,7 @@
 #ifndef SCAN_DATA_TXT_H
 #define SCAN_DATA_TXT_H
 void ScanData_TXT(int input_year);
+char Winner_of_election();
 
 
 #endif //SCAN_DATA_TXT_H

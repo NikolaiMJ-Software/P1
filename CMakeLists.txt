@@ -6,4 +6,5 @@ set(CMAKE_C_STANDARD 11)
 add_executable(P1 main.c
         Scan_Data_TXT.h
         Scan_Data_TXT.c
-        Scan_Data_TestCase.c)
+        Scan_Data_TestCase.c
+        Winner_of_election.c)
