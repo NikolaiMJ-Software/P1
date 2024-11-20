@@ -15,8 +15,8 @@ char* Winner_of_election(states* USA) {
 
     // Return winning party
     if (democrats > republicans) {
-        return "democrats";
+        return "Democrats";
     } else {
-        return "republicans";
+        return "Republicans";
     }
 }
