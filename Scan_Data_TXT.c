@@ -15,12 +15,17 @@ typedef struct states {
     int population;
 }states;
 
-void ScanData_TXT() {
+void ScanData_TXT(input_year) {
+    char filename[25];
+    // insert the input_year in the file name
+    snprintf(filename, sizeof(filename), "US_Election_%d.txt", input_year);
+
     // load the file in read mode and define it as input
-    FILE *inputFile = fopen("US_Election_2016.txt", "r");
+    FILE *inputFile = fopen(filename, "r");
+
     //test if inputfile can load, if not exit failure
     if (!inputFile) {
-        perror("Kunne ikke åbne inputfilen");
+        perror("File could not open!");
         exit(EXIT_FAILURE);
     }
     // define the struct as USA and set the size to the number of states
