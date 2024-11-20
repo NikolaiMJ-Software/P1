@@ -32,6 +32,7 @@ void test_do_next_op_case1(void) {
     assert(USA[0].republicans == 62.1);
     assert(USA[0].population == 4863525);
 
+
     /* If everything is correct, the assertions will pass and the test will succeed. */
 }
 
