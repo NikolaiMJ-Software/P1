@@ -1,0 +1,5 @@
+add_executable(Scan_Data_TestCase Scan_Data_TestCase.c)
+
+target_link_libraries(Scan_Data_TestCase connecter m)
+
+add_test(NAME Scan_Data_TestCase COMMAND Scan_Data_TestCase)
