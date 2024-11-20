@@ -7,7 +7,7 @@ int main(void) {
     printf("Which year do you want to investigate? ");
     scanf("%d", &input_year);
 
-    // Get data from year file
+    // Get data from year file, and return USA array
     states* USA = ScanData_TXT(input_year);
 
     // Determine the winner
