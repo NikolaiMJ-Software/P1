@@ -26,7 +26,7 @@ void test_do_next_op_case1(void) {
     ScanData_TXT(2016);
 
     // Assertions to check that the first state's data is correct
-    assert(USA[0].stateName == 'Alabama');
+    assert(strcmp(USA[0].stateName, 'Alabama') == 0);
     assert(USA[0].electors == 9);
     assert(USA[0].democrats == 34.4);
     assert(USA[0].republicans == 62.1);
