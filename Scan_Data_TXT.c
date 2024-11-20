@@ -4,17 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NAME_LGT 14
-#define STATES 50
-//creation of the states struct
-typedef struct states {
-    char stateName[NAME_LGT];
-    int electors;
-    double democrats;
-    double republicans;
-    int population;
-}states;
-
 void ScanData_TXT(input_year) {
     char filename[25];
     // insert the input_year in the file name
