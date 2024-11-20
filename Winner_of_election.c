@@ -1,4 +1,4 @@
-
-char Winner_of_election() {
+#include "connecter.h"
+char* Winner_of_election(states* USA) {
 
 }

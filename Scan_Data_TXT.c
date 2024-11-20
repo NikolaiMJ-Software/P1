@@ -1,10 +1,10 @@
 
-#include "Scan_Data_TXT.h"
+#include "connecter.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void ScanData_TXT(input_year) {
+states* ScanData_TXT(input_year) {
     char filename[25];
     // insert the input_year in the file name
     snprintf(filename, sizeof(filename), "US_Election_%d.txt", input_year);
@@ -20,7 +20,6 @@ void ScanData_TXT(input_year) {
     // define the struct as USA and set the size to the number of states
     states USA[STATES];
 
-
     for(int i = 0; i<STATES; i++) {
         //scan inputfile
         fscanf(inputFile, "%[^0-9] %d %lf %lf %d\n",
@@ -35,4 +34,5 @@ void ScanData_TXT(input_year) {
     }
     //CLOSE FILE
     fclose(inputFile);
+    return USA;
 }

@@ -4,7 +4,7 @@ project(P1 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(P1 main.c
-        Scan_Data_TXT.h
+        connecter.h
         Scan_Data_TXT.c
         Scan_Data_TestCase.c
         Winner_of_election.c)
