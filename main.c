@@ -16,7 +16,7 @@ int main(void) {
     printf("With the %s system, was the winner the %s.\n\n", system, result);
 
     // User chose a new system
-    printf("Chose a new system, STV, PLPR or BC:\n");
+    printf("Chose a new system: STV, PLPR or BC:\n");
     scanf("%s", system);
 
     // Determine the winner
