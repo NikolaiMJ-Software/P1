@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-states* ScanData_TXT(int input_year) {
+void ScanData_TXT(int input_year, states* USA){
     char filename[50];
     // insert the input_year in the file name
     snprintf(filename, sizeof(filename), "US_election_data/US_Election_%d.txt", input_year);
@@ -16,8 +16,7 @@ states* ScanData_TXT(int input_year) {
         perror("File could not open!");
         exit(EXIT_FAILURE);
     }
-    // define the struct as USA and set the size to the number of states
-    states* USA = malloc(STATES * sizeof(states));
+
     if (USA == NULL) {
         perror("Memory allocation failed!");
         fclose(inputFile);
@@ -38,5 +37,4 @@ states* ScanData_TXT(int input_year) {
     }
     //CLOSE FILE
     fclose(inputFile);
-    return USA;
 }
