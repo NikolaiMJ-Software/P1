@@ -8,5 +8,5 @@ char* Winner_of_election(states* USA) {
 
     //
 
-    return winner;
+    //return winner;
 }

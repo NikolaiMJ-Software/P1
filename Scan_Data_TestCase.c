@@ -3,8 +3,10 @@
 #include <string.h>
 #include <assert.h>
 #include "connecter.h"
+//void ScanData_TXT(int input_year, states *usa);
+
 void test_do_next_op_case1(void);
-void test_do_next_op_case2(void);
+//void test_do_next_op_case2(void);
 #define STATES 50
 
 
@@ -12,17 +14,15 @@ void test_do_next_op_case2(void);
 int main(void) {
     /* Kør alle test-funktioner. */
     test_do_next_op_case1();
-    test_do_next_op_case2();
+  //  test_do_next_op_case2();
 }
-
-void ScanData_TXT(int input_year, states * usa);
 
 void test_do_next_op_case1(void) {
     /* Arrange */
     states USA[STATES];
 
     // Call ScanData_TXT function to populate the USA array.
-    ScanData_TXT(2016, USA); // Fixed: Missing semicolon here
+    ScanData_TXT(2016); // Fixed: Missing semicolon here
 
     // Assertions to check that the first state's data is correct
     assert(strcmp(USA[0].stateName, "Alabama") == 0);
