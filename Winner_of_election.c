@@ -1,4 +1,6 @@
 #include "connecter.h"
-char* Winner_of_election(states* USA) {
+#include <stdio.h>
 
+char* Winner_of_election(states* USA) {
+    printf("test");
 }
