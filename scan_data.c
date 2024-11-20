@@ -4,7 +4,7 @@
 #include <string.h>
 
 states* ScanData_TXT(input_year) {
-    char filename[25];
+    char filename[50];
     // insert the input_year in the file name
     snprintf(filename, sizeof(filename), "US_election_data/US_Election_%d.txt", input_year);
 
