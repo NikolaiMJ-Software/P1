@@ -10,8 +10,9 @@ int main(void) {
     scanf("%d", &input_year);
     // Get data from year file
     ScanData_TXT(input_year);
-
-
+    // The winner was
+    char result[10] = Winner_of_election();
+    printf("THe winner was %s", result);
 
 
     return 0;
