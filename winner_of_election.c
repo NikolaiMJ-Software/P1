@@ -1,22 +1,19 @@
 #include "connecter.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-char* Winner_of_election(states* USA) {
-    int democrats = 0, republicans = 0, third_party = 0;
-
-    //Count electors, from the percent of votes
-    for (int i = 0; i < STATES; i++) {
-        if (USA[i].democrats > USA[i].republicans) {
-            democrats += USA[i].electors;
-        } else {
-            republicans += USA[i].electors;
-        }
-    }
-
-    // Return winning party
-    if (democrats > republicans) {
-        return "Democrats";
+char* Winner_of_election(states* USA, char* system) {
+    if (strcmp(system, "Original") == 0) {
+        return electoral_college(USA);
+    } else if (strcmp(system, "STV") == 0) {
+        // return function STV
+    } else if (strcmp(system, "PLPR") == 0) {
+        // return function PLPR
+    } else if (strcmp(system, "BC") == 0) {
+        // return function BC
     } else {
-        return "Republicans";
+        printf("The chosen election system is not in the database.\n");
+        exit(EXIT_FAILURE);
     }
 }

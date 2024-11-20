@@ -13,8 +13,7 @@ typedef struct states {
 }states;
 
 states* ScanData_TXT(int input_year);
-char* Winner_of_election(states* USA);
-
-
+char* Winner_of_election(states* USA, char* system);
+char* electoral_college(states* USA);
 
 #endif //SCAN_DATA_TXT_H
