@@ -6,7 +6,7 @@
 states* ScanData_TXT(input_year) {
     char filename[25];
     // insert the input_year in the file name
-    snprintf(filename, sizeof(filename), "US_Election_%d.txt", input_year);
+    snprintf(filename, sizeof(filename), "US_election_data/US_Election_%d.txt", input_year);
 
     // load the file in read mode and define it as input
     FILE *inputFile = fopen(filename, "r");

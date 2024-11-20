@@ -1,11 +1,8 @@
-//
-// Created by 02fre on 20-11-2024.
-//
-
 #ifndef SCAN_DATA_TXT_H
 #define SCAN_DATA_TXT_H
 #define NAME_LGT 14
 #define STATES 50
+
 //creation of the states struct
 typedef struct states {
     char stateName[NAME_LGT];
