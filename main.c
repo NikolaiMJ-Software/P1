@@ -8,8 +8,16 @@ int main(void) {
     printf("Which year do you want to investigate?");
     scanf("%d", &input_year);
 
+
+    states* USA = malloc(STATES * sizeof(states));  // Allocate memory for the array
+    if (USA == NULL) {
+        // Error handling if memory allocation fails
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
     // Get data from year file, and return USA array
-    states* USA = ScanData_TXT(input_year);
+    ScanData_TXT(input_year, USA);
 
     // Determine the winner
     char* result = Winner_of_election(USA, system);

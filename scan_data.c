@@ -17,12 +17,6 @@ void ScanData_TXT(int input_year, states* USA){
         exit(EXIT_FAILURE);
     }
 
-    if (USA == NULL) {
-        perror("Memory allocation failed!");
-        fclose(inputFile);
-        exit(EXIT_FAILURE);
-    }
-
     for(int i = 0; i<STATES; i++) {
         //scan inputfile
         fscanf(inputFile, "%[^0-9] %d %lf %lf %d\n",
