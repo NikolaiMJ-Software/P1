@@ -22,7 +22,7 @@ void test_do_next_op_case1(void) {
     states USA[STATES];
 
     // Call ScanData_TXT function to populate the USA array.
-    ScanData_TXT(2016); // Fixed: Missing semicolon here
+    ScanData_TXT(2016);
 
     // Assertions to check that the first state's data is correct
     assert(strcmp(USA[0].stateName, "Alabama") == 0);
