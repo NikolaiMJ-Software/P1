@@ -21,5 +21,6 @@ char* electoral_college(states* USA);
 char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
+void MC();
 
 #endif //SCAN_DATA_TXT_H
