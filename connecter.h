@@ -22,6 +22,6 @@ char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
 void MC();
-states wyoming_rule(int input_year,states* USA);
+states* wyoming_rule(int input_year,states* USA);
 
 #endif //SCAN_DATA_TXT_H
