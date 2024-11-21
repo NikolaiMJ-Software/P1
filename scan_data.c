@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void ScanData_TXT(int input_year, states* USA){
+void ScanData_TXT(int input_year, states* USA) {
     char filename[50];
     // insert the input_year in the file name
     snprintf(filename, sizeof(filename), "US_election_data/US_Election_%d.txt", input_year);
@@ -22,12 +22,9 @@ void ScanData_TXT(int input_year, states* USA){
         fscanf(inputFile, "%[^0-9] %d %lf %lf %d\n",
             USA[i].stateName, &USA[i].electors, &USA[i].democrats, &USA[i].republicans, &USA[i].population);
 
-        // trim the last space from stateName
+        // Remove the last character in stateName
         int len = strlen(USA[i].stateName);
-        while (len > 0 && (USA[i].stateName[len - 1] == ' ' || USA[i].stateName[len - 1] == '\n')) {
-            USA[i].stateName[len - 1] = '\0';
-            len--;
-        }
+        USA[i].stateName[len - 1] = '\0';
     }
     //CLOSE FILE
     fclose(inputFile);
