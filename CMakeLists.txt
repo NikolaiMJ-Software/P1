@@ -11,6 +11,7 @@ add_executable(P1 main.c
         election_systems/PLPR.c
         election_systems/STV.c
         election_systems/BC.c
+        monte_carlo.c
 )
 
 # Add the test directory

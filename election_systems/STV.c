@@ -5,8 +5,6 @@ char* STV(states* USA) {
 
 
 
-
-
     // Return winning party
     if (democrats > 270) {
         return "Democrats";
