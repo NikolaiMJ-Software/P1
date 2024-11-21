@@ -1,4 +1,4 @@
-#include "connecter.h"
+#include "../connecter.h"
 
 char* electoral_college(states* USA) {
     int democrats = 0, republicans = 0, third_party = 0;

@@ -7,10 +7,10 @@ add_executable(P1 main.c
         connecter.h
         scan_data.c
         winner_of_election.c
-        "electoral_college.c"
-        PLPR.c
-        STV.c
-        BC.c
+        election_systems/electoral_college.c
+        election_systems/PLPR.c
+        election_systems/STV.c
+        election_systems/BC.c
 )
 
 # Add the test directory
