@@ -16,8 +16,8 @@ void ScanData_TXT(int input_year, states* USA) {
 
     for(int i = 0; i<STATES; i++) {
         //scan inputfile
-        fscanf(inputFile, "%[^0-9] %d %lf %lf %d\n",
-            USA[i].stateName, &USA[i].electors, &USA[i].democrats, &USA[i].republicans, &USA[i].population);
+        fscanf(inputFile, "%[^0-9] %d %lf %lf %d %d %d\n",
+            USA[i].stateName, &USA[i].electors, &USA[i].democrats, &USA[i].republicans, &USA[i].population, &USA[i].dem_votes, &USA[i].rep_votes);
 
         // Remove the last character in stateName
         int len = strlen(USA[i].stateName);
