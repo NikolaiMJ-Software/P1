@@ -1,7 +1,7 @@
 #ifndef SCAN_DATA_TXT_H
 #define SCAN_DATA_TXT_H
 #define NAME_LGT 14
-#define STATES 50
+#define STATES 51
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
