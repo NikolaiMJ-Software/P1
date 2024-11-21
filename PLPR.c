@@ -1,3 +1,10 @@
-//
-// Created by sebas on 21/11/2024.
-//
+#include "connecter.h"
+
+
+char* PLPR(states* USA){
+
+
+
+
+
+}
