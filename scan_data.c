@@ -1,7 +1,4 @@
 #include "connecter.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void ScanData_TXT(int input_year, states* USA) {
     char filename[50];

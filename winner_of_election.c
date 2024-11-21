@@ -1,7 +1,4 @@
 #include "connecter.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 char* Winner_of_election(states* USA, char* system) {
     if (strcmp(system, "Original") == 0) {
