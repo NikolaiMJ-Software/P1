@@ -3,7 +3,7 @@
 
 states* wyoming_rule(int input_year,states* USA){
     int total_population = 0;
-    int wyoming_population = USA[49].population;
+    int wyoming_population = USA[50].population;
     for(int i=0;i<STATES;i++){
         total_population += USA[i].population;
         USA[i].electors = USA[i].population/wyoming_population+2;
