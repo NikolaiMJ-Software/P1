@@ -9,7 +9,6 @@ char* Winner_of_election(states* USA, char* system) {
     } else if (strcmp(system, "STV") == 0) {
         return STV(USA);
     } else if (strcmp(system, "PLPR") == 0) {
-        // return function PLPR
         return PLPR(USA);
     } else if (strcmp(system, "BC") == 0) {
         return BC(USA);
