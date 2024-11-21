@@ -2,7 +2,7 @@
 
 char* electoral_college(states* USA) {
     int democrats = 0, republicans = 0, third_party = 0;
-    // Distribute the electors based on the highest percentage in the sate
+    // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
         double third_p = 100 - USA[i].democrats - USA[i].republicans;
         if (USA[i].democrats > third_p && USA[i].democrats > USA[i].republicans) {
