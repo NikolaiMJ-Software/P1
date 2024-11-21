@@ -2,18 +2,23 @@
 
 char* electoral_college(states* USA) {
     int democrats = 0, republicans = 0, third_party = 0;
-    // destructure the electors based on the highest percentage in the sate
+    // Distribute the electors based on the highest percentage in the sate
     for (int i = 0; i < STATES; i++) {
-        if (USA[i].democrats > USA[i].republicans) {
+        double third_p = 100 - USA[i].democrats - USA[i].republicans;
+        if (USA[i].democrats > third_p && USA[i].democrats > USA[i].republicans) {
             democrats += USA[i].electors;
-        } else {
+        } else if (USA[i].republicans > third_p) {
             republicans += USA[i].electors;
+        } else {
+            third_party += USA[i].electors;
         }
     }
     // Return winning party
-    if (democrats > republicans) {
+    if (democrats > 270) {
         return "Democrats";
-    } else {
+    } else if (republicans > 270){
         return "Republicans";
+    } else {
+        return "Third_party";
     }
 }
