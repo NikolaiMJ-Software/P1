@@ -13,6 +13,8 @@ typedef struct states {
     double democrats;
     double republicans;
     int population;
+    int dem_votes;
+    int rep_votes;
 }states;
 
 void ScanData_TXT(int input_year, states* USA);
@@ -21,7 +23,7 @@ char* electoral_college(states* USA);
 char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
-void MC();
+void monte_carlo();
 states* wyoming_rule(int input_year,states* USA);
 
 #endif //SCAN_DATA_TXT_H
