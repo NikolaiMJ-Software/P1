@@ -2,7 +2,7 @@
 
 int main(void) {
     int input_year;
-    int wyoming_rule = 0;
+    int wyoming_rule_true = 0;
     char system[10] = "Original";
     printf("Which year do you want to investigate?");
     scanf("%d", &input_year);
@@ -17,7 +17,7 @@ int main(void) {
 
     // Get data from year file, and return USA array
     ScanData_TXT(input_year, USA);
-    if (wyoming_rule == 0) {
+    if (wyoming_rule_true == 0) {
         wyoming_rule(input_year, USA);
     }
     // Determine the winner
