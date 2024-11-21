@@ -13,6 +13,8 @@ typedef struct states {
     double democrats;
     double republicans;
     int population;
+    int dem_votes;
+    int rep_votes;
 }states;
 
 void ScanData_TXT(int input_year, states* USA);
