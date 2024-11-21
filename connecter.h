@@ -2,6 +2,9 @@
 #define SCAN_DATA_TXT_H
 #define NAME_LGT 14
 #define STATES 50
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 //creation of the states struct
 typedef struct states {
