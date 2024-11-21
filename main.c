@@ -17,7 +17,7 @@ int main(void) {
 
     // Get data from year file, and return USA array
     ScanData_TXT(input_year, USA);
-    if (wyoming_rule_true == 0) {
+    if (wyoming_rule_true == 1) {
         wyoming_rule(input_year, USA);
     }
     // Determine the winner
