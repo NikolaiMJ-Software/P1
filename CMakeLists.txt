@@ -9,6 +9,8 @@ add_executable(P1 main.c
         winner_of_election.c
         "electoral_college.c"
         PLPR.c
+        STV.c
+        BC.c
 )
 
 # Add the test directory
