@@ -36,7 +36,7 @@ void monte_carlo(states* USA, int choice) {
             new_DEM_votes++;
         }
     }
-    // return thiers secund choice
+    // return TP secund choice
 
     // CASE 2: All voters second preference
     D_count = 0, R_count = 0, TP_count = 0, new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
@@ -60,4 +60,23 @@ void monte_carlo(states* USA, int choice) {
     //return new votes
 
     // REP
+    for(int i = 0; i < TOT_REP_votes; i++) {
+        for(int j = 0; j < comparisons; j++) {
+            int r_no = 0;
+            r_no = rand() % 3;
+            if (r_no < 3) {
+                TP_count++;
+            } else {
+                D_count++;
+            }
+        }
+        if (TP_count < D_count) {
+            new_DEM_votes++;
+        } else {
+            new_TP_votes++;
+        }
+    }
+    // return new votes
+
+    // Run CASE 2 again
 }
