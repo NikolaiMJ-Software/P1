@@ -2,10 +2,12 @@
 
 char* PLPR(states* USA) {
     int democrats = 0, republicans = 0, third_party = 0;
+    int total_electors_us = 0;
 
         // Loop through all states
     for (int i = 0; i < STATES; i++) {
-        int total_electors = USA[i].population / 1000000; // Proportional electors (1 elector per 1M population)
+        int total_electors = USA[i].electors;  // Directly use electors from the state
+        total_electors_us += total_electors;  // Add state's electors to the total
         int electors_dem = 0, electors_rep = 0, electors_tp = 0;
 
         // Use the provided votes for each party
