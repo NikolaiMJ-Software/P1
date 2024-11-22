@@ -42,5 +42,11 @@ char* BC(states* USA) {
     printf("Total votes_third: %d\n", total_votes_third+new_TP_votes_2nd+new_TP_votes_3nd);
 
     // Return winning party
-    return "democrats";
+    if (dem_points > rep_points && dem_points > tp_points) {
+        return "Democrats";
+    } else if (rep_points > dem_points && rep_points > tp_points) {
+        return "Republicans";
+    } else {
+        return "Third Party";
+    }
 }
