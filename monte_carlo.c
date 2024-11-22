@@ -3,7 +3,8 @@
 #define comparisons 50000
 
 void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes);
-void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes);
+void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
+                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 
 // Monte Carlo study
 void monte_carlo(states* USA, int choice) {
@@ -23,7 +24,8 @@ void monte_carlo(states* USA, int choice) {
         MC_first_case(TOT_TP_votes, &new_DEM_votes, &new_REP_votes);
         // return result
     } else if (choice == 2) {
-        MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes);
+        MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes,
+                      &new_DEM_votes, &new_REP_votes, &new_TP_votes);
         // return result
     }
     // TEST print return values
@@ -48,19 +50,22 @@ void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes) {
             }
         }
         if (DEM_count < REP_count) {
-            *new_REP_votes++;
+            (*new_REP_votes)++;
         } else {
-            *new_DEM_votes++;
+            (*new_DEM_votes)++;
         }
         DEM_count = 0;
         REP_count = 0;
     }
-    // return TP secund choice
 }
 
-void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes) {
+void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
+                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
     // CASE 2: All voters second preference
-    int D_count = 0, R_count = 0, TP_count = 0, new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
+    int D_count = 0, R_count = 0, TP_count = 0;
+    *new_DEM_votes = 0;
+    *new_REP_votes = 0;
+    *new_TP_votes = 0;
     // DEM
     for(int i = 0; i < TOT_DEM_votes; i++) {
         for(int j = 0; j < comparisons; j++) {
@@ -73,10 +78,12 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes) {
             }
         }
         if (TP_count < R_count) {
-            new_REP_votes++;
+            (*new_REP_votes)++;
         } else {
-            new_TP_votes++;
+            (*new_TP_votes)++;
         }
+        TP_count = 0;
+        R_count = 0;
     }
 
     D_count = 0, TP_count = 0;
@@ -92,13 +99,13 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes) {
             }
         }
         if (TP_count < D_count) {
-            new_DEM_votes++;
+            (*new_DEM_votes)++;
         } else {
-            new_TP_votes++;
+            (*new_TP_votes)++;
         }
+        TP_count = 0;
+        D_count = 0;
     }
-
-    MC_first_case(TOT_TP_votes);
-
-    // return teh new votes
+    // run first case, to find third party second preference
+    MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes);
 }
