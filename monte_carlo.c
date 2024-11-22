@@ -7,12 +7,11 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
                     int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 
 // Monte Carlo study
-void monte_carlo(states* USA, int choice) {
+void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
     // restart rand
     srand(time(NULL));
 
-    int TOT_DEM_votes = 0, TOT_REP_votes = 0, TOT_TP_votes = 0,
-        new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
+    int TOT_DEM_votes = 0, TOT_REP_votes = 0, TOT_TP_votes = 0;
     // calculate the total of the votes, from different parties
     for (int i = 0; i < STATES; i++) {
         TOT_TP_votes += USA[i].third_votes;
