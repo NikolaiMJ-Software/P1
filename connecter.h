@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <tgmath.h>
 
 //creation of the states struct
 typedef struct states {
@@ -12,9 +13,11 @@ typedef struct states {
     int electors;
     double democrats;
     double republicans;
+    double third_party;
     int population;
     int dem_votes;
     int rep_votes;
+    int third_votes;
 }states;
 
 void ScanData_TXT(int input_year, states* USA);
@@ -23,7 +26,7 @@ char* electoral_college(states* USA);
 char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
-void monte_carlo();
-states* wyoming_rule(int input_year,states* USA);
+void monte_carlo(states* USA, int choice);
+void wyoming_rule(int input_year,states* USA);
 
 #endif //SCAN_DATA_TXT_H

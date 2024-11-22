@@ -1,32 +1,42 @@
 #include "../connecter.h"
 
-
-char* PLPR(states* USA){
+char* PLPR(states* USA) {
     int democrats = 0, republicans = 0, third_party = 0;
+    int total_electors_us = 0;
 
-// note population needs to be fixed other than that should work.
+        // Loop through all states
     for (int i = 0; i < STATES; i++) {
-        int total_electors = USA[i].population / 1000000; // 1000000 er en divisor for at opdele populationen proportionelt
+        int total_electors = USA[i].electors;  // Directly use electors from the state
+        total_electors_us += total_electors;  // Add state's electors to the total
         int electors_dem = 0, electors_rep = 0, electors_tp = 0;
 
-        // Initial vote totals for the state
-        double dem_votes = USA[i].population * (USA[i].democrats / 100.0);
-        double rep_votes = USA[i].population * (USA[i].republicans / 100.0);
-        double tp_votes = USA[i].population * ((100.0 - USA[i].democrats - USA[i].republicans) / 100.0);
+        // Use the provided votes for each party
+        double dem_votes = USA[i].dem_votes;
+        double rep_votes = USA[i].rep_votes;
+        double tp_votes = USA[i].third_votes;
 
         // Allocate electors using Sainte-Laguë divisors
-        for (int k = 1; total_electors > 0; k += 2) {
-            if (dem_votes >= rep_votes && dem_votes >= tp_votes) {
+
+        int k_dem = 1, k_rep = 1, k_tp = 1; // Divisors start at 1
+        while (total_electors > 0) {
+
+            // Find the party with the highest quotient
+            double dem_quotient = dem_votes / k_dem;
+            double rep_quotient = rep_votes / k_rep;
+            double tp_quotient = tp_votes / k_tp;
+
+            if (dem_quotient >= rep_quotient && dem_quotient >= tp_quotient) {
                 electors_dem++;
-                dem_votes /= (k + 2);
-            } else if (rep_votes >= dem_votes && rep_votes >= tp_votes) {
+                k_dem += 2; //divisor Increase
+            } else if (rep_quotient >= dem_quotient && rep_quotient >= tp_quotient) {
                 electors_rep++;
-                rep_votes /= (k + 2);
+                k_rep += 2; // divisor Increase
             } else {
                 electors_tp++;
-                tp_votes /= (k + 2);
+                k_tp += 2; // divisor Increase
             }
-            total_electors--;
+
+            total_electors--; // Decrement remaining electors
         }
 
         // Add state results to the national totals
@@ -35,10 +45,10 @@ char* PLPR(states* USA){
         third_party += electors_tp;
     }
 
+    // Print national results
     printf("Democrats: %d, Republicans: %d, Third Party: %d\n", democrats, republicans, third_party);
 
-
-    // Return winning party
+    // Return the winning party
     if (democrats > republicans && democrats > third_party) {
         return "Democrats";
     } else if (republicans > democrats && republicans > third_party) {
@@ -46,5 +56,4 @@ char* PLPR(states* USA){
     } else {
         return "Third Party";
     }
-
 }
