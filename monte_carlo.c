@@ -70,7 +70,7 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
             // Random choice between REP (0,1) and TP (2,3,4)
             int r_no = rand() % 5;
-            if (r_no >= 2) {
+            if (r_no <= 2) {
                 REP_count++;
             } else {
                 TP_count++;
@@ -91,7 +91,7 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
             // Random choice between DEM (0,1) and TP (2,3,4)
             int r_no = rand() % 5;
-            if (r_no >= 2) {
+            if (r_no <= 2) {
                 DEM_count++;
             } else {
                 TP_count++;
