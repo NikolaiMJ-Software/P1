@@ -28,9 +28,9 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
         // return result
     }
     // TEST print return values
-    printf("New DEM votes: %d\n", new_DEM_votes);
-    printf("New REP votes: %d\n", new_REP_votes);
-    printf("New TP votes: %d\n", new_TP_votes);
+    //printf("New DEM votes: %d\n", new_DEM_votes);
+    //printf("New REP votes: %d\n", new_REP_votes);
+    //printf("New TP votes: %d\n", new_TP_votes);
 }
 
 void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes) {
