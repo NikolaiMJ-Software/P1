@@ -38,8 +38,8 @@ char* BC(states* USA) {
     printf("TP points: %lf\n", tp_points);
     printf("Total votes: %d\n", total_votes);
     printf("Total votes_dem: %d\n", total_votes_dem+new_DEM_votes_2nd+new_DEM_votes_3nd);
-    printf("Total votes_dem: %d\n", total_votes_rep+new_REP_votes_2nd+new_REP_votes_3nd);
-    printf("Total votes_dem: %d\n", total_votes_third+new_TP_votes_2nd+new_TP_votes_3nd);
+    printf("Total votes_rep: %d\n", total_votes_rep+new_REP_votes_2nd+new_REP_votes_3nd);
+    printf("Total votes_third: %d\n", total_votes_third+new_TP_votes_2nd+new_TP_votes_3nd);
 
     // Return winning party
     return "democrats";
