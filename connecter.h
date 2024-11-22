@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tgmath.h>
+#include <stdbool.h>
+#include <ctype.h>
 
 //creation of the states struct
 typedef struct states {
