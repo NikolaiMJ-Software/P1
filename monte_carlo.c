@@ -2,7 +2,7 @@
 #include <time.h>
 #define N_OF_SIMULATIONS 10
 
-void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes);
+void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes, int choice);
 void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
                     int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 
@@ -19,12 +19,12 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
         TOT_REP_votes += USA[i].rep_votes;
     }
     int procent;
-    printf("What percentage chance shod democrats voters chose republicain party as there second choice, and viseverser?\n");
+    printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
     scanf("%d", &procent);
     // Call function, based on users choice
     if (choice == 1) {
         // ONLY third party second preference
-        MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes);
+        MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, 1);
     } else if (choice == 2) {
         // All second preference
         MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes,
@@ -33,11 +33,13 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
 }
 
 // CASE 1: if the third-party votes get lost, and have to chose between DEM og REP
-void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes) {
+void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes, int choice) {
     int DEM_count = 0, REP_count = 0;
-    // Reset the new votes for DEM and REP
-    *new_DEM_votes = 0;
-    *new_REP_votes = 0;
+    // Reset the new votes for DEM and REP if CASE 1 is chosen
+    if (choice == 1) {
+        *new_DEM_votes = 0;
+        *new_REP_votes = 0;
+    }
     // Third parties votes second preference
     for(int i = 0; i < TOT_tp_votes; i++) {
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
@@ -110,5 +112,5 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
         DEM_count = 0;
     }
     // run first case, to find third party second preference
-    MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes);
+    MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, 2);
 }
