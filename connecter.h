@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <tgmath.h>
 
 //creation of the states struct
 typedef struct states {
@@ -26,6 +27,6 @@ char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
 void monte_carlo(states* USA, int choice);
-states* wyoming_rule(int input_year,states* USA);
+void wyoming_rule(int input_year,states* USA);
 
 #endif //SCAN_DATA_TXT_H
