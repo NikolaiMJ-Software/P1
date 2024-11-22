@@ -4,10 +4,8 @@ int main(void) {
     while(true) {
         fflush(stdin);
         int input_year;
-        int wyoming_rule_true = 0;
+        char wyoming_rule_true = 'n';
         char system[10] = "Original";
-        printf("Which year do you want to investigate?");
-        scanf("%d", &input_year);
 
 
         states* USA = malloc(STATES * sizeof(states));  // Allocate memory for the array
@@ -18,8 +16,27 @@ int main(void) {
         }
 
         // Get data from year file, and return USA array
-        ScanData_TXT(input_year, USA);
-        if (wyoming_rule_true == 1) {
+        int file_loaded = 0; // Variable to track file loading
+        while (!file_loaded) {
+            fflush(stdin);
+            printf("Which year do you want to investigate?\n");
+            scanf("%d", &input_year);
+
+            file_loaded = ScanData_TXT(input_year, USA);
+            if (!file_loaded) {
+                printf("Invalid year or file not found. Please try again.\n");
+            }
+        }
+
+        do {
+            printf("Would you like to uncap the Electoral College from its current 538 electors (y/n)\n");
+            scanf(" %c", &wyoming_rule_true);
+            // Clear the input buffer to handle invalid input
+            while (getchar() != '\n');
+            wyoming_rule_true = tolower(wyoming_rule_true);
+        } while (wyoming_rule_true != 'y' && wyoming_rule_true != 'n');
+
+        if (wyoming_rule_true == 'y') {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner

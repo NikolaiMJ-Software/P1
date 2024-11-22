@@ -1,6 +1,6 @@
 #include "connecter.h"
 
-void ScanData_TXT(int input_year, states* USA) {
+int ScanData_TXT(int input_year, states* USA) {
     char filename[50];
     // insert the input_year in the file name
     snprintf(filename, sizeof(filename), "US_election_data/US_Election_%d.txt", input_year);
@@ -10,8 +10,7 @@ void ScanData_TXT(int input_year, states* USA) {
 
     //test if inputfile can load, if not exit failure
     if (!inputFile) {
-        perror("File could not open!");
-        exit(EXIT_FAILURE);
+        return 0;
     }
 
     for(int i = 0; i<STATES; i++) {
@@ -26,4 +25,5 @@ void ScanData_TXT(int input_year, states* USA) {
     }
     //CLOSE FILE
     fclose(inputFile);
+    return 1;
 }
