@@ -1,6 +1,6 @@
 #include "connecter.h"
 #include <time.h>
-#define N_OF_SIMULATIONS 50000
+#define N_OF_SIMULATIONS 50
 
 void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes);
 void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
@@ -91,7 +91,7 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
             // Random choice between DEM (0) and TP (1,2)
             int r_no = rand() % 3;
-            if (r_no == 3) {
+            if (r_no == 0) {
                 DEM_count++;
             } else {
                 TP_count++;
