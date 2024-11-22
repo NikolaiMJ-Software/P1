@@ -4,7 +4,7 @@
 
 void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes);
 void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
-                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
+                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 
 // Monte Carlo study of the voters second preference
 void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
@@ -18,6 +18,9 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
         TOT_DEM_votes += USA[i].dem_votes;
         TOT_REP_votes += USA[i].rep_votes;
     }
+    int procent;
+    printf("What percentage chance shod democrats voters chose republicain party as there second choice, and viseverser?\n");
+    scanf("%d", &procent);
     // Call function, based on users choice
     if (choice == 1) {
         // ONLY third party second preference
@@ -25,7 +28,7 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
     } else if (choice == 2) {
         // All second preference
         MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes,
-                      new_DEM_votes, new_REP_votes, new_TP_votes);
+                      new_DEM_votes, new_REP_votes, new_TP_votes, procent);
     }
 }
 
@@ -59,7 +62,7 @@ void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes) {
 
 // CASE 2: All voters second preference
 void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
-                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
+                    int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent) {
     int DEM_count = 0, REP_count = 0, TP_count = 0;
     // Reset the new votes for all parties
     *new_DEM_votes = 0;
@@ -68,9 +71,9 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
     // DEM voters second preference
     for(int i = 0; i < TOT_DEM_votes; i++) {
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
-            // Random choice between REP (0,1) and TP (2,3,4)
-            int r_no = rand() % 5;
-            if (r_no < 2) {
+            // Random choice between REP (user %) and TP (rest)
+            int r_no = rand() % 100;
+            if (r_no < procent) {
                 REP_count++;
             } else {
                 TP_count++;
@@ -89,9 +92,9 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
     // REP voters second preference
     for(int i = 0; i < TOT_REP_votes; i++) {
         for(int j = 0; j < N_OF_SIMULATIONS; j++) {
-            // Random choice between DEM (0,1) and TP (2,3,4)
-            int r_no = rand() % 5;
-            if (r_no < 2) {
+            // Random choice between DEM (user %) and TP (rest)
+            int r_no = rand() % 100;
+            if (r_no < procent) {
                 DEM_count++;
             } else {
                 TP_count++;
