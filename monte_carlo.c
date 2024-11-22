@@ -18,14 +18,15 @@ void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes
         TOT_DEM_votes += USA[i].dem_votes;
         TOT_REP_votes += USA[i].rep_votes;
     }
-    int procent;
-    printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
-    scanf("%d", &procent);
     // Call function, based on users choice
     if (choice == 1) {
         // ONLY third party second preference
-        MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, 1);
+        MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, choice);
     } else if (choice == 2) {
+        // User chose the percentage a DEM will vote for a REP, and the opposite, as second preference
+        int procent;
+        printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
+        scanf("%d", &procent);
         // All second preference
         MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes,
                       new_DEM_votes, new_REP_votes, new_TP_votes, procent);
