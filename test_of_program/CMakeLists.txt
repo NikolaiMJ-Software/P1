@@ -1,5 +1,6 @@
 # Create an executable for your test case (this is an executable, not a library)
-add_executable(Scan_Data_TestCase Scan_Data_TestCase.c)
+add_executable(Scan_Data_TestCase Scan_Data_TestCase.c
+        PLPR_TestCase.c)
 
 # Link the executable to necessary libraries (e.g., math library, if needed)
 target_link_libraries(Scan_Data_TestCase m)

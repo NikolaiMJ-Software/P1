@@ -1,16 +1,16 @@
 #include "../connecter.h"
 #include <assert.h>
-
 void test_do_next_op_case1(void);
 void test_do_next_op_case2(void);
-
-
+void test_do_next_op_case3(void);
 
 
 int main(void) {
     /* Kør alle test-funktioner. */
     test_do_next_op_case1();
     test_do_next_op_case2();
+
+    test_do_next_op_case3();
 
     printf("All tests passed successfully!\n");
     return 0;
@@ -58,3 +58,4 @@ void test_do_next_op_case2(void) {
     /* If everything is correct, the assertions will pass and the test will succeed. */
     printf("Test case 2 passed!\n");
 }
+
