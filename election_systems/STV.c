@@ -9,7 +9,7 @@ char* STV(states* USA) {
     // Creat new results
     int new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
     // Call function, "1" for "case 1" (ONLY third party second preference) and "2" for "case 2" (All second preference)
-    monte_carlo(USA, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
+    //monte_carlo(USA, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
     // Print return values from Monte Carlo
     printf("New DEM votes: %d\n", new_DEM_votes);
     printf("New REP votes: %d\n", new_REP_votes);

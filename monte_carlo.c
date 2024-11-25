@@ -7,26 +7,24 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
                     int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 
 // Monte Carlo study of the voters second preference
-void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
+void monte_carlo(int old_DEM, int old_REP, int old_third, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
     // Make the randomize based on the time
     srand(time(NULL));
 
     int TOT_DEM_votes = 0, TOT_REP_votes = 0, TOT_TP_votes = 0;
     // Calculate the total of the votes, for all parties
-    for (int i = 0; i < STATES; i++) {
-        TOT_TP_votes += USA[i].third_votes;
-        TOT_DEM_votes += USA[i].dem_votes;
-        TOT_REP_votes += USA[i].rep_votes;
-    }
+    TOT_TP_votes = old_third;
+    TOT_DEM_votes = old_DEM;
+    TOT_REP_votes = old_REP;
     // Call function, based on users choice
     if (choice == 1) {
         // ONLY third party second preference
         MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, choice);
     } else if (choice == 2) {
         // User chose the percentage a DEM will vote for a REP, and the opposite, as second preference
-        int procent;
-        printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
-        scanf("%d", &procent);
+        int procent = 40;
+        //printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
+        //scanf("%d", &procent);
         // All second preference
         MC_second_case(TOT_DEM_votes, TOT_REP_votes, TOT_TP_votes,
                       new_DEM_votes, new_REP_votes, new_TP_votes, procent);

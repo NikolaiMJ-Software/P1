@@ -28,7 +28,7 @@ char* electoral_college(states* USA);
 char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
-void monte_carlo(states* USA, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
+void monte_carlo(int old_DEM, int old_REP, int old_third, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 
 #endif //SCAN_DATA_TXT_H
