@@ -70,7 +70,9 @@ char* BC(states* USA) {
         return "Democrats";
     } else if (allocated_rep_electors > allocated_dem_electors && allocated_rep_electors > allocated_tp_electors) {
         return "Republicans";
-    } else {
+    } else if(allocated_tp_electors > allocated_dem_electors && allocated_tp_electors > allocated_rep_electors) {
         return "Third Party";
+    } else {
+        return "Tie";
     }
 }
