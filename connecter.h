@@ -1,6 +1,6 @@
 #ifndef SCAN_DATA_TXT_H
 #define SCAN_DATA_TXT_H
-#define NAME_LGT 14
+#define NAME_LGT 30
 #define STATES 51
 #include <stdio.h>
 #include <stdlib.h>

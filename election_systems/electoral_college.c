@@ -1,9 +1,10 @@
 #include "../connecter.h"
 
 char* electoral_college(states* USA) {
-    int democrats = 0, republicans = 0, third_party = 0;
+    int democrats = 0, republicans = 0, third_party = 0, electors = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
+        electors += USA[i].electors;
         double third_p = 100 - USA[i].democrats - USA[i].republicans;
         if (USA[i].democrats > third_p && USA[i].democrats > USA[i].republicans) {
             democrats += USA[i].electors;
@@ -14,9 +15,9 @@ char* electoral_college(states* USA) {
         }
     }
     // Return winning party
-    if (democrats > 270) {
+    if (democrats > (electors/2)) {
         return "Democrats";
-    } else if (republicans > 270){
+    } else if (republicans > (electors/2)){
         return "Republicans";
     } else {
         return "Third_party";
