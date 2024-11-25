@@ -3,7 +3,7 @@
 
 void test_do_next_op_case1(void);
 void test_do_next_op_case2(void);
-#define STATES 50
+
 
 
 
@@ -47,11 +47,11 @@ void test_do_next_op_case2(void) {
     ScanData_TXT(2016, USA);
 
     // Assertions to check that the first state's data is correct
-    assert(strcmp(USA[31].stateName, "New York") == 0); // det virker igen :D
-    assert(USA[31].electors == 29);
-    assert(USA[31].democrats == 59.0);
-    assert(USA[31].republicans == 36.5);
-    assert(USA[31].population == 19633428);
+    assert(strcmp(USA[32].stateName, "New York") == 0); // det virker igen :D
+    assert(USA[32].electors == 29);
+    assert(USA[32].democrats == 59.0);
+    assert(USA[32].republicans == 36.5);
+    assert(USA[32].population == 19633428);
 
 
 
