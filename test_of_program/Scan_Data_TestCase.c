@@ -19,7 +19,7 @@ int main(void) {
 
         test_do_next_op_case3();
     printf("\n");
-    printf("PLPR case 1:\n");
+    printf("PLPR case 2:\n");
         test_do_next_op_case4();
     printf("\n");
     printf("All PLPR tests passed successfully!\n");
