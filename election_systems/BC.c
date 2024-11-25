@@ -1,56 +1,74 @@
 #include "../connecter.h"
 
 char* BC(states* USA) {
-    int total_votes = 0, state_third_party_votes= 0, state_rep_party_votes = 0, state_dem_party_votes = 0;
-    int new_DEM_votes_2nd = 0, new_REP_votes_2nd = 0, new_TP_votes_2nd = 0;
-    double dem_points = 0, rep_points = 0, tp_points = 0;
-    int new_DEM_votes_3nd = 0, new_REP_votes_3nd = 0, new_TP_votes_3nd = 0;
-    int dem_electors = 0, rep_electors = 0, tp_electors = 0;
-    for (int i = 0; i<STATES; i++) {
-        total_votes = USA[i].dem_votes+USA[i].rep_votes+USA[i].third_votes;
+    int total_electors = 0; // To track the total number of electors
+    int allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0;
+    double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
 
-        state_third_party_votes = USA[i].third_votes;
-        state_rep_party_votes = USA[i].rep_votes;
-        state_dem_party_votes = USA[i].dem_votes;
+    // Arrays to store fractional values and remaining electors
+    double dem_fraction[STATES], rep_fraction[STATES], tp_fraction[STATES];
 
-        monte_carlo(state_dem_party_votes, state_rep_party_votes, state_third_party_votes, 2, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
+    for (int i = 0; i < STATES; i++) {
+        int total_votes = USA[i].dem_votes + USA[i].rep_votes + USA[i].third_votes;
 
-        printf("%d\n", new_DEM_votes_2nd);
-        printf("%d\n", new_REP_votes_2nd);
-        printf("%d\n", new_TP_votes_2nd);
+        // Monte Carlo simulation to get second-choice votes
+        int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
+        monte_carlo(USA[i].dem_votes, USA[i].rep_votes, USA[i].third_votes, 2,
+                    &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
-        new_DEM_votes_3nd = total_votes - new_DEM_votes_2nd-USA[i].dem_votes;
-        new_REP_votes_3nd = total_votes - new_REP_votes_2nd-USA[i].rep_votes;
-        new_TP_votes_3nd =  total_votes - new_TP_votes_2nd-USA[i].third_votes;
+        int new_DEM_votes_3rd = total_votes - new_DEM_votes_2nd - USA[i].dem_votes;
+        int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
+        int new_TP_votes_3rd = total_votes - new_TP_votes_2nd - USA[i].third_votes;
 
-        dem_points = USA[i].dem_votes+(0.5*new_DEM_votes_2nd)+(0.33*new_DEM_votes_3nd);
-        rep_points = USA[i].rep_votes+(0.5*new_REP_votes_2nd)+(0.33*new_REP_votes_3nd);
-        tp_points = USA[i].third_votes+(0.5*new_TP_votes_2nd)+(0.33*new_TP_votes_3nd);
+        // Calculate points
+        double dem_points = USA[i].dem_votes + (0.5 * new_DEM_votes_2nd) + (0.33 * new_DEM_votes_3rd);
+        double rep_points = USA[i].rep_votes + (0.5 * new_REP_votes_2nd) + (0.33 * new_REP_votes_3rd);
+        double tp_points = USA[i].third_votes + (0.5 * new_TP_votes_2nd) + (0.33 * new_TP_votes_3rd);
+        double total_points = dem_points + rep_points + tp_points;
 
-        //printf("State: %s: \n", USA[i].stateName);
-        //printf("Democrat points: %0.2lf \n", dem_points);
-        //printf("Rep points: %0.2lf \n", rep_points);
-        //printf("TP points: %0.2lf \n\n", tp_points);
+        // Calculate proportional allocation
+        dem_fraction[i] = (USA[i].electors * (dem_points / total_points));
+        rep_fraction[i] = (USA[i].electors * (rep_points / total_points));
+        tp_fraction[i] = (USA[i].electors * (tp_points / total_points));
 
-        if(dem_points>rep_points && dem_points>tp_points) {
-            dem_electors += USA[i].electors;
-        } else if(rep_points>dem_points && rep_points>tp_points) {
-            rep_electors += USA[i].electors;
-        } else if(tp_points>dem_points && tp_points>rep_points) {
-            tp_electors += USA[i].electors;
-        }
+        // Allocate integer part of electors
+        allocated_dem_electors += (int)dem_fraction[i];
+        allocated_rep_electors += (int)rep_fraction[i];
+        allocated_tp_electors += (int)tp_fraction[i];
+
+        // Accumulate fractional sums
+        dem_points_sum += dem_fraction[i] - (int)dem_fraction[i];
+        rep_points_sum += rep_fraction[i] - (int)rep_fraction[i];
+        tp_points_sum += tp_fraction[i] - (int)tp_fraction[i];
+
+        total_electors += USA[i].electors;
     }
-    // Call function Monte Carlo to define second choice
-    //define third choice
 
-    printf("democrat electors: %d \n",dem_electors);
-    printf("republican electors: %d \n",rep_electors);
-    printf("third party electors: %d \n",tp_electors);
+    // Adjust missing electors using largest remainder method
+    int missing_electors = total_electors - (allocated_dem_electors + allocated_rep_electors + allocated_tp_electors);
+    while (missing_electors > 0) {
+        if (dem_points_sum >= rep_points_sum && dem_points_sum >= tp_points_sum) {
+            allocated_dem_electors++;
+            dem_points_sum -= 1;
+        } else if (rep_points_sum >= tp_points_sum) {
+            allocated_rep_electors++;
+            rep_points_sum -= 1;
+        } else {
+            allocated_tp_electors++;
+            tp_points_sum -= 1;
+        }
+        missing_electors--;
+    }
 
-    // Return winning party
-    if (dem_electors > rep_electors && dem_electors > tp_electors) {
+    // Print results
+    printf("Democrat electors: %d\n", allocated_dem_electors);
+    printf("Republican electors: %d\n", allocated_rep_electors);
+    printf("Third party electors: %d\n", allocated_tp_electors);
+
+    // Determine winner
+    if (allocated_dem_electors > allocated_rep_electors && allocated_dem_electors > allocated_tp_electors) {
         return "Democrats";
-    } else if (rep_electors > dem_electors && rep_electors > tp_electors) {
+    } else if (allocated_rep_electors > allocated_dem_electors && allocated_rep_electors > allocated_tp_electors) {
         return "Republicans";
     } else {
         return "Third Party";

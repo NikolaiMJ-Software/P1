@@ -5,7 +5,7 @@ int main(void) {
         fflush(stdin);
         int input_year;
         char wyoming_rule_true = 'n';
-        char system[10] = "Original";
+        char system[10] = "original";
 
 
         states* USA = malloc(STATES * sizeof(states));  // Allocate memory for the array
@@ -46,6 +46,9 @@ int main(void) {
         // User chose a new system
         printf("Chose a new system: STV, PLPR or BC:\n");
         scanf("%s", system);
+        for (int i = 0; system[i] != '\0'; i++) {
+            system[i] = tolower(system[i]);
+        }
 
         // Determine the winner
         result = Winner_of_election(USA, system);
