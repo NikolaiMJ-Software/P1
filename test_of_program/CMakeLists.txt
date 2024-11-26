@@ -13,3 +13,4 @@ add_test(NAME run_test COMMAND run_test)
 
 # Link the test executable to the necessary source files from the main project
 target_sources(run_test PRIVATE ../scan_data.c ../connecter.h)
+target_sources(run_test PRIVATE ../wyoming_rule.c)

@@ -1,9 +1,9 @@
 #include "connecter.h"
 
-char* Winner_of_election(states* USA, char* system) {
+char* Winner_of_election(states* USA, char* system, int input_year) {
     while(true) {
         if (strcmp(system, "original") == 0) {
-            return electoral_college(USA);
+            return electoral_college(USA, input_year);
         } else if (strcmp(system, "stv") == 0) {
             return STV(USA);
         } else if (strcmp(system, "plpr") == 0) {

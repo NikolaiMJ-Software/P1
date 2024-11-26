@@ -6,7 +6,7 @@
 
 ![img.png](_images/img.png)
 
-!!!Remember to click "apply" then "OK"!!!
+!!!Remember to click "Apply" then "OK"!!!
 
 2. Run the program
 

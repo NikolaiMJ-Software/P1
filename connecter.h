@@ -24,8 +24,8 @@ typedef struct states {
 }states;
 
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, char* system);
-char* electoral_college(states* USA);
+char* Winner_of_election(states* USA, char* system, int input_year);
+char* electoral_college(states* USA, int year);
 char* PLPR(states* USA);
 char* STV(states* USA);
 char* BC(states* USA);
