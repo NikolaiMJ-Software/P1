@@ -23,18 +23,9 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
             tot_new_DEM_votes += new_D;
             tot_new_REP_votes += new_R;
         }
-        /*
-        * make it return the average, and deleted the rest
-        printf("new DEM_original: %d\n", *new_DEM_votes);
-        printf("new REP_original: %d\n", *new_REP_votes);
-        int new_DEM_v = tot_new_DEM_votes / N_OF_SIMULATIONS;
-        int new_REP_v = tot_new_REP_votes / N_OF_SIMULATIONS;
-
-        printf("TOT: %d\n", USA[state].third_votes);
-        printf("TOT_Average: %d\n", new_DEM_v+new_REP_v);
-        printf("new DEM_average: %d\n", new_DEM_v);
-        printf("new REP_average: %d\n", new_REP_v);
-        */
+        // Returning the average
+        *new_DEM_votes = tot_new_DEM_votes / N_OF_SIMULATIONS;
+        *new_REP_votes = tot_new_REP_votes / N_OF_SIMULATIONS;
     } else if (choice == 2) {
         // User chose the percentage a DEM will vote for a REP, and the opposite, as second preference
         int procent = 40;
@@ -54,33 +45,22 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
             tot_new_REP_votes += new_R;
             tot_new_TP_votes += new_TP;
         }
-        /*
-        * make it return the average, and deleted the rest
-        printf("new DEM_original: %d\n", *new_DEM_votes);
-        printf("new REP_original: %d\n", *new_REP_votes);
-        printf("new TP_original: %d\n", *new_TP_votes);
-        int new_DEM_v = tot_new_DEM_votes / N_OF_SIMULATIONS;
-        int new_REP_v = tot_new_REP_votes / N_OF_SIMULATIONS;
-        int new_TP_v = tot_new_TP_votes / N_OF_SIMULATIONS;
-
-        printf("TOT: %d\n", USA[state].dem_votes + USA[state].rep_votes + USA[state].third_votes);
-        printf("TOT_Average: %d\n", new_DEM_v + new_REP_v + new_TP_v);
-        printf("new DEM_average: %d\n", new_DEM_v);
-        printf("new REP_average: %d\n", new_REP_v);
-        printf("new TP_average: %d\n", new_TP_v);
-        */
+        // Returning the average
+        *new_DEM_votes = tot_new_DEM_votes / N_OF_SIMULATIONS;
+        *new_REP_votes = tot_new_REP_votes / N_OF_SIMULATIONS;
+        *new_TP_votes = tot_new_TP_votes / N_OF_SIMULATIONS;
     }
 }
 
 // CASE 1: if the third-party votes get lost, and have to chose between DEM og REP
-void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes, int choice) {
+void MC_first_case(int old_tp_votes, int* new_DEM_votes, int* new_REP_votes, int choice) {
     // Reset the new votes for DEM and REP if CASE 1 is chosen
     if (choice == 1) {
         *new_DEM_votes = 0;
         *new_REP_votes = 0;
     }
     // Third parties votes second preference
-    for(int i = 0; i < TOT_tp_votes; i++) {
+    for(int i = 0; i < old_tp_votes; i++) {
         // Random choice between DEM (0) and REP (1)
         int r_no = rand() % 2;
         if (r_no) {
@@ -92,14 +72,14 @@ void MC_first_case(int TOT_tp_votes, int* new_DEM_votes, int* new_REP_votes, int
 }
 
 // CASE 2: All voters second preference
-void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
+void MC_second_case(int old_DEM_votes, int old_REP_votes, int old_TP_votes,
                     int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent) {
     // Reset the new votes for all parties
     *new_DEM_votes = 0;
     *new_REP_votes = 0;
     *new_TP_votes = 0;
     // DEM voters second preference
-    for(int i = 0; i < TOT_DEM_votes; i++) {
+    for(int i = 0; i < old_DEM_votes; i++) {
         // Random choice between REP (user %) and TP (rest)
         int r_no = rand() % 100;
         // Add the vote to the new_party
@@ -111,7 +91,7 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
     }
 
     // REP voters second preference
-    for(int i = 0; i < TOT_REP_votes; i++) {
+    for(int i = 0; i < old_REP_votes; i++) {
         // Random choice between DEM (user %) and TP (rest)
         int r_no = rand() % 100;
         // Add the vote to the new_party
@@ -122,7 +102,7 @@ void MC_second_case(int TOT_DEM_votes, int TOT_REP_votes, int TOT_TP_votes,
         }
     }
     // run first case, to find third party second preference
-    MC_first_case(TOT_TP_votes, new_DEM_votes, new_REP_votes, 2);
+    MC_first_case(old_TP_votes, new_DEM_votes, new_REP_votes, 2);
 }
 
 

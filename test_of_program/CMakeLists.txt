@@ -1,12 +1,13 @@
 # Create an executable for your test case (this is an executable, not a library)
-add_executable(Scan_Data_TestCase Scan_Data_TestCase.c
-        PLPR_TestCase.c)
+add_executable(run_test run_test.c
+        PLPR_TestCase.c
+        scan_data_TestCase.c)
 
 # Link the executable to necessary libraries (e.g., math library, if needed)
-target_link_libraries(Scan_Data_TestCase m)
+target_link_libraries(run_test m)
 
 # Register the test with CTest (so it can be run as part of CMake's testing framework)
-add_test(NAME Scan_Data_TestCase COMMAND Scan_Data_TestCase)
+add_test(NAME run_test COMMAND run_test)
 
 # Link the test executable to the necessary source files from the main project
-target_sources(Scan_Data_TestCase PRIVATE ../scan_data.c ../connecter.h)
+target_sources(run_test PRIVATE ../scan_data.c ../connecter.h)
