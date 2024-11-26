@@ -13,6 +13,7 @@ add_executable(P1 main.c
         election_systems/BC.c
         monte_carlo.c
         Wyoming_Rule.c
+        available_files.c
 )
 
 # Add the test directory
