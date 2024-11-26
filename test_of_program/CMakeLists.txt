@@ -12,5 +12,9 @@ target_link_libraries(run_test m)
 add_test(NAME run_test COMMAND run_test)
 
 # Link the test executable to the necessary source files from the main project
-target_sources(run_test PRIVATE ../scan_data.c ../connecter.h)
-target_sources(run_test PRIVATE ../wyoming_rule.c)
+target_sources(run_test PRIVATE
+                ../scan_data.c
+                ../connecter.h
+                ../wyoming_rule.c
+                ../election_systems../STV.c)
+#target_sources(run_test PRIVATE ../wyoming_rule.c )

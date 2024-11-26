@@ -28,21 +28,23 @@ int main(void) {
 
     printf("test of the PLPR function\n");
     printf("PLPR case 1: (2016 capped)\n");
-
         test_do_next_op_case3();
-    printf("\n");
-    printf("PLPR case 2: (2024 capped)\n");
+    printf("\nPLPR case 2: (2024 capped)\n");
         test_do_next_op_case4();
-    printf("\n");
-    printf("PLPR case 3: (2016 uncapped)\n");
-    test_do_next_op_case5();
-    printf("\n");
-    printf("PLPR case 4: (2024 uncapped)\n");
-    test_do_next_op_case6();
-    printf("\n");
-    printf("All PLPR tests passed successfully!\n");
+    printf("\nPLPR case 3: (2016 uncapped)\n");
+        test_do_next_op_case5();
+    printf("\nPLPR case 4: (2024 uncapped)\n");
+        test_do_next_op_case6();
+    printf("\nAll PLPR tests passed successfully!\n");
     printf("----------------------------------------\n");
 
+    printf("test of the STV function\n");
+    printf("STV case 1: (2016 capped)\n");
+    test_do_next_op_case9();
+    printf("\nSTV case 2: (2024 capped)\n");
+    test_do_next_op_case10();
+    printf("\nAll STV tests passed successfully!\n");
+    printf("----------------------------------------\n");
     printf("All tests passed successfully!\n");
     return 0;
 }
