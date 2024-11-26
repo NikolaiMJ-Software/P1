@@ -17,6 +17,8 @@ void test_do_next_op_case8(void);
 //STV
 void test_do_next_op_case9(void);
 void test_do_next_op_case10(void);
+void test_do_next_op_case11(void);
+void test_do_next_op_case12(void);
 
 int main(void) {
     /* Kør alle test-funktioner. */
@@ -43,6 +45,10 @@ int main(void) {
     test_do_next_op_case9();
     printf("\nSTV case 2: (2024 capped)\n");
     test_do_next_op_case10();
+    printf("\nSTV case 3: (2016 uncapped)\n");
+    test_do_next_op_case11();
+    printf("\nSTV case 4: (2024 uncapped)\n");
+    test_do_next_op_case12();
     printf("\nAll STV tests passed successfully!\n");
     printf("----------------------------------------\n");
     printf("All tests passed successfully!\n");
