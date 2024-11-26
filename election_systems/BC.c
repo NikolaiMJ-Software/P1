@@ -13,8 +13,7 @@ char* BC(states* USA) {
 
         // Monte Carlo simulation to get second-choice votes
         int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
-        monte_carlo(USA[i].dem_votes, USA[i].rep_votes, USA[i].third_votes, 2,
-                    &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
+        monte_carlo(USA, i, 2, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
         int new_DEM_votes_3rd = total_votes - new_DEM_votes_2nd - USA[i].dem_votes;
         int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
@@ -76,3 +75,4 @@ char* BC(states* USA) {
         return "Tie";
     }
 }
+

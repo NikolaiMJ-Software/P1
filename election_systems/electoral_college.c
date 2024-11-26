@@ -15,9 +15,9 @@ char* electoral_college(states* USA) {
         }
     }
     // Return winning party
-    if (democrats > (electors/2)) {
+    if (democrats > (electors/2)+1) {
         return "Democrats";
-    } else if (republicans > (electors/2)){
+    } else if (republicans > (electors/2)+1){
         return "Republicans";
     } else {
         return "Third_party";
