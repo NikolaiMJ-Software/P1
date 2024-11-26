@@ -1,7 +1,7 @@
 #include "../connecter.h"
 
 char* BC(states* USA) {
-    int total_electors = 0; // To track the total number of electors
+    int total_electors = 0;
     int allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0;
     double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
 
@@ -11,7 +11,7 @@ char* BC(states* USA) {
     for (int i = 0; i < STATES; i++) {
         int total_votes = USA[i].dem_votes + USA[i].rep_votes + USA[i].third_votes;
 
-        // Monte Carlo simulation to get second-choice votes
+        // Monte Carlo simulation: second-choice votes
         int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
         monte_carlo(USA, i, 2, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
@@ -19,7 +19,7 @@ char* BC(states* USA) {
         int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
         int new_TP_votes_3rd = total_votes - new_TP_votes_2nd - USA[i].third_votes;
 
-        // Calculate points
+        // Calculate points based on Nauru BC
         double dem_points = USA[i].dem_votes + (0.5 * new_DEM_votes_2nd) + (0.33 * new_DEM_votes_3rd);
         double rep_points = USA[i].rep_votes + (0.5 * new_REP_votes_2nd) + (0.33 * new_REP_votes_3rd);
         double tp_points = USA[i].third_votes + (0.5 * new_TP_votes_2nd) + (0.33 * new_TP_votes_3rd);
@@ -30,7 +30,7 @@ char* BC(states* USA) {
         rep_fraction[i] = (USA[i].electors * (rep_points / total_points));
         tp_fraction[i] = (USA[i].electors * (tp_points / total_points));
 
-        // Allocate integer part of electors
+        // Allocate electors
         allocated_dem_electors += (int)dem_fraction[i];
         allocated_rep_electors += (int)rep_fraction[i];
         allocated_tp_electors += (int)tp_fraction[i];
@@ -46,10 +46,10 @@ char* BC(states* USA) {
     // Adjust missing electors using largest remainder method
     int missing_electors = total_electors - (allocated_dem_electors + allocated_rep_electors + allocated_tp_electors);
     while (missing_electors > 0) {
-        if (dem_points_sum >= rep_points_sum && dem_points_sum >= tp_points_sum) {
+        if (dem_points_sum > rep_points_sum && dem_points_sum > tp_points_sum) {
             allocated_dem_electors++;
             dem_points_sum -= 1;
-        } else if (rep_points_sum >= tp_points_sum) {
+        } else if (rep_points_sum > tp_points_sum && rep_points_sum > dem_points_sum) {
             allocated_rep_electors++;
             rep_points_sum -= 1;
         } else {

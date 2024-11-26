@@ -2,6 +2,7 @@
 
 int main(void) {
     const char* directory = "US_election_data";
+    system("start Music/Music.mp3");
 
     while(true) {
         list_available_files(directory);
