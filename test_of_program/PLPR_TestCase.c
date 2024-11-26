@@ -49,7 +49,6 @@ void test_do_next_op_case4(void) {
 
 void test_do_next_op_case5(void) {
     states USA[STATES];
-    //char wyoming_rule_true = 'n';
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
@@ -60,7 +59,6 @@ void test_do_next_op_case5(void) {
 
     // Check if result is not NULL
     assert(result != NULL);
-    //assert(&wyoming_rule_true == 'y');
 
     // Check the expected result
     char* expected_result = "Democrats"; // Modify this based on the expected winner for your data
@@ -74,7 +72,6 @@ void test_do_next_op_case5(void) {
 
 void test_do_next_op_case6(void) {
     states USA[STATES];
-    //char wyoming_rule_true = 'n';
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
@@ -85,7 +82,6 @@ void test_do_next_op_case6(void) {
 
     // Check if result is not NULL
     assert(result != NULL);
-    //assert(&wyoming_rule_true == 'y');
 
     // Check the expected result
     char* expected_result = "Republicans"; // Modify this based on the expected winner for your data
