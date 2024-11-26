@@ -14,6 +14,7 @@ add_executable(P1 main.c
         monte_carlo.c
         Wyoming_Rule.c
         available_files.c
+        Parameters.c
 )
 
 # Add the test directory
