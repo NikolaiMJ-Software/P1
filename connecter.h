@@ -8,6 +8,7 @@
 #include <tgmath.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <dirent.h>
 
 //creation of the states struct
 typedef struct states {
@@ -30,5 +31,6 @@ char* STV(states* USA);
 char* BC(states* USA);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
+void list_available_files(const char* directory);
 
 #endif //SCAN_DATA_TXT_H
