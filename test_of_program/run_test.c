@@ -34,6 +34,9 @@ int main(void) {
     printf("PLPR case 2:\n");
         test_do_next_op_case4();
     printf("\n");
+    printf("PLPR case 3:\n");
+    test_do_next_op_case5();
+    printf("\n");
     printf("All PLPR tests passed successfully!\n");
     printf("----------------------------------------\n");
 
