@@ -1,10 +1,10 @@
 # P1 - How to use the program.
-1.
+1. Set op "working directory", and find the absolute path to the program "P1", fx look at the image
 
-2.
+![img_1.png](_images/img_1.png)
+![img.png](_images/img.png)
 
-3.
+2. Run the program
 
-4.
 
-5.
+3. Follow the steps in the console
