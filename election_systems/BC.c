@@ -76,3 +76,4 @@ char* BC(states* USA) {
         return "Tie";
     }
 }
+
