@@ -14,6 +14,9 @@ char* electoral_college(states* USA) {
             third_party += USA[i].electors;
         }
     }
+    printf("democrat electors: %d\n", democrats);
+    printf("republican electors: %d\n", republicans);
+    printf("third party electors: %d\n", third_party);
     // Return winning party
     if (democrats > (electors/2)+1) {
         return "Democrats";
