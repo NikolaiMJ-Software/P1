@@ -46,7 +46,7 @@ int main(void) {
         }
         // Determine the winner
         char* result = Winner_of_election(USA, system, input_year);
-        printf("With the %s system, was the winner the %s.\n\n", system, result);
+        printf("With the %s system, the winner was the %s.\n\n", system, result);
 
         // User chose a new system
         printf("Chose a new system: STV, PLPR or BC:\n");
