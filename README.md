@@ -4,6 +4,8 @@
 ![img_1.png](_images/img_1.png)
 ![img.png](_images/img.png)
 
+!!!Remember to click "apply" then "OK"!!!
+
 2. Run the program
 
 
