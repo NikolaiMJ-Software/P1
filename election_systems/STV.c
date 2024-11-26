@@ -81,6 +81,10 @@ char* STV(states* USA) {
         tp_electors += state_tp_electors;
         state_dem_electors = 0, state_rep_electors = 0, state_tp_electors = 0;
     }
+    // Print the electors for each party
+    printf("Democrat electors: %d\n", dem_electors);
+    printf("Republican electors: %d\n", rep_electors);
+    printf("Third party electors: %d\n", tp_electors);
     //After every state has been gone through, compare overarching variables to find winner.
     if ((dem_electors > rep_electors) && (dem_electors > tp_electors)) {
         return "Democrats";
