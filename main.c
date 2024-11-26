@@ -1,7 +1,11 @@
 #include "connecter.h"
 
 int main(void) {
+    const char* directory = "US_election_data";
+
     while(true) {
+        list_available_files(directory);
+
         fflush(stdin);
         int input_year;
         char wyoming_rule_true = 'n';
