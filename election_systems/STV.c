@@ -1,5 +1,4 @@
 #include "../connecter.h"
-#include <math.h>
 // a variable to define the amount of voter percentage that have an n+1 priority vote, when they have an n priority vote.
 #define VOTE_DECREASE_RATIO 0.75
 
@@ -17,38 +16,47 @@ char* STV(states* USA) {
         //And define the required votes to be a percentage of votes based on the amount of electors.
         int required_votes = total_votes / USA[i].electors;
         //After this we give each party electors based on how many times they live up to the requirements.
-            while (state_third_party_votes >= required_votes || state_rep_party_votes >= required_votes || state_dem_party_votes >= required_votes) {
-                if (state_third_party_votes >= required_votes) {
-                    state_tp_electors++;
-                    state_third_party_votes -= required_votes;
-                }
-                if (state_rep_party_votes >= required_votes) {
-                    state_rep_electors++;
-                    state_rep_party_votes -= required_votes;
-                }
-                if (state_dem_party_votes >= required_votes) {
-                    state_dem_electors++;
-                    state_dem_party_votes -= required_votes;
-                }
+        while (state_third_party_votes >= required_votes || state_rep_party_votes >= required_votes || state_dem_party_votes >= required_votes) {
+            if (state_third_party_votes >= required_votes) {
+                state_tp_electors++;
+                state_third_party_votes -= required_votes;
             }
-            //After the electors are given, the party with the least amount of votes are eliminated and their votes are given to the other parties based on their second priority.
-            if ((state_third_party_votes <= state_rep_party_votes) && (state_third_party_votes <= state_dem_party_votes) && (state_third_party_votes != 0)) {
-                monte_carlo(state_dem_party_votes * VOTE_DECREASE_RATIO, state_rep_party_votes * VOTE_DECREASE_RATIO, state_third_party_votes * VOTE_DECREASE_RATIO, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
-                state_third_party_votes = 0;
-                state_dem_party_votes += new_DEM_votes;
-                state_rep_party_votes += new_REP_votes;
-            } else if ((state_dem_party_votes <= state_third_party_votes) && (state_dem_party_votes <= state_rep_party_votes) && (state_dem_party_votes != 0)) {
-                monte_carlo(state_third_party_votes * VOTE_DECREASE_RATIO, state_rep_party_votes * VOTE_DECREASE_RATIO, state_dem_party_votes * VOTE_DECREASE_RATIO, 1, &new_TP_votes, &new_REP_votes, &new_DEM_votes);
-                state_third_party_votes += new_TP_votes;
-                state_dem_party_votes = 0;
-                state_rep_party_votes += new_REP_votes;
-            } else if ((state_rep_party_votes <= state_third_party_votes) && (state_rep_party_votes <= state_dem_party_votes) && (state_rep_party_votes != 0)) {
-                monte_carlo(state_dem_party_votes * VOTE_DECREASE_RATIO, state_third_party_votes * VOTE_DECREASE_RATIO, state_rep_party_votes * VOTE_DECREASE_RATIO, 1, &new_DEM_votes, &new_TP_votes, &new_REP_votes);
-                state_third_party_votes += new_TP_votes;
-                state_dem_party_votes += new_DEM_votes;
-                state_rep_party_votes = 0;
+            if (state_rep_party_votes >= required_votes) {
+                state_rep_electors++;
+                state_rep_party_votes -= required_votes;
             }
-            new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
+            if (state_dem_party_votes >= required_votes) {
+                state_dem_electors++;
+                state_dem_party_votes -= required_votes;
+            }
+        }
+        //After the electors are given, the party with the least amount of votes is eliminated, and their votes are given to the other parties based on their second priority.
+        if ((state_third_party_votes <= state_rep_party_votes) && (state_third_party_votes <= state_dem_party_votes) && (state_third_party_votes != 0)) {
+            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
+            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
+            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            monte_carlo(USA, i, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
+            state_third_party_votes = 0;
+            state_dem_party_votes += new_DEM_votes;
+            state_rep_party_votes += new_REP_votes;
+        } else if ((state_dem_party_votes <= state_third_party_votes) && (state_dem_party_votes <= state_rep_party_votes) && (state_dem_party_votes != 0)) {
+            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
+            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
+            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            monte_carlo(USA, i, 1, &new_TP_votes, &new_REP_votes, &new_DEM_votes);
+            state_third_party_votes += new_TP_votes;
+            state_dem_party_votes = 0;
+            state_rep_party_votes += new_REP_votes;
+        } else if ((state_rep_party_votes <= state_third_party_votes) && (state_rep_party_votes <= state_dem_party_votes) && (state_rep_party_votes != 0)) {
+            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
+            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
+            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            monte_carlo(USA, i, 1, &new_DEM_votes, &new_TP_votes, &new_REP_votes);
+            state_third_party_votes += new_TP_votes;
+            state_dem_party_votes += new_DEM_votes;
+            state_rep_party_votes = 0;
+        }
+        new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0;
         //This part helps if the amount of electors has yet to be reached, it then gives the party with the most votes an elector.
         while (1) {
             if (state_dem_electors + state_rep_electors + state_tp_electors < USA[i].electors) {
