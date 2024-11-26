@@ -1,10 +1,22 @@
 #include "../connecter.h"
 #include <assert.h>
+//scan_data
 void test_do_next_op_case1(void);
 void test_do_next_op_case2(void);
+
+//PLPR
 void test_do_next_op_case3(void);
 void test_do_next_op_case4(void);
+void test_do_next_op_case5(void);
+void test_do_next_op_case6(void);
 
+//BC
+void test_do_next_op_case7(void);
+void test_do_next_op_case8(void);
+
+//STV
+void test_do_next_op_case9(void);
+void test_do_next_op_case10(void);
 
 int main(void) {
     /* Kør alle test-funktioner. */
