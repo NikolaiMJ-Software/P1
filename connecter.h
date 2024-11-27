@@ -23,6 +23,27 @@ typedef struct states {
     int third_votes;
 }states;
 
+// Enum for allowed party values
+typedef enum {
+    REPUBLICAN,
+    DEMOCRATIC,
+    THIRD_PARTY
+} Party;
+
+// Enum for allowed candidacy values
+typedef enum {
+    PRESIDENT,
+    VICE_PRESIDENT,
+    BOTH
+} Candidacy;
+
+//Creation of the candidates struct
+typedef struct candidates {
+    Party party;
+    char name[NAME_LGT];
+    Candidacy candidacy;
+}candidates;
+
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, char* system, int input_year);
 char* electoral_college(states* USA, int year);
@@ -32,5 +53,6 @@ char* BC(states* USA);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
+states parameters(states state, int minority_proportionality, int personalization, int legitimacy, int comprehensibility);
 
 #endif //SCAN_DATA_TXT_H
