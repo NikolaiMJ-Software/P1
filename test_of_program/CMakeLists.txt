@@ -16,5 +16,6 @@ target_sources(run_test PRIVATE
                 ../scan_data.c
                 ../connecter.h
                 ../wyoming_rule.c
-                ../election_systems../STV.c)
+                ../election_systems../STV.c
+                ../election_systems../BC.c)
 #target_sources(run_test PRIVATE ../wyoming_rule.c )
