@@ -18,7 +18,7 @@
 
 4. Click on: "Run / Debug Configurations", then  "Edit Configurations..."
 
-![img_3.png](_images/img_1.png)
+![img_3.png](_images/img_3.png)
 
 
 5. Apply the copied path to "Working directory", Click "Apply" then "OK"
