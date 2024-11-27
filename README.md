@@ -1,5 +1,5 @@
 # P1 - How to use the program.
-1. Set op "Working directory", e.g. look at the images.
+1. Set op "Working directory" for "P1" and "run_test", e.g. look at the images.
 
 Right click on the P1 folder
 
