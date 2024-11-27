@@ -75,7 +75,7 @@ char* STV(states* USA) {
             }
         }
         //Printing of results, adding to overarching variable, and resetting of local variables.
-        printf("In the state %s, the electors were split: %d %d %d\n", USA[i].stateName, state_dem_electors, state_rep_electors, state_tp_electors);
+        //printf("In the state %s, the electors were split: %d %d %d\n", USA[i].stateName, state_dem_electors, state_rep_electors, state_tp_electors);
         dem_electors += state_dem_electors;
         rep_electors += state_rep_electors;
         tp_electors += state_tp_electors;
