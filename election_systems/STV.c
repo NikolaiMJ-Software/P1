@@ -92,5 +92,7 @@ char* STV(states* USA) {
         return "Republicans";
     } else if ((tp_electors > dem_electors) && (tp_electors > rep_electors)) {
         return "Third_party";
+    } else {
+        return "Tie";
     }
 }
