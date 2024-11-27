@@ -62,7 +62,7 @@ int main(void) {
         // Ask the user if they want to end the program
         char choice;
         do {
-            printf("Do you want to end the program? (y/n): ");
+            printf("Do you want to end the program? (y/n):");
             scanf(" %c", &choice);
 
             // Clear the input buffer to handle invalid input

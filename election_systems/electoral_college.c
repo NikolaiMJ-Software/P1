@@ -21,9 +21,9 @@ char* electoral_college(states* USA, int year) {
 
     }
     // Print the electors for each party
-    printf("Democrat electors: %d\n", democrats);
+    printf("\nDemocrat electors: %d\n", democrats);
     printf("Republican electors: %d\n", republicans);
-    printf("Third party electors: %d\n", third_party);
+    printf("Third party electors: %d\n\n", third_party);
     // Return winning party
     if (democrats > (electors/2)+1) {
         return "Democrats";
