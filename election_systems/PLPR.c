@@ -53,7 +53,9 @@ char* PLPR(states* USA) {
         return "Democrats";
     } else if (republicans > democrats && republicans > third_party) {
         return "Republicans";
-    } else {
+    } else if (third_party > democrats && third_party > republicans) {
         return "Third Party";
+    } else {
+        return "Tie";
     }
 }
