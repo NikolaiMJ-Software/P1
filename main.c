@@ -3,7 +3,6 @@
 int main(void) {
     const char* directory = "US_election_data";
 
-
     while(true) {
         list_available_files(directory);
 
