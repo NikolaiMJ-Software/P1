@@ -50,7 +50,7 @@ int main(void) {
         printf("Chose a new system: STV, PLPR or BC:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
-            system[i] = tolower(system[i]);
+            system[i] = toupper(system[i]);
         }
 
         // Determine the winner
@@ -69,7 +69,6 @@ int main(void) {
             while (getchar() != '\n');
             choice = tolower(choice);
         } while (choice != 'y' && choice != 'n');
-
         // Exit the loop if the user chooses 'y'
         if (choice == 'y') {
             printf("Exiting the program. Goodbye!\n");
