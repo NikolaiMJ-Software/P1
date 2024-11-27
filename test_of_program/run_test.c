@@ -57,12 +57,16 @@ int main(void) {
 
     printf("test of the BC function\n");
     printf("BC case 1: (2016 capped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case11();
     printf("\nBC case 2: (2024 capped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case12();
     printf("\nBC case 3: (2016 uncapped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case13();
     printf("\nBC case 4: (2024 uncapped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case14();
     printf("\nAll BC tests passed successfully!\n");
     printf("----------------------------------------\n");
