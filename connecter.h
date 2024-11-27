@@ -2,6 +2,7 @@
 #define SCAN_DATA_TXT_H
 #define NAME_LGT 30
 #define STATES 51
+#define CANDIDATES 25
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,16 +26,16 @@ typedef struct states {
 
 // Enum for allowed party values
 typedef enum {
-    REPUBLICAN,
-    DEMOCRATIC,
-    THIRD_PARTY
+    Republican,
+    Democratic,
+    Third_Party
 } Party;
 
 // Enum for allowed candidacy values
 typedef enum {
-    PRESIDENT,
-    VICE_PRESIDENT,
-    BOTH
+    President,
+    Vice_President,
+    Both
 } Candidacy;
 
 //Creation of the candidates struct
@@ -54,5 +55,6 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 states parameters(states state, int minority_proportionality, int personalization, int legitimacy, int comprehensibility);
+int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 
 #endif //SCAN_DATA_TXT_H
