@@ -3,7 +3,6 @@
 int main(void) {
     const char* directory = "US_election_data";
 
-
     while(true) {
         list_available_files(directory);
 
@@ -11,7 +10,6 @@ int main(void) {
         int input_year;
         char wyoming_rule_true = 'n';
         char system[10] = "original";
-
 
         states* USA = malloc(STATES * sizeof(states));  // Allocate memory for the array
         if (USA == NULL) {
@@ -78,6 +76,5 @@ int main(void) {
             break;
         }
     }
-
     return 0;
 }

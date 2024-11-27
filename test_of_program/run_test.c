@@ -51,6 +51,12 @@ int main(void) {
     test_do_next_op_case12();
     printf("\nAll STV tests passed successfully!\n");
     printf("----------------------------------------\n");
+
+    printf("test of the BC function\n");
+
+
+    printf("\nAll BC tests passed successfully!\n");
+    printf("----------------------------------------\n");
     printf("All tests passed successfully!\n");
     return 0;
 }
