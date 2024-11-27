@@ -15,7 +15,7 @@ add_executable(P1 main.c
         Wyoming_Rule.c
         available_files.c
         Parameters.c
-        scan_electors.c
+        scan_candidates.c
 )
 
 # Add the test directory
