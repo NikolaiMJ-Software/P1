@@ -14,6 +14,9 @@ char* Winner_of_election(states* USA, char* system, int input_year) {
             printf("The chosen election system is not in the database, try again.\n");
             printf("Chose a new system: STV, PLPR or BC:\n");
             scanf("%s", system);
+            for (int i = 0; system[i] != '\0'; i++) {
+                system[i] = tolower(system[i]);
+            }
         }
     }
 }
