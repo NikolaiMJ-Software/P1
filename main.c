@@ -50,7 +50,7 @@ int main(void) {
         printf("Chose a new system: STV, PLPR or BC:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
-            system[i] = tolower(system[i]);
+            system[i] = toupper(system[i]);
         }
 
         // Determine the winner
@@ -62,14 +62,13 @@ int main(void) {
         // Ask the user if they want to end the program
         char choice;
         do {
-            printf("Do you want to end the program? (y/n): ");
+            printf("Do you want to end the program? (y/n):");
             scanf(" %c", &choice);
 
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
             choice = tolower(choice);
         } while (choice != 'y' && choice != 'n');
-
         // Exit the loop if the user chooses 'y'
         if (choice == 'y') {
             printf("Exiting the program. Goodbye!\n");

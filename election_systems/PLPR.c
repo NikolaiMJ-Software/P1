@@ -16,7 +16,6 @@ char* PLPR(states* USA) {
         double tp_votes = USA[i].third_votes;
 
         // Allocate electors using Sainte-Laguë divisors
-
         int k_dem = 1, k_rep = 1, k_tp = 1; // Divisors start at 1
         while (total_electors > 0) {
 
@@ -44,9 +43,11 @@ char* PLPR(states* USA) {
         republicans += electors_rep;
         third_party += electors_tp;
     }
-
-    // Print national results
-    printf("Democrats: %d, Republicans: %d, Third Party: %d\n", democrats, republicans, third_party);
+    // Print the electors for each party
+    printf("\nDemocrat electors: %d\n", democrats);
+    printf("Republican electors: %d\n", republicans);
+    printf("Third party electors: %d\n", third_party);
+    printf("\nBecause the following party got the biggest amount of electors, in regards to the \nParty List Proportional Representation, they are the winners.\nIf you are interested in learning more regarding Party List Proportional Representation, \nyou can read up on it on the following link: \nhttps://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n\n");
 
     // Return the winning party
     if (democrats > republicans && democrats > third_party) {

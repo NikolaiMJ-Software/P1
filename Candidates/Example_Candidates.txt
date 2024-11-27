@@ -6,7 +6,6 @@ Republican Party Chris Christie President
 Republican Party Vivek Ramaswamy President
 Republican Party Tim Scott Vice-President
 Republican Party Mitt Romney President
-
 Democratic Party Joe Biden President
 Democratic Party Kamala Harris Vice-President
 Democratic Party Bernie Sanders President
@@ -17,7 +16,6 @@ Democratic Party Gavin Newsom President
 Democratic Party Cory Booker Vice-President
 Democratic Party Amy Klobuchar Vice-President
 Democratic Party Julian Castro Vice-President
-
 Third Party Andrew Yang President
 Third Party Jill Stein President
 Third Party Jo Jorgensen President
