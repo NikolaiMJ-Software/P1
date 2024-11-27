@@ -85,7 +85,7 @@ char* STV(states* USA) {
     printf("\nDemocrat electors: %d\n", dem_electors);
     printf("Republican electors: %d\n", rep_electors);
     printf("Third party electors: %d\n", tp_electors);
-    printf("\nBecause the following party, got the biggest amount of electores, in regards to the Single Transferable Vote,\nthey are the winners.\nIf you are interested in learning more regarding Single Transferable Vote, you can read up on it on the following link: https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n\n");
+    printf("\nBecause the following party, got the biggest amount of electors, in regards to the Single Transferable Vote,\nthey are the winners.\nIf you are interested in learning more regarding Single Transferable Vote, you can read up on it on the following link: https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n\n");
 
     //After every state has been gone through, compare overarching variables to find winner.
     if ((dem_electors > rep_electors) && (dem_electors > tp_electors)) {

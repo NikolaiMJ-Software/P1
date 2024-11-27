@@ -1,7 +1,7 @@
 #include "../connecter.h"
 #include <assert.h>
 
-void test_do_next_op_case9(void) {
+void test_do_next_op_case7(void) {
     states USA[STATES];
 
     // Populate the USA array
@@ -23,7 +23,7 @@ void test_do_next_op_case9(void) {
     printf("STV Test case 1 passed!\n");
 }
 
-void test_do_next_op_case10(void) {
+void test_do_next_op_case8(void) {
     states USA[STATES];
 
     // Populate the USA array
@@ -45,7 +45,7 @@ void test_do_next_op_case10(void) {
     printf("STV Test case 2 passed!\n");
 }
 
-void test_do_next_op_case11(void) {
+void test_do_next_op_case9(void) {
     states USA[STATES];
 
     // Populate the USA array
@@ -68,7 +68,7 @@ void test_do_next_op_case11(void) {
     printf("STV Test case 3 passed!\n");
 }
 
-void test_do_next_op_case12(void) {
+void test_do_next_op_case10(void) {
     states USA[STATES];
 
     // Populate the USA array
