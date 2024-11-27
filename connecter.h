@@ -23,6 +23,27 @@ typedef struct states {
     int third_votes;
 }states;
 
+// Enum for allowed party values
+typedef enum {
+    REPUBLICAN = 0,
+    DEMOCRATIC = 1,
+    THIRD_PARTY = 2
+} Party;
+
+// Enum for allowed candidacy values
+typedef enum {
+    PRESIDENT = 0,
+    VICE_PRESIDENT = 1,
+    BOTH = 2
+} Candidacy;
+
+//Creation of the candidates struct
+typedef struct candidates {
+    Party party;
+    char name[NAME_LGT];
+    Candidacy candidacy;
+}candidates;
+
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, char* system, int input_year);
 char* electoral_college(states* USA, int year);
