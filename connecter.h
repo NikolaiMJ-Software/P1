@@ -25,16 +25,16 @@ typedef struct states {
 
 // Enum for allowed party values
 typedef enum {
-    REPUBLICAN = 0,
-    DEMOCRATIC = 1,
-    THIRD_PARTY = 2
+    REPUBLICAN,
+    DEMOCRATIC,
+    THIRD_PARTY
 } Party;
 
 // Enum for allowed candidacy values
 typedef enum {
-    PRESIDENT = 0,
-    VICE_PRESIDENT = 1,
-    BOTH = 2
+    PRESIDENT,
+    VICE_PRESIDENT,
+    BOTH
 } Candidacy;
 
 //Creation of the candidates struct
