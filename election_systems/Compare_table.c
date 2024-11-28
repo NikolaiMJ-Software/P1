@@ -1,5 +1,5 @@
 #include "../connecter.h";
 
-int Compare() {
+int Compare_table() {
 
 }

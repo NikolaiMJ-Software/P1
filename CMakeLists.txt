@@ -16,7 +16,7 @@ add_executable(P1 main.c
         available_files.c
         Parameters.c
         scan_candidates.c
-        election_systems/Compare.c
+        election_systems/Compare_table.c
 )
 
 # Add the test directory
