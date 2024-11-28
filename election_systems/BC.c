@@ -44,8 +44,10 @@ char* BC(states* USA) {
 
         // Print the percentage complete
         percentage = percentage + 2;
-        printf("%d%%\n", percentage);
+        printf("\rProgress: %d%%    ", percentage);
+        fflush(stdout);
     }
+    printf("\n");
 
     // Adjust missing electors using largest remainder method
     int missing_electors = total_electors - (allocated_dem_electors + allocated_rep_electors + allocated_tp_electors);
