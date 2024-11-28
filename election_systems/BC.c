@@ -2,7 +2,7 @@
 
 char* BC(states* USA) {
     int total_electors = 0;
-    int allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0;
+    int allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0, percentage = -2;
     double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
 
     // Arrays to store fractional values and remaining electors
@@ -41,6 +41,10 @@ char* BC(states* USA) {
         tp_points_sum += tp_fraction[i] - (int)tp_fraction[i];
 
         total_electors += USA[i].electors;
+
+        // Print the percentage complete
+        percentage = percentage + 2;
+        printf("%d%%\n", percentage);
     }
 
     // Adjust missing electors using largest remainder method
