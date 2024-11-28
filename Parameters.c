@@ -32,6 +32,7 @@ states minority_and_proportionality_function(states state, double minority_propo
     return state;
 }
 states personalization_function(states state, int personalization) {
+
     return state;
 }
 states legitimacy_function(states state, int legitimacy) {
