@@ -31,6 +31,14 @@ int main(void) {
             }
         }
 
+        candidates* candidate_list = malloc(CANDIDATES * sizeof(candidates));
+        if (candidate_list == NULL) {
+            printf("Memory allocation failed!\n");
+            return 1;
+        }
+
+        ScanCandidatesTXT(input_year ,candidate_list);
+
         do {
             printf("Would you like to uncap the Electoral College from its current 538 electors (y/n)\n");
             scanf(" %c", &wyoming_rule_true);
@@ -58,6 +66,7 @@ int main(void) {
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         free(USA);
+        free(candidate_list);
 
         // Ask the user if they want to end the program
         char choice;
