@@ -7,8 +7,7 @@ void MC_second_case(int old_DEM_votes, int old_REP_votes, int old_TP_votes,
                     int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 
 
-// Make simulations on monte carlo, then take the average. Instead simulations on every election, as it is above
-
+// Make simulations on monte carlo, then return the average.
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
     // Make the randomize based on the time
     srand(time(NULL));
