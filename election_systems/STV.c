@@ -39,7 +39,7 @@ char* STV(states* USA, int* dem_electors, int* rep_electors, int* tp_electors) {
             USA[i].dem_votes *= VOTE_DECREASE_RATIO;
             USA[i].rep_votes *= VOTE_DECREASE_RATIO;
             USA[i].third_votes *= VOTE_DECREASE_RATIO;
-            monte_carlo(USA, i, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
+            monte_carlo(USA, i, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
             state_third_party_votes = 0;
             state_dem_party_votes += new_DEM_votes;
             state_rep_party_votes += new_REP_votes;
@@ -47,7 +47,7 @@ char* STV(states* USA, int* dem_electors, int* rep_electors, int* tp_electors) {
             USA[i].dem_votes *= VOTE_DECREASE_RATIO;
             USA[i].rep_votes *= VOTE_DECREASE_RATIO;
             USA[i].third_votes *= VOTE_DECREASE_RATIO;
-            monte_carlo(USA, i, 1, &new_TP_votes, &new_REP_votes, &new_DEM_votes);
+            monte_carlo(USA, i, &new_TP_votes, &new_REP_votes, &new_DEM_votes);
             state_third_party_votes += new_TP_votes;
             state_dem_party_votes = 0;
             state_rep_party_votes += new_REP_votes;
@@ -55,7 +55,7 @@ char* STV(states* USA, int* dem_electors, int* rep_electors, int* tp_electors) {
             USA[i].dem_votes *= VOTE_DECREASE_RATIO;
             USA[i].rep_votes *= VOTE_DECREASE_RATIO;
             USA[i].third_votes *= VOTE_DECREASE_RATIO;
-            monte_carlo(USA, i, 1, &new_DEM_votes, &new_TP_votes, &new_REP_votes);
+            monte_carlo(USA, i, &new_DEM_votes, &new_TP_votes, &new_REP_votes);
             state_third_party_votes += new_TP_votes;
             state_dem_party_votes += new_DEM_votes;
             state_rep_party_votes = 0;
