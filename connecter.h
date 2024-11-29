@@ -52,10 +52,10 @@ char* PLPR(states* USA, int* democrats, int* republicans, int* third_party);
 char* STV(states* USA, int* dem_electors, int* rep_electors, int* tp_electors);
 char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors);
 char Compare_table(states* USA);
-void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
+void monte_carlo(states* USA, int state, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
-void parameters(states state, double minority_proportionality, int personalization, int legitimacy, int comprehensibility);
+states parameters(states* state, candidates* candidate_list, double minority_proportionality, int personalization, int legitimacy, int comprehensibility);
 
 #endif //SCAN_DATA_TXT_H
