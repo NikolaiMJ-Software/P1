@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors) {
+char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors, int activate_progress) {
     int total_electors = 0;
     *allocated_dem_electors = 0, *allocated_rep_electors = 0, *allocated_tp_electors = 0;
     int percentage = -2;
@@ -43,9 +43,11 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
 
         total_electors += USA[i].electors;
 
-        // Print the percentage complete
-        percentage = percentage + 2;
-        printf("Progress: %d%%\n", percentage);
+        if (activate_progress) {
+            // Print the percentage complete
+            percentage = percentage + 2;
+            printf("Progress: %d%%\n", percentage);
+        }
     }
     printf("\n");
 
