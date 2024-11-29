@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors) {
+char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors, int activate_progress) {
     int total_electors = 0;
     *allocated_dem_electors = 0, *allocated_rep_electors = 0, *allocated_tp_electors = 0;
     int percentage = -2;
@@ -14,7 +14,7 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
 
         // Monte Carlo simulation: second-choice votes
         int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
-        monte_carlo(USA, i, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
+        monte_carlo(USA, i, 0, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
         int new_DEM_votes_3rd = total_votes - new_DEM_votes_2nd - USA[i].dem_votes;
         int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
@@ -43,10 +43,11 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
 
         total_electors += USA[i].electors;
 
-        // Print the percentage complete
-        percentage = percentage + 2;
-        printf("\rProgress: %d%%    ", percentage);
-        fflush(stdout);
+        if (activate_progress) {
+            // Print the percentage complete
+            percentage = percentage + 2;
+            printf("Progress: %d%%\n", percentage);
+        }
     }
     printf("\n");
 
@@ -70,8 +71,9 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
     printf("\nDemocrat electors: %d\n", *allocated_dem_electors);
     printf("Republican electors: %d\n", *allocated_rep_electors);
     printf("Third party electors: %d\n", *allocated_tp_electors);
-    printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
-
+    if (activate_progress) {
+        printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
+    }
     // Determine winner
     if (*allocated_dem_electors > *allocated_rep_electors && *allocated_dem_electors > *allocated_tp_electors) {
         return "Democrats";
