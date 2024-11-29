@@ -71,8 +71,9 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
     printf("\nDemocrat electors: %d\n", *allocated_dem_electors);
     printf("Republican electors: %d\n", *allocated_rep_electors);
     printf("Third party electors: %d\n", *allocated_tp_electors);
-    printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
-
+    if (activate_progress) {
+        printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
+    }
     // Determine winner
     if (*allocated_dem_electors > *allocated_rep_electors && *allocated_dem_electors > *allocated_tp_electors) {
         return "Democrats";
