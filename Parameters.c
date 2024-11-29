@@ -1,7 +1,6 @@
 #include "connecter.h"
 #include <time.h>
-void comprehensibility_function(states state, int comprehensibility);
-#define EDUCATION_GROWTH_FACTOR 1.1363636363636;
+#define EDUCATION_GROWTH_FACTOR 1.1363636363636
 void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
@@ -167,17 +166,39 @@ void personalization_function(states* state, candidates* candidate_list, int per
                             rep_candidate_list[k].votes++; // Assign vote to candidate
                             break;
                         }
+                    }
                 }
-            }
                 printf("State %d (Republican Votes: %d):\n", i + 1, temp_votes);
                 for (int j = 0; j < rep_count; j++) {
                     printf("  Candidate: %s, Votes: %d\n",
                            rep_candidate_list[j].name,
                            rep_candidate_list[j].votes);
                 }
-        }
+
+                // Distribute votes for Vice President
+                for (int j = 0; j < temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int vp_popularity = 0;
+
+                    for (int k = 0; k < rep_count; k++) {
+                        vp_popularity += rep_candidate_list[k].vp_popularity_percentage;
+                        if (random_number < vp_popularity) {
+                            rep_candidate_list[k].votes++; // Assign VP vote to candidate
+                            break;
+                        }
+                    }
+                }
+                // Print results for Vice Presidential votes
+                printf("State %d (Republican Vice Presidential Votes: %d):\n", i + 1, temp_votes);
+                for (int j = 0; j < rep_count; j++) {
+                    printf("  Candidate: %s, Vice Presidential Votes: %d\n",
+                           rep_candidate_list[j].name,
+                           rep_candidate_list[j].votes);
+                }
+            }
 
         }
+    }
         if (personalization == 2) {
 
         }
