@@ -205,7 +205,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
         if (personalization == 3) {
         }
     }
-}
+
 void legitimacy_function(states state, int legitimacy) {
 
 }

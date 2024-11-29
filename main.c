@@ -2,7 +2,7 @@
 
 int main(void) {
     const char* directory = "US_election_data";
-    int counter_CMP = 0;
+    int counter_CMP = -1;
     // Allocate memory for the array e_systems
     cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
     if (e_systems == NULL) {
@@ -40,9 +40,17 @@ int main(void) {
         }
 
         // Insert the year in the cmp system array, free memory if different year is entered
-        if (counter_CMP >= 0 && e_systems[0].year != input_year) {
+        if (counter_CMP > 0 && e_systems[0].year != input_year) {
             free(e_systems);
+            // Allocate memory for the array e_systems
+            cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
+            if (e_systems == NULL) {
+                // Error handling if memory allocation fails
+                printf("Memory allocation failed!\n");
+                return 1;
+            }
             counter_CMP = 0;
+            e_systems[0].year = input_year;
         } else {
             for (int i = 0; i < NO_E_SYSTEMS; i++) {
                 e_systems[i].year = input_year;
@@ -74,26 +82,28 @@ int main(void) {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year);
-        printf("With the %s system, the winner was the %s.\n\n", system, result);
-
+        char* result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
+        if (counter_CMP == 0) {
+            counter_CMP++;
+        }
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC or compare the systems using 'CMP':\n");
+        printf("Chose a new system: STV, PLPR, BC:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);
         }
-        if (strcmp(system, "CMP") == 0) {
-            Compare_table(USA, e_systems);
-        } else {
-            // Determine the winner
-            result = Winner_of_election(USA, e_systems, system, input_year);
-            printf("The winner was the %s, with the %s system.\n\n", result, system);
-        }
+
+        // Determine the winner
+        result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        printf("The winner was the %s, with the %s system.\n\n", result, system);
+
         // Free Arrays
         free(USA);
         free(candidate_list);
 
+        // Compare the testes systems
+        Compare_table(e_systems, counter_CMP);
 
         // Ask the user if they want to end the program
         char choice;

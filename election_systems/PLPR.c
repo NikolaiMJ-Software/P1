@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* PLPR(states* USA, cmp* e_systems) {
+char* PLPR(states* USA, cmp* e_systems, int counter_CMP) {
     int democrats = 0, republicans = 0, third_party = 0;
     int total_electors_us = 0;
 
@@ -49,10 +49,10 @@ char* PLPR(states* USA, cmp* e_systems) {
     printf("Third party electors: %d\n", third_party);
     printf("\nBecause the following party got the biggest amount of electors, in regards to the \nParty List Proportional Representation, they are the winners.\nIf you are interested in learning more regarding Party List Proportional Representation, \nyou can read up on it on the following link: \nhttps://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n\n");
     // Save the electors in the cmp systems array
-    strcpy(e_systems[2].system_name, "PLPR");
-    e_systems[2].DEM_electors = democrats;
-    e_systems[2].REP_electors = republicans;
-    e_systems[2].TP_electors = third_party;
+    strcpy(e_systems[counter_CMP].system_name, "PLPR");
+    e_systems[counter_CMP].DEM_electors = democrats;
+    e_systems[counter_CMP].REP_electors = republicans;
+    e_systems[counter_CMP].TP_electors = third_party;
     // Return the winning party
     if (democrats > republicans && democrats > third_party) {
         return "Democrats";
