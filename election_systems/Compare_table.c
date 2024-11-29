@@ -1,11 +1,6 @@
 #include "../connecter.h"
 
 void Compare_table(states* USA) {
-    int ORIG_dem, ORIG_rep, ORIG_tp;
-    int PLPR_dem, PLPR_rep, PLPR_tp;
-    int STV_dem, STV_rep, STV_tp;
-    int BC_dem, BC_rep, BC_tp;
-
     printf("PLPR\n");
     PLPR(USA);
     printf("STV\n");
