@@ -22,7 +22,8 @@ void test_do_next_op_case3(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
-
+    assert(PLPR_dem > PLPR_rep);
+    assert(PLPR_tp > 0);
     printf("PLPR Test case 1 passed!\n");
 }
 
@@ -45,6 +46,8 @@ void test_do_next_op_case4(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(PLPR_dem < PLPR_rep);
+    assert(PLPR_tp > 0);
 
     printf("PLPR Test case 2 passed!\n");
 }//
@@ -70,6 +73,8 @@ void test_do_next_op_case5(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(PLPR_dem > PLPR_rep);
+    assert(PLPR_tp > 0);
 
     printf("PLPR Test case 3 passed!\n");
 }
@@ -94,6 +99,8 @@ void test_do_next_op_case6(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(PLPR_dem < PLPR_rep);
+    assert(PLPR_tp > 0);
 
     printf("PLPR Test case 4 passed!\n");
 }

@@ -63,11 +63,13 @@ int main(void) {
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);
         }
-
-        // Determine the winner
-        result = Winner_of_election(USA, system, input_year);
-        printf("The winner was the %s, with the %s system.\n\n", result, system);
-
+        if (strcmp(system, "CMP") == 0) {
+            Compare_table(USA);
+        } else {
+            // Determine the winner
+            result = Winner_of_election(USA, system, input_year);
+            printf("The winner was the %s, with the %s system.\n\n", result, system);
+        }
         free(USA);
         free(candidate_list);
 
