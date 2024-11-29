@@ -26,29 +26,37 @@ int main(void) {
             return 1;
         }
 
+        // Check if cmp e_systems is full
+        int full_e_systems = 1;
+        if (strcmp (e_systems[3].system_name, "BC") != 0 &&
+            strcmp (e_systems[3].system_name, "PLPR") != 0 &&
+            strcmp (e_systems[3].system_name, "STV") != 0) {
+            full_e_systems = 0;
+        }
+
         // Get data from year file, and return USA array
         int file_loaded = 0; // Variable to track file loading
-        while (!file_loaded) {
+        while (1) {
             fflush(stdin);
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
-
+            // If year already simulated and the comparison is full, user try again
+            if (input_year == e_systems[0].year && full_e_systems) {
+                printf("The year has already simulate\n");
+                continue;
+            }
+            // Check if the year is part of the files
             file_loaded = ScanData_TXT(input_year, USA);
             if (!file_loaded) {
                 printf("Invalid year or file not found. Please try again.\n");
+            } else {
+                break;
             }
         }
 
         // Insert the year in the cmp system array, free memory if different year is entered
         if (counter_CMP > 0 && e_systems[0].year != input_year) {
-            free(e_systems);
-            // Allocate memory for the array e_systems
-            cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
-            if (e_systems == NULL) {
-                // Error handling if memory allocation fails
-                printf("Memory allocation failed!\n");
-                return 1;
-            }
+            memset(e_systems, 0, NO_E_SYSTEMS * sizeof(cmp));
             counter_CMP = 0;
             e_systems[0].year = input_year;
         } else {
