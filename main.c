@@ -2,7 +2,14 @@
 
 int main(void) {
     const char* directory = "US_election_data";
-
+    int counter_CMP = 0;
+    // Allocate memory for the array e_systems
+    cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
+    if (e_systems == NULL) {
+        // Error handling if memory allocation fails
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
     while(true) {
         list_available_files(directory);
 
@@ -14,14 +21,6 @@ int main(void) {
         // Allocate memory for the array USA
         states* USA = malloc(STATES * sizeof(states));
         if (USA == NULL) {
-            // Error handling if memory allocation fails
-            printf("Memory allocation failed!\n");
-            return 1;
-        }
-
-        // Allocate memory for the array e_systems
-        cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
-        if (e_systems == NULL) {
             // Error handling if memory allocation fails
             printf("Memory allocation failed!\n");
             return 1;
@@ -39,6 +38,18 @@ int main(void) {
                 printf("Invalid year or file not found. Please try again.\n");
             }
         }
+
+        // Insert the year in the cmp system array, free memory if different year is entered
+        if (counter_CMP >= 0 && e_systems[0].year != input_year) {
+            free(e_systems);
+            counter_CMP = 0;
+        } else {
+            for (int i = 0; i < NO_E_SYSTEMS; i++) {
+                e_systems[i].year = input_year;
+            }
+            counter_CMP++;
+        }
+
         // Allocate memory for the array candidate_list
         candidates* candidate_list = malloc(CANDIDATES * sizeof(candidates));
         if (candidate_list == NULL) {
@@ -73,7 +84,7 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         if (strcmp(system, "CMP") == 0) {
-            Compare_table(USA);
+            Compare_table(USA, e_systems);
         } else {
             // Determine the winner
             result = Winner_of_election(USA, e_systems, system, input_year);
@@ -82,7 +93,7 @@ int main(void) {
         // Free Arrays
         free(USA);
         free(candidate_list);
-        free(e_systems);
+
 
         // Ask the user if they want to end the program
         char choice;
@@ -100,5 +111,6 @@ int main(void) {
             break;
         }
     }
+    free(e_systems);
     return 0;
 }
