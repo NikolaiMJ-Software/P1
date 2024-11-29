@@ -4,13 +4,14 @@
 #include <assert.h>
 
 void test_do_next_op_case3(void) {
+    int PLPR_dem, PLPR_rep, PLPR_tp;
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
 
     // Call PLPR with the populated dataset
-    char* result = PLPR(USA);
+    char* result = PLPR(USA,&PLPR_dem, &PLPR_rep, &PLPR_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -26,13 +27,14 @@ void test_do_next_op_case3(void) {
 }
 
 void test_do_next_op_case4(void) {
+    int PLPR_dem, PLPR_rep, PLPR_tp;
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
 
     // Call PLPR with the populated dataset
-    char* result = PLPR(USA);
+    char* result = PLPR(USA,&PLPR_dem, &PLPR_rep, &PLPR_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -48,6 +50,8 @@ void test_do_next_op_case4(void) {
 }//
 
 void test_do_next_op_case5(void) {
+    int PLPR_dem, PLPR_rep, PLPR_tp;
+
     states USA[STATES];
 
     // Populate the USA array
@@ -55,7 +59,7 @@ void test_do_next_op_case5(void) {
     wyoming_rule(2016, USA);
 
     // Call PLPR with the populated dataset
-    char* result = PLPR(USA);
+    char* result = PLPR(USA,&PLPR_dem, &PLPR_rep, &PLPR_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -71,6 +75,7 @@ void test_do_next_op_case5(void) {
 }
 
 void test_do_next_op_case6(void) {
+    int PLPR_dem, PLPR_rep, PLPR_tp;
     states USA[STATES];
 
     // Populate the USA array
@@ -78,7 +83,7 @@ void test_do_next_op_case6(void) {
     wyoming_rule(2024, USA);
 
     // Call PLPR with the populated dataset
-    char* result = PLPR(USA);
+    char* result = PLPR(USA,&PLPR_dem, &PLPR_rep, &PLPR_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
