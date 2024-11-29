@@ -1,9 +1,8 @@
 #include "../connecter.h"
 
-char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors, int activate_progress) {
-    int total_electors = 0;
-    *allocated_dem_electors = 0, *allocated_rep_electors = 0, *allocated_tp_electors = 0;
-    int percentage = -2;
+char* BC(states* USA, int activate_progress) {
+    int total_electors = 0, allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0,
+        percentage = -2;
     double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
 
     // Arrays to store fractional values and remaining electors
@@ -32,9 +31,9 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
         tp_fraction[i] = (USA[i].electors * (tp_points / total_points));
 
         // Allocate electors
-        *allocated_dem_electors += (int)dem_fraction[i];
-        *allocated_rep_electors += (int)rep_fraction[i];
-        *allocated_tp_electors += (int)tp_fraction[i];
+        allocated_dem_electors += (int)dem_fraction[i];
+        allocated_rep_electors += (int)rep_fraction[i];
+        allocated_tp_electors += (int)tp_fraction[i];
 
         // Accumulate fractional sums
         dem_points_sum += dem_fraction[i] - (int)dem_fraction[i];
@@ -52,33 +51,33 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
     printf("\n");
 
     // Adjust missing electors using largest remainder method
-    int missing_electors = total_electors - (*allocated_dem_electors + *allocated_rep_electors + *allocated_tp_electors);
+    int missing_electors = total_electors - (allocated_dem_electors + allocated_rep_electors + allocated_tp_electors);
     while (missing_electors > 0) {
         if (dem_points_sum > rep_points_sum && dem_points_sum > tp_points_sum) {
-            (*allocated_dem_electors)++;
+            (allocated_dem_electors)++;
             dem_points_sum -= 1;
         } else if (rep_points_sum > tp_points_sum && rep_points_sum > dem_points_sum) {
-            (*allocated_rep_electors)++;
+            (allocated_rep_electors)++;
             rep_points_sum -= 1;
         } else {
-            (*allocated_tp_electors)++;
+            (allocated_tp_electors)++;
             tp_points_sum -= 1;
         }
         missing_electors--;
     }
 
     // Print results
-    printf("\nDemocrat electors: %d\n", *allocated_dem_electors);
-    printf("Republican electors: %d\n", *allocated_rep_electors);
-    printf("Third party electors: %d\n", *allocated_tp_electors);
+    printf("\nDemocrat electors: %d\n", allocated_dem_electors);
+    printf("Republican electors: %d\n", allocated_rep_electors);
+    printf("Third party electors: %d\n", allocated_tp_electors);
     printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
 
     // Determine winner
-    if (*allocated_dem_electors > *allocated_rep_electors && *allocated_dem_electors > *allocated_tp_electors) {
+    if (allocated_dem_electors > allocated_rep_electors && allocated_dem_electors > allocated_tp_electors) {
         return "Democrats";
-    } else if (*allocated_rep_electors > *allocated_dem_electors && *allocated_rep_electors > *allocated_tp_electors) {
+    } else if (allocated_rep_electors > allocated_dem_electors && allocated_rep_electors > allocated_tp_electors) {
         return "Republicans";
-    } else if(*allocated_tp_electors > *allocated_dem_electors && *allocated_tp_electors > *allocated_rep_electors) {
+    } else if(allocated_tp_electors > allocated_dem_electors && allocated_tp_electors > allocated_rep_electors) {
         return "Third Party";
     } else {
         return "Tie";

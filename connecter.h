@@ -11,7 +11,7 @@
 #include <ctype.h>
 #include <dirent.h>
 
-//creation of the states struct
+// Creation of the states struct
 typedef struct states {
     char stateName[NAME_LGT];
     int electors;
@@ -23,6 +23,14 @@ typedef struct states {
     int rep_votes;
     int third_votes;
 }states;
+
+// Creation of the comparison struct
+typedef struct cmp {
+    char stateName[NAME_LGT];
+    int DEM_electors;
+    int REP_electors;
+    int TP_electors;
+}cmp;
 
 // Enum for allowed party values
 typedef enum {
@@ -48,9 +56,9 @@ typedef struct candidates {
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, char* system, int input_year);
 char* electoral_college(states* USA, int year);
-char* PLPR(states* USA, int* democrats, int* republicans, int* third_party);
-char* STV(states* USA, int* dem_electors, int* rep_electors, int* tp_electors, int activate_progress);
-char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, int* allocated_tp_electors, int activate_progress);
+char* PLPR(states* USA);
+char* STV(states* USA, int activate_progress);
+char* BC(states* USA, int activate_progress);
 void Compare_table(states* USA);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
