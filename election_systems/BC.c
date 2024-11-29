@@ -14,7 +14,7 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
 
         // Monte Carlo simulation: second-choice votes
         int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
-        monte_carlo(USA, i, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
+        monte_carlo(USA, i, 0, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
         int new_DEM_votes_3rd = total_votes - new_DEM_votes_2nd - USA[i].dem_votes;
         int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
@@ -45,8 +45,7 @@ char* BC(states* USA, int* allocated_dem_electors, int* allocated_rep_electors, 
 
         // Print the percentage complete
         percentage = percentage + 2;
-        printf("\rProgress: %d%%    ", percentage);
-        fflush(stdout);
+        printf("Progress: %d%%\n", percentage);
     }
     printf("\n");
 
