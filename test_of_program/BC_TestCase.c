@@ -3,13 +3,15 @@
 
 void test_do_next_op_case11(void) {
     int BC_dem, BC_rep, BC_tp;
+    int activate_progress = false;
+
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp);
+    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp, activate_progress);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -29,13 +31,15 @@ void test_do_next_op_case11(void) {
 
 void test_do_next_op_case12(void) {
     int BC_dem, BC_rep, BC_tp;
+    int activate_progress = false;
+
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp);
+    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp, activate_progress);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -54,6 +58,8 @@ void test_do_next_op_case12(void) {
 
 void test_do_next_op_case13(void) {
     int BC_dem, BC_rep, BC_tp;
+    int activate_progress = false;
+
     states USA[STATES];
 
     // Populate the USA array
@@ -61,7 +67,7 @@ void test_do_next_op_case13(void) {
     wyoming_rule(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp);
+    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp, activate_progress);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -80,6 +86,8 @@ void test_do_next_op_case13(void) {
 
 void test_do_next_op_case14(void) {
     int BC_dem, BC_rep, BC_tp;
+    int activate_progress = false;
+
     states USA[STATES];
 
     // Populate the USA array
@@ -87,8 +95,7 @@ void test_do_next_op_case14(void) {
     wyoming_rule(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp);
-
+    char* result = BC(USA,&BC_dem, &BC_rep, &BC_tp, activate_progress);
     // Check if result is not NULL
     assert(result != NULL);
 

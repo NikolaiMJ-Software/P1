@@ -45,12 +45,16 @@ int main(void) {
 
     printf("test of the STV function\n");
     printf("STV case 1: (2016 capped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case7();
     printf("\nSTV case 2: (2024 capped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case8();
     printf("\nSTV case 3: (2016 uncapped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case9();
     printf("\nSTV case 4: (2024 uncapped)\n");
+    printf("\n----please wait----\n");
     test_do_next_op_case10();
     printf("\nAll STV tests passed successfully!\n");
     printf("----------------------------------------\n");
