@@ -1,13 +1,13 @@
-Republican, Donald Trump, President
-Republican, Mike Pence, Vice_President
-Republican, Ted Cruz, Both
-Republican, Marco Rubio, Both
-Republican, John Kasich, President
-Democratic, Hillary Clinton, President
-Democratic, Tim Kaine, Vice_President
-Democratic, Bernie Sanders, Both
-Democratic, Martin O'Malley, President
-Third_Party, Gary Johnson, President
-Third_Party, Bill Weld, Both
-Third_Party, Jill Stein, President
-Third_Party, Ajamu Baraka, Vice_President
+Republican, Donald Trump, President, 80, 0
+Republican, Mike Pence, Vice_President, 20, 100
+Republican, Ted Cruz, Both, 0, 0
+Republican, Marco Rubio, Both, 0, 0
+Republican, John Kasich, President, 0, 0
+Democratic, Hillary Clinton, President, 100, 0
+Democratic, Tim Kaine, Vice_President, 0, 100
+Democratic, Bernie Sanders, Both, 0, 0
+Democratic, Martin O'Malley, President, 0, 0
+Third_Party, Gary Johnson, President, 100, 0
+Third_Party, Bill Weld, Both, 0, 100
+Third_Party, Jill Stein, President, 0, 0
+Third_Party, Ajamu Baraka, Vice_President, 0, 0

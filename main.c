@@ -49,7 +49,7 @@ int main(void) {
         ScanCandidatesTXT(input_year ,candidate_list);
 
         //test case
-        //parameters(USA, candidate_list, 0, 0, 0, 0);
+        parameters(USA, candidate_list, 0, 1, 0, 0);
 
         do {
             printf("Would you like to uncap the Electoral College from its current 538 electors (y/n)\n");

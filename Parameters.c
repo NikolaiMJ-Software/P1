@@ -1,8 +1,10 @@
 #include "connecter.h"
+#include <time.h>
+void comprehensibility_function(states state, int comprehensibility);
 #define EDUCATION_GROWTH_FACTOR 1.1363636363636;
 void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
-void personalization_function(states state, candidates* candidate_list, int personalization);
+void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states state, int legitimacy);
 void reset(states state);
 int dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
@@ -10,10 +12,10 @@ void parameters(states* state, candidates* candidate_list, int year, double mino
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
-        personalization_function(state[i], candidate_list, personalization);
         legitimacy_function(state[i], legitimacy);
         reset(state[i]);
     }
+    personalization_function(state, candidate_list, personalization);
 }
 void comprehensibility_function(states state, int comprehensibility, int year) {
     double rep_age_lean = 55, dem_age_lean = 45, rep_education_lean = 32, dem_education_lean = 23 + (year - 1999) * EDUCATION_GROWTH_FACTOR;
@@ -75,9 +77,42 @@ void minority_and_proportionality_function(states state, double minority_proport
     rep_electors += state_rep_electors;
     third_electors += state_third_electors;
 }
-void personalization_function(states state, candidates* candidate_list, int personalization) {
+void personalization_function(states* state, candidates* candidate_list, int personalization) {
+    //rep, dem and third candidate-lists:
+    int rep_count = 0, dem_count = 0, third_count = 0;
+    for (int i = 0; i < CANDIDATES; i++) {
+        if (candidate_list[i].party == 0) {
+            rep_count++;
+        } else if (candidate_list[i].party == 1) {
+            dem_count++;
+        } else if (candidate_list[i].party == 2) {
+            third_count++;
+        }
+    }
+    candidates rep_candidate_list[rep_count];
+    candidates dem_candidate_list[dem_count];
+    candidates third_candidate_list[third_count];
+    int rep_size, dem_size, third_size;
+    for (int i = 0; i < CANDIDATES; i++) {
+        if (candidate_list[i].party == 0) {
+            rep_candidate_list[rep_size++] = candidate_list[i];
+        }else if (candidate_list[i].party == 1) {
+            dem_candidate_list[dem_size++] = candidate_list[i];
+        }else if (candidate_list[i].party == 2) {
+            third_candidate_list[third_size++] = candidate_list[i];
+        }
+    }
+    //Test case
+    /*
+    for (int i = 0; i < dem_count; i++) {
+        printf("Name: %s, Candidacy: %d, P_Popularity: %d, VP_Popularity: %d\n",
+               dem_candidate_list[i].name,
+               dem_candidate_list[i].candidacy,
+               dem_candidate_list[i].p_popularity_percentage,
+               dem_candidate_list[i].vp_popularity_percentage);
+    }
+    */
     //temp values:
-    int rep_electors = 270, dem_electors = 218, third_electors = 50;
     char* president = NULL;
     char* vice_president = NULL;
     //normal system
@@ -99,6 +134,7 @@ void personalization_function(states state, candidates* candidate_list, int pers
                     vice_president = candidate_list[i+1].name;
                     printf("The new President of the United States is: %s\n", president);
                     printf("The New Vice-President of the United States is: %s\n", vice_president);
+                    break;
                 }
             }
         }else if (third_electors > rep_electors && third_electors > dem_electors) {
@@ -108,8 +144,44 @@ void personalization_function(states state, candidates* candidate_list, int pers
                     vice_president = candidate_list[i+1].name;
                     printf("The new President of the United States is: %s\n", president);
                     printf("The New Vice-President of the United States is: %s\n", vice_president);
+                    break;
                 }
             }
+        }
+    }
+    //Semi personlized:
+    if (personalization == 1) {
+        srand(time(NULL));
+        int temp_votes= 0;
+        for (int i = 0; i<STATES; i++) {
+            if (rep_electors > dem_electors && rep_electors > third_electors) {
+                temp_votes = state[i].rep_votes;
+
+                for (int j = 0; j<temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int p_popularity = 0;
+
+                    for (int k = 0; k < rep_count; k++) {
+                        p_popularity += rep_candidate_list[k].p_popularity_percentage;
+                        if (random_number < p_popularity) {
+                            rep_candidate_list[k].votes++; // Assign vote to candidate
+                            break;
+                        }
+                }
+            }
+                printf("State %d (Republican Votes: %d):\n", i + 1, temp_votes);
+                for (int j = 0; j < rep_count; j++) {
+                    printf("  Candidate: %s, Votes: %d\n",
+                           rep_candidate_list[j].name,
+                           rep_candidate_list[j].votes);
+                }
+        }
+
+        }
+        if (personalization == 2) {
+
+        }
+        if (personalization == 3) {
         }
     }
 }
@@ -118,5 +190,5 @@ void legitimacy_function(states state, int legitimacy) {
 }
 void reset(states state) {
     state.dem_votes = temp_state_dem_votes, state.rep_votes = temp_state_rep_votes;
-    dem_electors = 0, rep_electors = 0, third_electors = 0, year = 2016, temp_state_rep_votes = 0, temp_state_dem_votes = 0;
+    dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes = 0, temp_state_dem_votes = 0;
 }

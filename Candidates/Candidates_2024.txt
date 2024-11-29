@@ -1,17 +1,17 @@
-Republican, Donald Trump, President
-Republican, Ron DeSantis, President
-Republican, Nikki Haley, Both
-Republican, James Vance, Vice_President
-Republican, Vivek Ramaswamy, Both
-Democratic, Joe Biden, President
-Democratic, Kamala Harris, Both
-Democratic, Bernie Sanders, Both
-Democratic, Gavin Newsom, President
-Democratic, Pete Buttigieg, Both
-Democratic, Elizabeth Warren, President
-Democratic, Amy Klobuchar, Both
-Democratic, Cory Booker, Vice_President
-Third_Party, Cornel West, President
-Third_Party, Jill Stein, Both
-Third_Party, Larry Sharpe, Both
-Third_Party, Andrew Yang, Both
+Republican, Donald Trump, President, 100, 0
+Republican, Ron DeSantis, President, 0, 100
+Republican, Nikki Haley, Both, 0, 0
+Republican, James Vance, Vice_President, 0, 0
+Republican, Vivek Ramaswamy, Both, 0, 0
+Democratic, Joe Biden, President, 100, 0
+Democratic, Kamala Harris, Both, 0, 100
+Democratic, Bernie Sanders, Both, 0, 0
+Democratic, Gavin Newsom, President, 0, 0
+Democratic, Pete Buttigieg, Both, 0, 0
+Democratic, Elizabeth Warren, President, 0, 0
+Democratic, Amy Klobuchar, Both, 0, 0
+Democratic, Cory Booker, Vice_President, 0, 0
+Third_Party, Cornel West, President, 100, 0
+Third_Party, Jill Stein, Both, 0, 100
+Third_Party, Larry Sharpe, Both, 0, 0
+Third_Party, Andrew Yang, Both, 0, 0

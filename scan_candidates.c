@@ -32,9 +32,10 @@ int ScanCandidatesTXT(int input_year, candidates* candidate_list) {
     //scanning data while loop
     while (fgets(line, sizeof(line), inputFile) && i<CANDIDATES) {
         char party_string[20], name_string[NAME_LGT], candidacy_string[20];
+        int p_popularity = 0, vp_popularity = 0;
 
         //scan data in form of chars, and return an error if not possible
-        if (sscanf(line, "%19[^,], %49[^,], %19s", party_string, name_string, candidacy_string) != 3) {
+        if (sscanf(line, "%19[^,], %49[^,], %19[^,], %d, %d", party_string, name_string, candidacy_string, &p_popularity, &vp_popularity) != 5) {
             printf("Error reading line: %s\n", line);
             fclose(inputFile);
             return 0;
@@ -51,9 +52,12 @@ int ScanCandidatesTXT(int input_year, candidates* candidate_list) {
         candidate_list[i].name[NAME_LGT-1] = '\0';
         //converting candidacy to 0, 1 or 2
         candidate_list[i].candidacy = string_to_candidacy(candidacy_string);
-
+        // Storing popularity percentages
+        candidate_list[i].p_popularity_percentage = p_popularity;
+        candidate_list[i].vp_popularity_percentage = vp_popularity;
+        candidate_list[i].votes = 0;
         //test function, to see if properly inserted
-        //printf("Party: %d Name: %s Candidacy: %d\n", candidate_list[i].party, candidate_list[i].name, candidate_list[i].candidacy);
+        //printf("Party: %d Name: %s Candidacy: %d p_popularity: %d vp_popularity: %d votes: %d\n", candidate_list[i].party, candidate_list[i].name, candidate_list[i].candidacy, candidate_list[i].p_popularity_percentage, candidate_list[i].vp_popularity_percentage, candidate_list[i].votes);
 
         i++;
     }

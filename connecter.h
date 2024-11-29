@@ -52,6 +52,9 @@ typedef struct candidates {
     Party party;
     char name[NAME_LGT];
     Candidacy candidacy;
+    int p_popularity_percentage;
+    int vp_popularity_percentage;
+    int votes;
 }candidates;
 
 int ScanData_TXT(int input_year, states* USA);
