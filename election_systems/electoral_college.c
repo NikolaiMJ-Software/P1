@@ -1,7 +1,7 @@
 #include "../connecter.h"
 
 char* electoral_college(states* USA, int year) {
-    int democrats = 0, republicans = 0, third_party = 0, electors = 0;
+    int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
         electors += USA[i].electors;
@@ -18,7 +18,6 @@ char* electoral_college(states* USA, int year) {
         } else {
             third_party += USA[i].electors;
         }
-
     }
     // Print the electors for each party
     printf("\nDemocrat electors: %d\n", democrats);
