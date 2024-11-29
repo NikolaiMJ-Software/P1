@@ -27,7 +27,7 @@ typedef struct states {
 
 // Creation of the comparison struct
 typedef struct cmp {
-    char stateName[NAME_LGT];
+    char system_name[NAME_LGT];
     int DEM_electors;
     int REP_electors;
     int TP_electors;
@@ -58,11 +58,11 @@ typedef struct candidates {
 }candidates;
 
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, char* system, int input_year);
-char* electoral_college(states* USA, int year);
-char* PLPR(states* USA);
-char* STV(states* USA, int activate_progress);
-char* BC(states* USA, int activate_progress);
+char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_year);
+char* electoral_college(states* USA, cmp* e_systems, int year);
+char* PLPR(states* USA, cmp* e_systems);
+char* STV(states* USA, cmp* e_systems, int activate_progress);
+char* BC(states* USA, cmp* e_systems, int activate_progress);
 void Compare_table(states* USA);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);

@@ -63,7 +63,7 @@ int main(void) {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner
-        char* result = Winner_of_election(USA, system, input_year);
+        char* result = Winner_of_election(USA, e_systems, system, input_year);
         printf("With the %s system, the winner was the %s.\n\n", system, result);
 
         // User chose a new system
@@ -76,7 +76,7 @@ int main(void) {
             Compare_table(USA);
         } else {
             // Determine the winner
-            result = Winner_of_election(USA, system, input_year);
+            result = Winner_of_election(USA, e_systems, system, input_year);
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
         // Free Arrays
