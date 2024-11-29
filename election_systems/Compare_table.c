@@ -43,7 +43,7 @@ void spaces(cmp* e_systems) {
             }
         } else if (strcmp(e_systems[2].system_name, "PLPR") == 0) {
             if (strcmp(e_systems[3].system_name, "STV") == 0) {
-                printf("Year: %d %13s %7s %8s %6s\n", e_systems[0].year,
+                printf("Year: %d %13s %7s %8s %5s\n", e_systems[0].year,
                     e_systems[0].system_name, e_systems[1].system_name, e_systems[2].system_name, e_systems[3].system_name);
             } else {
                 printf("Year: %d %13s %7s %8s\n", e_systems[0].year,
@@ -77,7 +77,7 @@ void spaces(cmp* e_systems) {
     } else if (strcmp(e_systems[1].system_name, "PLPR") == 0) {
         if (strcmp(e_systems[2].system_name, "BC") == 0) {
             if (strcmp(e_systems[3].system_name, "STV") == 0) {
-                printf("Year: %d %13s %9s %5s %4s\n", e_systems[0].year,
+                printf("Year: %d %13s %9s %4s %7s\n", e_systems[0].year,
                     e_systems[0].system_name, e_systems[1].system_name, e_systems[2].system_name, e_systems[3].system_name);
             } else {
                 printf("Year: %d %13s %9s %4s\n", e_systems[0].year,
@@ -85,7 +85,7 @@ void spaces(cmp* e_systems) {
             }
         } else if (strcmp(e_systems[2].system_name, "STV") == 0) {
             if (strcmp(e_systems[3].system_name, "BC") == 0) {
-                printf("Year: %d %13s %9s %7s %5s\n", e_systems[0].year,
+                printf("Year: %d %13s %9s %5s %5s\n", e_systems[0].year,
                     e_systems[0].system_name, e_systems[1].system_name, e_systems[2].system_name, e_systems[3].system_name);
             } else {
                 printf("Year: %d %13s %9s %5s\n", e_systems[0].year,

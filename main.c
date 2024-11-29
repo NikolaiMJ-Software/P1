@@ -42,7 +42,7 @@ int main(void) {
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
             if (input_year == e_systems[0].year && full_e_systems) {
-                printf("The year has already simulate\n");
+                printf("The year %d has already been simulated.\n", input_year);
                 continue;
             }
             // Check if the year is part of the files
