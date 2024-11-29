@@ -2,7 +2,7 @@
 
 int main(void) {
     const char* directory = "US_election_data";
-    int counter_CMP = -1;
+    int counter_CMP = -1, already_calculated;
     // Allocate memory for the array e_systems
     cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
     if (e_systems == NULL) {
@@ -93,7 +93,6 @@ int main(void) {
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);
         }
-
         // Determine the winner
         result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
         printf("The winner was the %s, with the %s system.\n\n", result, system);

@@ -1,18 +1,47 @@
 #include "../connecter.h"
 
+int spaces(cmp* e_systems, int counter_CMP);
+
 void Compare_table(cmp* e_systems, int counter_CMP) {
-    printf("\nYear: %d\n", e_systems[0].year);
-    for (int i = 0; i <= counter_CMP; i++) {
-        printf("Election system: %s\n", e_systems[i].system_name);
-        printf("Democrat electors: %d\n", e_systems[i].DEM_electors);
-        printf("Republican electors: %d\n", e_systems[i].REP_electors);
-        printf("Third party electors: %d\n", e_systems[i].TP_electors);
-        printf("\n");
+    printf("\n----------------Comparison table----------------\n");
+    if (counter_CMP == 1) {
+        printf("Year: %d %13s %8s\n", e_systems[0].year,
+            e_systems[0].system_name, e_systems[1].system_name);
+        printf("Democrat electors: %6d %7d\n",
+            e_systems[0].DEM_electors, e_systems[1].DEM_electors);
+        printf("Republican electors: %4d %7d\n",
+            e_systems[0].REP_electors, e_systems[1].REP_electors);
+        printf("Third party electors: %3d %7d\n\n",
+            e_systems[0].TP_electors, e_systems[1].TP_electors);
+    } else if (counter_CMP == 2) {
+        printf("Year: %d %13s %9s %4s\n", e_systems[0].year,
+            e_systems[0].system_name, e_systems[1].system_name, e_systems[2].system_name);
+        printf("Democrat electors: %6d %7d %6d\n",
+            e_systems[0].DEM_electors, e_systems[1].DEM_electors, e_systems[2].DEM_electors);
+        printf("Republican electors: %4d %7d %6d\n",
+            e_systems[0].REP_electors, e_systems[1].REP_electors, e_systems[2].REP_electors);
+        printf("Third party electors: %3d %7d %6d\n\n",
+            e_systems[0].TP_electors, e_systems[1].TP_electors, e_systems[2].TP_electors);
+    } else if (counter_CMP == 3) {
+        printf("Year: %d %13s %9s %4s %4s\n", e_systems[0].year,
+            e_systems[0].system_name, e_systems[1].system_name, e_systems[2].system_name, e_systems[3].system_name);
+        printf("Democrat electors: %6d %7d %6d %6d\n",
+            e_systems[0].DEM_electors, e_systems[1].DEM_electors, e_systems[2].DEM_electors, e_systems[3].DEM_electors);
+        printf("Republican electors: %4d %7d %6d %6d\n",
+            e_systems[0].REP_electors, e_systems[1].REP_electors, e_systems[2].REP_electors, e_systems[3].REP_electors);
+        printf("Third party electors: %3d %7d %6d %6d\n\n",
+            e_systems[0].TP_electors, e_systems[1].TP_electors, e_systems[2].TP_electors, e_systems[3].TP_electors);
     }
-    /*
-    printf("\nYear: %d %13.s %4.s %4.s\n", );
-    printf("Democrat electors: %6.d %7.d %6.d\n", PLPR_dem, STV_dem, BC_dem);
-    printf("Republican electors: %4.d %7.d %6.d\n", PLPR_rep, STV_rep, BC_rep);
-    printf("Third party electors: %3.d %7.d %6.d\n\n", PLPR_tp, STV_tp, BC_tp);
-    */
+}
+
+int spaces(cmp* e_systems, int counter_CMP) {
+    if (strcmp(e_systems[1].system_name, "BC") == 0) {
+        if (counter_CMP == 1){return 7;}
+            if (strcmp(e_systems[2].system_name, "PLPR") == 0) {return 4;}
+            if (strcmp(e_systems[2].system_name, "STV") == 0) {return 8;}
+
+    }
+    if (strcmp(e_systems[1].system_name, "STV") == 0) {return 8;}
+    if (strcmp(e_systems[1].system_name, "PLPR") == 0) {return 9;}
+
 }
