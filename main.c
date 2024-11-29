@@ -11,8 +11,17 @@ int main(void) {
         char wyoming_rule_true = 'n';
         char system[10] = "original";
 
-        states* USA = malloc(STATES * sizeof(states));  // Allocate memory for the array
+        // Allocate memory for the array USA
+        states* USA = malloc(STATES * sizeof(states));
         if (USA == NULL) {
+            // Error handling if memory allocation fails
+            printf("Memory allocation failed!\n");
+            return 1;
+        }
+
+        // Allocate memory for the array e_systems
+        cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
+        if (e_systems == NULL) {
             // Error handling if memory allocation fails
             printf("Memory allocation failed!\n");
             return 1;
@@ -30,7 +39,7 @@ int main(void) {
                 printf("Invalid year or file not found. Please try again.\n");
             }
         }
-
+        // Allocate memory for the array candidate_list
         candidates* candidate_list = malloc(CANDIDATES * sizeof(candidates));
         if (candidate_list == NULL) {
             printf("Memory allocation failed!\n");
@@ -70,8 +79,10 @@ int main(void) {
             result = Winner_of_election(USA, system, input_year);
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
+        // Free Arrays
         free(USA);
         free(candidate_list);
+        free(e_systems);
 
         // Ask the user if they want to end the program
         char choice;

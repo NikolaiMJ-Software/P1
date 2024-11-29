@@ -23,6 +23,9 @@ char* electoral_college(states* USA, int year) {
     printf("\nDemocrat electors: %d\n", democrats);
     printf("Republican electors: %d\n", republicans);
     printf("Third party electors: %d\n\n", third_party);
+    // Save the electors in the cmp systems array
+
+
     // Return winning party
     if (democrats > (electors/2)+1) {
         return "Democrats";

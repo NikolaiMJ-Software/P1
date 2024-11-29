@@ -3,6 +3,7 @@
 #define NAME_LGT 30
 #define STATES 51
 #define CANDIDATES 25
+#define NO_E_SYSTEMS 4
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
