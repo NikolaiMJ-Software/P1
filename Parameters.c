@@ -1,9 +1,9 @@
 #include "connecter.h"
 states comprehensibility_function(states state, int comprehensibility);
 states minority_and_proportionality_function(states state, double minority_proportionality);
-void personalization_function(states state, candidates candidate_list, int personalization);
+void personalization_function(states state, candidates* candidate_list, int personalization);
 states legitimacy_function(states state, int legitimacy);
-states parameters(states* state, candidates candidate_list, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
+states parameters(states* state, candidates* candidate_list, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
     for (int i = 0; i<STATES; i++) {
         state[i] = comprehensibility_function(state[i], comprehensibility);
         state[i] = minority_and_proportionality_function(state[i], minority_proportionality);
@@ -33,10 +33,42 @@ states minority_and_proportionality_function(states state, double minority_propo
     }
     return state;
 }
-void personalization_function(states state, candidates candidate_list, int personalization) {
+void personalization_function(states state, candidates* candidate_list, int personalization) {
+    //temp values:
+    int rep_electors = 270, dem_electors = 218, third_electors = 50;
+    char* president = NULL;
+    char* vice_president = NULL;
     //normal system
     if (personalization == 0) {
-
+        if (rep_electors > dem_electors && rep_electors > third_electors) {
+            for (int i = 0; i<CANDIDATES; i++) {
+                if(candidate_list[i].party == 0) {
+                    president = candidate_list[i].name;
+                    vice_president = candidate_list[i+1].name;
+                    printf("The new President of the United States is: %s\n", president);
+                    printf("The New Vice-Preisdent of the United States is: %s\n", vice_president);
+                    break;
+                }
+            }
+        }else if (dem_electors > third_electors && dem_electors > rep_electors) {
+            for (int i = 0; i<CANDIDATES; i++) {
+                if(candidate_list[i].party == 1) {
+                    president = candidate_list[i].name;
+                    vice_president = candidate_list[i+1].name;
+                    printf("The new President of the United States is: %s\n", president);
+                    printf("The New Vice-Preisdent of the United States is: %s\n", vice_president);
+                }
+            }
+        }else if (third_electors > rep_electors && third_electors > dem_electors) {
+            for (int i = 0; i<CANDIDATES; i++) {
+                if(candidate_list[i].party == 3) {
+                    president = candidate_list[i].name;
+                    vice_president = candidate_list[i+1].name;
+                    printf("The new President of the United States is: %s\n", president);
+                    printf("The New Vice-Preisdent of the United States is: %s\n", vice_president);
+                }
+            }
+        }
     }
     //Choose preisdent and vice preisdent within party
     if (personalization == 1) {
