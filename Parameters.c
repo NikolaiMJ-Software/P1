@@ -12,7 +12,6 @@ void parameters(states* state, candidates* candidate_list, int year, double mino
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
-        personalization_function(state[i], candidate_list, personalization);
         legitimacy_function(state[i], legitimacy);
         reset(state[i]);
     }
