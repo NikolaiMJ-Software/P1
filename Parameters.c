@@ -1,14 +1,16 @@
 #include "connecter.h"
 states comprehensibility_function(states state, int comprehensibility);
 states minority_and_proportionality_function(states state, double minority_proportionality);
-states personalization_function(states state, int personalization);
+void personalization_function(states state, candidates candidate_list, int personalization);
 states legitimacy_function(states state, int legitimacy);
-states parameters(states state, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
-    state = comprehensibility_function(state, comprehensibility);
-    state = minority_and_proportionality_function(state, minority_proportionality);
-    state = personalization_function(state, personalization);
-    state = legitimacy_function(state, legitimacy);
-    return state;
+states parameters(states* state, candidates candidate_list, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
+    for (int i = 0; i<STATES; i++) {
+        state[i] = comprehensibility_function(state[i], comprehensibility);
+        state[i] = minority_and_proportionality_function(state[i], minority_proportionality);
+        personalization_function(state[i], candidate_list, personalization);
+        state[i] = legitimacy_function(state[i], legitimacy);
+        return state[i];
+    }
 }
 states comprehensibility_function(states state, int comprehensibility) {
     //https://www.pbs.org/newshour/show/how-a-college-degree-is-one-of-the-best-predictors-of-which-candidate-voters-support
@@ -31,9 +33,20 @@ states minority_and_proportionality_function(states state, double minority_propo
     }
     return state;
 }
-states personalization_function(states state, int personalization) {
+void personalization_function(states state, candidates candidate_list, int personalization) {
+    //normal system
+    if (personalization == 0) {
 
-    return state;
+    }
+    //Choose preisdent and vice preisdent within party
+    if (personalization == 1) {
+
+    }
+    //Choose different presidents and vice-presidents from different parties
+    if (personalization == 2) {
+
+    }
+    //Choose whoever you want as president or vice president
 }
 states legitimacy_function(states state, int legitimacy) {
     return state;
