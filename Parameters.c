@@ -118,5 +118,5 @@ void legitimacy_function(states state, int legitimacy) {
 }
 void reset(states state) {
     state.dem_votes = temp_state_dem_votes, state.rep_votes = temp_state_rep_votes;
-    dem_electors = 0, rep_electors = 0, third_electors = 0, year = 2016, temp_state_rep_votes = 0, temp_state_dem_votes = 0;
+    dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes = 0, temp_state_dem_votes = 0;
 }
