@@ -21,6 +21,8 @@ void test_do_next_op_case7(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(STV_dem > STV_rep);
+    assert(STV_tp > 0);
 
     printf("STV Test case 1 passed!\n");
 }
@@ -45,6 +47,8 @@ void test_do_next_op_case8(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(STV_dem < STV_rep);
+    assert(STV_tp > 0);
 
     printf("STV Test case 2 passed!\n");
 }
@@ -70,6 +74,8 @@ void test_do_next_op_case9(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(STV_dem > STV_rep);
+    assert(STV_tp > 0);
 
     printf("STV Test case 3 passed!\n");
 }
@@ -95,6 +101,8 @@ void test_do_next_op_case10(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
+    assert(STV_dem < STV_rep);
+    assert(STV_tp > 0);
 
     printf("STV Test case 4 passed!\n");
 }
