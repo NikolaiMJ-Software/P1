@@ -1,7 +1,10 @@
 #include "../connecter.h"
 
-char* PLPR(states* USA) {
-    int democrats = 0, republicans = 0, third_party = 0;
+char* PLPR(states* USA, int* democrats, int* republicans, int* third_party) {
+    *democrats = 0;
+    *republicans = 0;
+    *third_party = 0;
+
     int total_electors_us = 0;
 
         // Loop through all states
@@ -39,24 +42,25 @@ char* PLPR(states* USA) {
         }
 
         // Add state results to the national totals
-        democrats += electors_dem;
-        republicans += electors_rep;
-        third_party += electors_tp;
+        *democrats += electors_dem;
+        *republicans += electors_rep;
+        *third_party += electors_tp;
     }
     // Print the electors for each party
-    printf("\nDemocrat electors: %d\n", democrats);
-    printf("Republican electors: %d\n", republicans);
-    printf("Third party electors: %d\n", third_party);
+    printf("\nDemocrat electors: %d\n", *democrats);
+    printf("Republican electors: %d\n", *republicans);
+    printf("Third party electors: %d\n", *third_party);
     printf("\nBecause the following party got the biggest amount of electors, in regards to the \nParty List Proportional Representation, they are the winners.\nIf you are interested in learning more regarding Party List Proportional Representation, \nyou can read up on it on the following link: \nhttps://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n\n");
 
     // Return the winning party
-    if (democrats > republicans && democrats > third_party) {
+    if (*democrats > *republicans && *democrats > *third_party) {
         return "Democrats";
-    } else if (republicans > democrats && republicans > third_party) {
+    } else if (*republicans > *democrats && *republicans > *third_party) {
         return "Republicans";
-    } else if (third_party > democrats && third_party > republicans) {
+    } else if (*third_party > *democrats && *third_party > *republicans) {
         return "Third Party";
     } else {
         return "Tie";
     }
+
 }

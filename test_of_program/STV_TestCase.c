@@ -2,13 +2,15 @@
 #include <assert.h>
 
 void test_do_next_op_case7(void) {
+    int STV_dem, STV_rep, STV_tp;
+
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA);
+    char* result = STV(USA,&STV_dem, &STV_rep, &STV_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -24,13 +26,15 @@ void test_do_next_op_case7(void) {
 }
 
 void test_do_next_op_case8(void) {
+    int STV_dem, STV_rep, STV_tp;
+
     states USA[STATES];
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA);
+    char* result = STV(USA,&STV_dem, &STV_rep, &STV_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -46,6 +50,8 @@ void test_do_next_op_case8(void) {
 }
 
 void test_do_next_op_case9(void) {
+    int STV_dem, STV_rep, STV_tp;
+
     states USA[STATES];
 
     // Populate the USA array
@@ -53,7 +59,7 @@ void test_do_next_op_case9(void) {
     wyoming_rule(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA);
+    char* result = STV(USA,&STV_dem, &STV_rep, &STV_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -69,6 +75,8 @@ void test_do_next_op_case9(void) {
 }
 
 void test_do_next_op_case10(void) {
+    int STV_dem, STV_rep, STV_tp;
+
     states USA[STATES];
 
     // Populate the USA array
@@ -76,7 +84,7 @@ void test_do_next_op_case10(void) {
     wyoming_rule(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA);
+    char* result = STV(USA, &STV_dem, &STV_rep, &STV_tp);
 
     // Check if result is not NULL
     assert(result != NULL);
