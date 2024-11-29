@@ -113,7 +113,6 @@ void personalization_function(states* state, candidates* candidate_list, int per
     }
     */
     //temp values:
-    int rep_electors = 270, dem_electors = 218, third_electors = 50;
     char* president = NULL;
     char* vice_president = NULL;
     //normal system
