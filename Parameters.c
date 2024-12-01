@@ -77,6 +77,8 @@ void minority_and_proportionality_function(states state, double minority_proport
     third_electors += state_third_electors;
 }
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
+    rep_electors = 10;
+    printf("%d %d %d", rep_electors, dem_electors, third_electors);
     //rep, dem and third candidate-lists:
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
@@ -163,7 +165,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     for (int k = 0; k < rep_count; k++) {
                         p_popularity += rep_candidate_list[k].p_popularity_percentage;
                         if (random_number < p_popularity) {
-                            rep_candidate_list[k].votes++; // Assign vote to candidate
+                            rep_candidate_list[k].p_votes++; // Assign vote to candidate
                             break;
                         }
                     }
@@ -172,7 +174,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                 for (int j = 0; j < rep_count; j++) {
                     printf("  Candidate: %s, Votes: %d\n",
                            rep_candidate_list[j].name,
-                           rep_candidate_list[j].votes);
+                           rep_candidate_list[j].p_votes);
                 }
 
                 // Distribute votes for Vice President
@@ -183,7 +185,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     for (int k = 0; k < rep_count; k++) {
                         vp_popularity += rep_candidate_list[k].vp_popularity_percentage;
                         if (random_number < vp_popularity) {
-                            rep_candidate_list[k].votes++; // Assign VP vote to candidate
+                            rep_candidate_list[k].vp_votes++; // Assign VP vote to candidate
                             break;
                         }
                     }
@@ -193,7 +195,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                 for (int j = 0; j < rep_count; j++) {
                     printf("  Candidate: %s, Vice Presidential Votes: %d\n",
                            rep_candidate_list[j].name,
-                           rep_candidate_list[j].votes);
+                           rep_candidate_list[j].vp_votes);
                 }
             }
 

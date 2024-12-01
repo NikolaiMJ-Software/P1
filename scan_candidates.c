@@ -55,7 +55,8 @@ int ScanCandidatesTXT(int input_year, candidates* candidate_list) {
         // Storing popularity percentages
         candidate_list[i].p_popularity_percentage = p_popularity;
         candidate_list[i].vp_popularity_percentage = vp_popularity;
-        candidate_list[i].votes = 0;
+        candidate_list[i].p_votes = 0;
+        candidate_list[i].vp_votes = 0;
         //test function, to see if properly inserted
         //printf("Party: %d Name: %s Candidacy: %d p_popularity: %d vp_popularity: %d votes: %d\n", candidate_list[i].party, candidate_list[i].name, candidate_list[i].candidacy, candidate_list[i].p_popularity_percentage, candidate_list[i].vp_popularity_percentage, candidate_list[i].votes);
 

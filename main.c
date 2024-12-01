@@ -85,7 +85,6 @@ int main(void) {
             while (getchar() != '\n');
             wyoming_rule_true = tolower(wyoming_rule_true);
         } while (wyoming_rule_true != 'y' && wyoming_rule_true != 'n');
-
         if (wyoming_rule_true == 'y') {
             wyoming_rule(input_year, USA);
         }

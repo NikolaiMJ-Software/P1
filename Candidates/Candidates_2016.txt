@@ -1,5 +1,5 @@
-Republican, Donald Trump, President, 80, 0
-Republican, Mike Pence, Vice_President, 20, 100
+Republican, Donald Trump, President, 100, 0
+Republican, Mike Pence, Vice_President, 0, 100
 Republican, Ted Cruz, Both, 0, 0
 Republican, Marco Rubio, Both, 0, 0
 Republican, John Kasich, President, 0, 0
