@@ -151,6 +151,10 @@ void personalization_function(states* state, candidates* candidate_list, int per
         }
     }
     //Semi personlized:
+    int max_p_votes = -1;
+    int max_vp_votes = -1;
+    candidates* President = NULL;
+    candidates* Vice_President = NULL;
     if (personalization == 1) {
         srand(time(NULL));
         int temp_votes= 0;
@@ -170,12 +174,6 @@ void personalization_function(states* state, candidates* candidate_list, int per
                         }
                     }
                 }
-                printf("State %d (Republican Votes: %d):\n", i + 1, temp_votes);
-                for (int j = 0; j < rep_count; j++) {
-                    printf("  Candidate: %s, Votes: %d\n",
-                           rep_candidate_list[j].name,
-                           rep_candidate_list[j].p_votes);
-                }
 
                 // Distribute votes for Vice President
                 for (int j = 0; j < temp_votes; j++) {
@@ -190,16 +188,23 @@ void personalization_function(states* state, candidates* candidate_list, int per
                         }
                     }
                 }
-                // Print results for Vice Presidential votes
-                printf("State %d (Republican Vice Presidential Votes: %d):\n", i + 1, temp_votes);
-                for (int j = 0; j < rep_count; j++) {
-                    printf("  Candidate: %s, Vice Presidential Votes: %d\n",
-                           rep_candidate_list[j].name,
-                           rep_candidate_list[j].vp_votes);
-                }
             }
 
         }
+        for (int i = 0; i < rep_count; i++) {
+            if (rep_candidate_list[i].p_votes > max_p_votes) {
+                max_p_votes = rep_candidate_list[i].p_votes;
+                President = &rep_candidate_list[i];
+            }
+            if (rep_candidate_list[i].vp_votes > max_vp_votes) {
+                max_vp_votes = rep_candidate_list[i].vp_votes;
+                Vice_President = &rep_candidate_list[i];
+            }
+        }
+        // Display results
+        printf("Election Results:\n");
+        printf("Presidential Winner: %s with %d votes\n", President->name, max_p_votes);
+        printf("Vice Presidential Winner: %s with %d votes\n", Vice_President->name, max_vp_votes);
     }
         if (personalization == 2) {
 
