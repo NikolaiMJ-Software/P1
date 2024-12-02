@@ -291,11 +291,6 @@ void personalization_function(states* state, candidates* candidate_list, int per
         printf("Presidential Winner: %s with %d votes\n", President->name, max_p_votes);
         printf("Vice Presidential Winner: %s with %d votes\n", Vice_President->name, max_vp_votes);
     }
-        if (personalization == 2) {
-
-        }
-        if (personalization == 3) {
-        }
     }
 
 void legitimacy_function(states state, int legitimacy) {
