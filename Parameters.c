@@ -77,8 +77,6 @@ void minority_and_proportionality_function(states state, double minority_proport
     third_electors += state_third_electors;
 }
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
-    rep_electors = 10;
-    printf("%d %d %d", rep_electors, dem_electors, third_electors);
     //rep, dem and third candidate-lists:
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
@@ -189,16 +187,102 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     }
                 }
             }
+            if (dem_electors > rep_electors && dem_electors > third_electors) {
+                temp_votes = state[i].dem_votes;
+
+                for (int j = 0; j<temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int p_popularity = 0;
+
+                    for (int k = 0; k < dem_count; k++) {
+                        p_popularity += dem_candidate_list[k].p_popularity_percentage;
+                        if (random_number < p_popularity) {
+                            dem_candidate_list[k].p_votes++; // Assign vote to candidate
+                            break;
+                        }
+                    }
+                }
+
+                // Distribute votes for Vice President
+                for (int j = 0; j < temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int vp_popularity = 0;
+
+                    for (int k = 0; k < dem_count; k++) {
+                        vp_popularity += dem_candidate_list[k].vp_popularity_percentage;
+                        if (random_number < vp_popularity) {
+                            dem_candidate_list[k].vp_votes++; // Assign VP vote to candidate
+                            break;
+                        }
+                    }
+                }
+            }
+            if (third_electors > dem_electors && third_electors > rep_electors) {
+                temp_votes = state[i].third_votes;
+
+                for (int j = 0; j<temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int p_popularity = 0;
+
+                    for (int k = 0; k < third_count; k++) {
+                        p_popularity += third_candidate_list[k].p_popularity_percentage;
+                        if (random_number < p_popularity) {
+                            third_candidate_list[k].p_votes++; // Assign vote to candidate
+                            break;
+                        }
+                    }
+                }
+
+                // Distribute votes for Vice President
+                for (int j = 0; j < temp_votes; j++) {
+                    int random_number = rand() % 100;
+                    int vp_popularity = 0;
+
+                    for (int k = 0; k < third_count; k++) {
+                        vp_popularity += third_candidate_list[k].vp_popularity_percentage;
+                        if (random_number < vp_popularity) {
+                            third_candidate_list[k].vp_votes++; // Assign VP vote to candidate
+                            break;
+                        }
+                    }
+                }
+            }
 
         }
-        for (int i = 0; i < rep_count; i++) {
-            if (rep_candidate_list[i].p_votes > max_p_votes) {
-                max_p_votes = rep_candidate_list[i].p_votes;
-                President = &rep_candidate_list[i];
+        if (rep_electors > dem_electors && rep_electors > third_electors) {
+            for (int i = 0; i < rep_count; i++) {
+                if (rep_candidate_list[i].p_votes > max_p_votes) {
+                    max_p_votes = rep_candidate_list[i].p_votes;
+                    President = &rep_candidate_list[i];
+                }
+                if (rep_candidate_list[i].vp_votes > max_vp_votes) {
+                    max_vp_votes = rep_candidate_list[i].vp_votes;
+                    Vice_President = &rep_candidate_list[i];
+                }
             }
-            if (rep_candidate_list[i].vp_votes > max_vp_votes) {
-                max_vp_votes = rep_candidate_list[i].vp_votes;
-                Vice_President = &rep_candidate_list[i];
+        }
+        if (dem_electors > rep_electors && dem_electors > third_electors) {
+            for (int i = 0; i < dem_count; i++) {
+                if (dem_candidate_list[i].p_votes > max_p_votes) {
+                    max_p_votes = dem_candidate_list[i].p_votes;
+                    President = &dem_candidate_list[i];
+                }
+                if (dem_candidate_list[i].vp_votes > max_vp_votes) {
+                    max_vp_votes = dem_candidate_list[i].vp_votes;
+                    Vice_President = &dem_candidate_list[i];
+                }
+            }
+        }
+        if (third_electors > dem_electors && third_electors > rep_electors) {
+            for (int i = 0; i < third_count; i++) {
+                if (third_candidate_list[i].p_votes > max_p_votes) {
+                    max_p_votes = third_candidate_list[i].p_votes;
+                    President = &third_candidate_list[i];
+                }
+                if (third_candidate_list[i].vp_votes > max_vp_votes) {
+                    max_vp_votes = third_candidate_list[i].vp_votes;
+                    Vice_President = &third_candidate_list[i];
+                }
             }
         }
         // Display results
