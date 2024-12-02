@@ -6,8 +6,9 @@ void minority_and_proportionality_function(states state, double minority_proport
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states state, int legitimacy);
 void reset(states state);
-int dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
+int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
+    dem_electors = 0, rep_electors = 0, third_electors = 0;
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
@@ -77,6 +78,7 @@ void minority_and_proportionality_function(states state, double minority_proport
     third_electors += state_third_electors;
 }
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
+    //printf("%d, %d %d\n", rep_electors, dem_electors, third_electors);
     //rep, dem and third candidate-lists:
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
@@ -290,11 +292,6 @@ void personalization_function(states* state, candidates* candidate_list, int per
         printf("Presidential Winner: %s with %d votes\n", President->name, max_p_votes);
         printf("Vice Presidential Winner: %s with %d votes\n", Vice_President->name, max_vp_votes);
     }
-        if (personalization == 2) {
-
-        }
-        if (personalization == 3) {
-        }
     }
 
 void legitimacy_function(states state, int legitimacy) {
@@ -302,5 +299,5 @@ void legitimacy_function(states state, int legitimacy) {
 }
 void reset(states state) {
     state.dem_votes = temp_state_dem_votes, state.rep_votes = temp_state_rep_votes;
-    dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes = 0, temp_state_dem_votes = 0;
+    temp_state_rep_votes = 0, temp_state_dem_votes = 0;
 }
