@@ -78,6 +78,7 @@ void minority_and_proportionality_function(states state, double minority_proport
     third_electors += state_third_electors;
 }
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
+    //printf("%d, %d %d\n", rep_electors, dem_electors, third_electors);
     //rep, dem and third candidate-lists:
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
