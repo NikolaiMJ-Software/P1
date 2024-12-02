@@ -6,8 +6,9 @@ void minority_and_proportionality_function(states state, double minority_proport
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states state, int legitimacy);
 void reset(states state);
-int dem_electors = 0, rep_electors = 0, third_electors = 0, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
+int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
+    dem_electors = 0, rep_electors = 0, third_electors = 0;
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
