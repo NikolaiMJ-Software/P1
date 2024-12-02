@@ -15,7 +15,7 @@ int main(void) {
 
         fflush(stdin);
         int input_year;
-        char wyoming_rule_true = 'n';
+        char wyoming_rule_true[4];
         char system[10] = "original";
 
         // Allocate memory for the array USA
@@ -79,13 +79,15 @@ int main(void) {
         //parameters(USA, candidate_list, input_year, 0, 1, 0, 0);
 
         do {
-            printf("Would you like to uncap the Electoral College from its current 538 electors (y/n)\n");
-            scanf(" %c", &wyoming_rule_true);
+            printf("Would you like to uncap the Electoral College from its current 538 electors (yes/no)\n");
+            scanf("%s", &wyoming_rule_true);
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
-            wyoming_rule_true = tolower(wyoming_rule_true);
-        } while (wyoming_rule_true != 'y' && wyoming_rule_true != 'n');
-        if (wyoming_rule_true == 'y') {
+            for (int i = 0; wyoming_rule_true[i] != '\0'; i++) {
+                wyoming_rule_true[i] = tolower(wyoming_rule_true[i]);
+            }
+        } while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner
