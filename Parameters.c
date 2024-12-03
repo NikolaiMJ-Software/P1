@@ -298,33 +298,81 @@ void legitimacy_function(states* state, int legitimacy) {
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
     if (legitimacy > 50) {
         for (int i = legitimacy; i >= 50; i--) {
-            rep_high_trust++;
-            dem_high_trust++;
-            third_high_trust++;
-            rep_med_trust++;
-            dem_med_trust++;
-            third_med_trust++;
-            rep_low_trust--;
-            dem_low_trust--;
-            third_low_trust--;
-            rep_no_trust--;
-            dem_no_trust--;
-            third_no_trust--;
+            if (rep_no_trust > 0) {
+                rep_no_trust--;
+                rep_med_trust++;
+            }
+            if (dem_no_trust > 0) {
+                dem_no_trust--;
+                dem_med_trust++;
+            }
+            if (third_no_trust > 0) {
+                third_no_trust--;
+                third_med_trust++;
+            }
+            if (dem_low_trust > 0) {
+                dem_low_trust--;
+                dem_high_trust++;
+            }
+            if (rep_low_trust > 0) {
+                rep_low_trust--;
+                rep_high_trust++;
+            }
+            if (third_low_trust > 0) {
+                third_low_trust--;
+                third_high_trust++;
+            }
+            if ((dem_no_trust == 0 && dem_low_trust == 0)|| (rep_no_trust == 0 && rep_low_trust == 0) || (third_no_trust == 0 && third_low_trust == 0)) {
+                if (dem_electors > rep_electors && dem_electors > third_electors) {
+                    dem_high_trust++;
+                    dem_med_trust--;
+                } else if (rep_electors > dem_electors && rep_electors > third_electors) {
+                    rep_high_trust++;
+                    rep_med_trust--;
+                } else if (third_electors > dem_electors && third_electors > rep_electors) {
+                    third_high_trust++;
+                    third_med_trust--;
+                }
+            }
         }
     } else if (legitimacy < 50) {
         for (int i = legitimacy; i <= 50; i++) {
-            rep_high_trust--;
-            dem_high_trust--;
-            third_high_trust--;
-            rep_med_trust--;
-            dem_med_trust--;
-            third_med_trust--;
-            rep_low_trust++;
-            dem_low_trust++;
-            third_low_trust++;
-            rep_no_trust++;
-            dem_no_trust++;
-            third_no_trust++;
+            if (rep_high_trust > 0) {
+                rep_high_trust--;
+                rep_low_trust++;
+            }
+            if (dem_high_trust > 0) {
+                dem_high_trust--;
+                dem_low_trust++;
+            }
+            if (third_high_trust > 0) {
+                third_high_trust--;
+                third_low_trust++;
+            }
+            if (rep_med_trust > 0) {
+                rep_med_trust--;
+                rep_no_trust++;
+            }
+            if (dem_med_trust > 0) {
+                dem_med_trust--;
+                dem_no_trust++;
+            }
+            if (third_med_trust > 0) {
+                third_med_trust--;
+                third_no_trust++;
+            }
+            if ((dem_high_trust == 0 && dem_med_trust == 0)|| (rep_high_trust == 0 && rep_med_trust == 0) || (third_high_trust == 0 && third_med_trust == 0)) {
+                if (dem_electors > rep_electors && dem_electors > third_electors) {
+                    dem_no_trust++;
+                    dem_low_trust--;
+                } else if (rep_electors > dem_electors && rep_electors > third_electors) {
+                    rep_no_trust++;
+                    rep_low_trust--;
+                } else if (third_electors > dem_electors && third_electors > rep_electors) {
+                    third_no_trust++;
+                    third_low_trust--;
+                }
+            }
         }
     }
     for (int i = 0; i < STATES; i++) {
