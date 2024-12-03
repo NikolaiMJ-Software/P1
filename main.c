@@ -17,7 +17,8 @@ int main(void) {
         int input_year;
         char wyoming_rule_true[4];
         char system[10] = "original";
-        int abolish_states = 0;
+        char abolish_states_true[4];
+        int states_abolished = 0;
 
         // Allocate memory for the array USA
         states* USA = malloc(STATES * sizeof(states));
@@ -91,8 +92,23 @@ int main(void) {
         if (strcmp(wyoming_rule_true,"yes") == 0) {
             wyoming_rule(input_year, USA);
         }
+
+        do {
+            printf("Would you like to disband all states in the US (yes/no)\n");
+            scanf("%s", &abolish_states_true);
+            // Clear the input buffer to handle invalid input
+            while (getchar() != '\n');
+            for (int i = 0; abolish_states_true[i] != '\0'; i++) {
+                abolish_states_true[i] = tolower(abolish_states_true[i]);
+            }
+        } while (strcmp(abolish_states_true,"yes") != 0 && strcmp(abolish_states_true,"no") != 0);
+        if (strcmp(abolish_states_true,"yes") == 0) {
+            abolish_states(USA);
+            states_abolished = 1;
+        }
+
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
+        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP, states_abolished);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
         if (counter_CMP == 0) {
             counter_CMP++;
@@ -104,7 +120,7 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
+        result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP, states_abolished);
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays
