@@ -4,7 +4,7 @@
 void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
-void legitimacy_function(states state, int legitimacy);
+void legitimacy_function(states* state, int legitimacy);
 void reset(states state);
 int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
@@ -12,9 +12,9 @@ void parameters(states* state, candidates* candidate_list, int year, double mino
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
-        legitimacy_function(state[i], legitimacy);
         reset(state[i]);
     }
+    legitimacy_function(state, legitimacy);
     personalization_function(state, candidate_list, personalization);
 }
 void comprehensibility_function(states state, int comprehensibility, int year) {
@@ -294,24 +294,57 @@ void personalization_function(states* state, candidates* candidate_list, int per
     }
     }
 
-void legitimacy_function(states state, int legitimacy) {
+void legitimacy_function(states* state, int legitimacy) {
     int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
-    if (dem_electors > rep_electors && dem_electors > third_electors) {
-        fully_trusts += state.rep_votes * rep_high_trust + state.third_votes * third_high_trust;
-        somewhat_trusts += state.rep_votes * rep_med_trust + state.third_votes * third_med_trust;
-        slightly_trusts += state.rep_votes * rep_low_trust + state.third_votes * third_low_trust;
-        doesnt_trust += state.rep_votes * rep_no_trust + state.third_votes * third_no_trust;
-    } else if (rep_electors > dem_electors && rep_electors > third_electors) {
-        fully_trusts += state.dem_votes * dem_high_trust + state.third_votes * third_high_trust;
-        somewhat_trusts += state.dem_votes * dem_med_trust + state.third_votes * third_med_trust;
-        slightly_trusts += state.dem_votes * dem_low_trust + state.third_votes * third_low_trust;
-        doesnt_trust += state.dem_votes * dem_no_trust + state.third_votes * third_no_trust;
-    } else if (third_electors > dem_electors && third_electors > rep_electors) {
-        fully_trusts += state.dem_votes * dem_high_trust + state.rep_votes * rep_high_trust;
-        somewhat_trusts += state.dem_votes * dem_med_trust + state.rep_votes * rep_med_trust;
-        slightly_trusts += state.dem_votes * dem_low_trust + state.rep_votes * rep_low_trust;
-        doesnt_trust += state.dem_votes * dem_no_trust + state.rep_votes * rep_no_trust;
+    if (legitimacy > 50) {
+        for (int i = legitimacy; i >= 50; i--) {
+            rep_high_trust++;
+            dem_high_trust++;
+            third_high_trust++;
+            rep_med_trust++;
+            dem_med_trust++;
+            third_med_trust++;
+            rep_low_trust--;
+            dem_low_trust--;
+            third_low_trust--;
+            rep_no_trust--;
+            dem_no_trust--;
+            third_no_trust--;
+        }
+    } else if (legitimacy < 50) {
+        for (int i = legitimacy; i <= 50; i++) {
+            rep_high_trust--;
+            dem_high_trust--;
+            third_high_trust--;
+            rep_med_trust--;
+            dem_med_trust--;
+            third_med_trust--;
+            rep_low_trust++;
+            dem_low_trust++;
+            third_low_trust++;
+            rep_no_trust++;
+            dem_no_trust++;
+            third_no_trust++;
+        }
+    }
+    for (int i = 0; i < STATES; i++) {
+        if (dem_electors > rep_electors && dem_electors > third_electors) {
+            fully_trusts += (state[i].rep_votes * rep_high_trust + state[i].third_votes * third_high_trust) / 100;
+            somewhat_trusts += (state[i].rep_votes * rep_med_trust + state[i].third_votes * third_med_trust) / 100;
+            slightly_trusts += (state[i].rep_votes * rep_low_trust + state[i].third_votes * third_low_trust) / 100;
+            doesnt_trust += (state[i].rep_votes * rep_no_trust + state[i].third_votes * third_no_trust) / 100;
+        } else if (rep_electors > dem_electors && rep_electors > third_electors) {
+            fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].third_votes * third_high_trust) / 100;
+            somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].third_votes * third_med_trust) / 100;
+            slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].third_votes * third_low_trust) / 100;
+            doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].third_votes * third_no_trust) / 100;
+        } else if (third_electors > dem_electors && third_electors > rep_electors) {
+            fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].rep_votes * rep_high_trust) / 100;
+            somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].rep_votes * rep_med_trust) / 100;
+            slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].rep_votes * rep_low_trust) / 100;
+            doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
+        }
     }
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }
