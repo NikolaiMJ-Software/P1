@@ -24,6 +24,7 @@ int main(void) {
         int input_year;
         char wyoming_rule_true[4];
         char system[10] = "original";
+        int abolish_states = 0;
 
         // Allocate memory for the array USA
         states* USA = malloc(STATES * sizeof(states));
@@ -131,6 +132,19 @@ int main(void) {
 
         // Compare the tested systems
         Compare_table(e_systems, uncap_systems, counter_CMP, uncapped);
+
+        //ask the user if they wish to see the weight of their vote
+        USA = malloc(STATES * sizeof(states));
+        char decide[4];
+        do {
+            printf("do you wish to see the weight of an electors vote? (yes/no):");
+            scanf("%s", &decide);
+        }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0);
+        // Exit the loop if the user chooses 'yes'
+        if (strcmp(decide,"yes") == 0) {
+            weight(USA);
+        }
+        free(USA);
 
         // Ask the user if they want to end the program
         char choice[4];
