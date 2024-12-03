@@ -63,7 +63,7 @@ int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int* counter_CMP, int uncapped);
 char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped);
 char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_CMP, int uncapped);
-char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int uncapped);
+char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int abolish_states, int uncapped);
 char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int uncapped);
 void Compare_table(cmp* e_systems, cmp* uncap_systems, int counter_CMP, int uncapped);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
