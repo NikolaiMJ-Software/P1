@@ -12,10 +12,9 @@ void parameters(states* state, candidates* candidate_list, int year, double mino
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
-        reset(state[i]);
     }
-    legitimacy_function(state, legitimacy);
     personalization_function(state, candidate_list, personalization);
+    legitimacy_function(state, legitimacy);
 }
 void comprehensibility_function(states state, int comprehensibility, int year) {
     double rep_age_lean = 55, dem_age_lean = 45, rep_education_lean = 32, dem_education_lean = 23 + (year - 1999) * EDUCATION_GROWTH_FACTOR;
@@ -346,9 +345,13 @@ void legitimacy_function(states* state, int legitimacy) {
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
         }
     }
+    if (dem_electors > rep_electors && dem_electors > third_electors) {
+        printf("This democratic president won with %d of the electors", dem_electors);
+    } else if (rep_electors > dem_electors && rep_electors > third_electors) {
+        printf("This republican president won with %d of the electors", rep_electors);
+    } else if (third_electors > dem_electors && third_electors > rep_electors) {
+        printf("This third party president won with %d of the electors", third_electors);
+    }
+    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it, %d that somewhat trust it, and %d that fully trust it\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
-}
-void reset(states state) {
-    state.dem_votes = temp_state_dem_votes, state.rep_votes = temp_state_rep_votes;
-    temp_state_rep_votes = 0, temp_state_dem_votes = 0;
 }
