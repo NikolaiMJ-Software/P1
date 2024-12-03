@@ -1,0 +1,6 @@
+
+
+char* STV(states* USA) {
+
+
+}
