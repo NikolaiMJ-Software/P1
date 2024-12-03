@@ -114,17 +114,19 @@ int main(void) {
         Compare_table(e_systems, counter_CMP);
 
         // Ask the user if they want to end the program
-        char choice;
+        char choice[4];
         do {
-            printf("Do you want to end the program? (y/n):");
-            scanf(" %c", &choice);
+            printf("Do you want to end the program? (yes/no):");
+            scanf("%s", &choice);
 
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
-            choice = tolower(choice);
-        } while (choice != 'y' && choice != 'n');
-        // Exit the loop if the user chooses 'y'
-        if (choice == 'y') {
+            for (int i = 0; choice[i] != '\0'; i++) {
+                choice[i] = tolower(choice[i]);
+            }
+        } while (strcmp(choice,"yes") != 0 && strcmp(choice,"no") != 0);
+        // Exit the loop if the user chooses 'yes'
+        if (strcmp(choice,"yes") == 0) {
             printf("Exiting the program. Goodbye!\n");
             break;
         }
