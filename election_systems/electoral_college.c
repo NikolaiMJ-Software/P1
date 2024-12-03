@@ -28,6 +28,7 @@ char* electoral_college(states* USA, cmp* e_systems, int year) {
     e_systems[0].DEM_electors = democrats;
     e_systems[0].REP_electors = republicans;
     e_systems[0].TP_electors = third_party;
+    e_systems[0].SUM_electors = democrats + republicans + third_party;
     // Return winning party
     if (democrats > (electors/2)+1) {
         return "Democrats";
