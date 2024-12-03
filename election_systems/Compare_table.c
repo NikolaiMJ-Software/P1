@@ -2,7 +2,7 @@
 
 void spaces(cmp* e_systems);
 
-void Compare_table(cmp* e_systems, int counter_CMP) {
+void Compare_table(cmp* e_systems, cmp* uncap_systems, int counter_CMP, int uncapped) {
     printf("\n----------------Comparison table----------------\n");
     if (counter_CMP == 1) {
         spaces(e_systems);
@@ -96,4 +96,3 @@ void spaces(cmp* e_systems) {
                 e_systems[0].system_name, e_systems[1].system_name);
         }
     }
-}

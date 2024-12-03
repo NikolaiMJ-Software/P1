@@ -2,15 +2,22 @@
 
 int main(void) {
     const char* directory = "US_election_data";
-    int counter_CMP = -1, already_calculated;
+    int counter_CMP = -1;
     // Allocate memory for the array e_systems
-    cmp* e_systems = malloc(NO_E_SYSTEMS * sizeof(cmp));
+    cmp* e_systems = malloc(NO_SYSTEMS * sizeof(cmp));
     if (e_systems == NULL) {
         // Error handling if memory allocation fails
         printf("Memory allocation failed!\n");
         return 1;
     }
+    cmp* uncap_systems = malloc(NO_SYSTEMS * sizeof(cmp));
+    if (uncap_systems == NULL) {
+        // Error handling if memory allocation fails
+        printf("Memory allocation failed!\n");
+        exit (EXIT_FAILURE);
+    }
     while(true) {
+        int uncapped = 0;
         list_available_files(directory);
 
         fflush(stdin);
@@ -33,6 +40,13 @@ int main(void) {
             strcmp (e_systems[3].system_name, "STV") != 0) {
             full_e_systems = 0;
         }
+        // Check if cmp uncap_systems is full
+        int full_uncap_systems = 1;
+        if (strcmp (uncap_systems[3].system_name, "BC") != 0 &&
+            strcmp (uncap_systems[3].system_name, "PLPR") != 0 &&
+            strcmp (uncap_systems[3].system_name, "STV") != 0) {
+            full_uncap_systems = 0;
+            }
 
         // Get data from year file, and return USA array
         int file_loaded = 0; // Variable to track file loading
@@ -41,9 +55,9 @@ int main(void) {
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
-            if (input_year == e_systems[0].year && full_e_systems) {
-                printf("The year %d has already been simulated, but you can still update the election systems.\n", input_year);
-                //continue;
+            if (input_year == e_systems[0].year && full_e_systems && full_uncap_systems) {
+                printf("The year %d has already been simulated.\n", input_year);
+                continue;
             }
             // Check if the year is part of the files
             file_loaded = ScanData_TXT(input_year, USA);
@@ -54,15 +68,14 @@ int main(void) {
             }
         }
 
-        // Insert the year in the cmp system array, free memory if different year is entered
+        // Insert the year in the cmp system array, empty arrays if different year is entered
         if (counter_CMP > 0 && e_systems[0].year != input_year) {
-            memset(e_systems, 0, NO_E_SYSTEMS * sizeof(cmp));
+            memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
             counter_CMP = 0;
             e_systems[0].year = input_year;
         } else {
-            for (int i = 0; i < NO_E_SYSTEMS; i++) {
-                e_systems[i].year = input_year;
-            }
+            e_systems[0].year = input_year;
             counter_CMP++;
         }
 
@@ -89,9 +102,10 @@ int main(void) {
         } while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
         if (strcmp(wyoming_rule_true,"yes") == 0) {
             wyoming_rule(input_year, USA);
+            uncapped = 1;
         }
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
+        char* result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, uncapped);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
         if (counter_CMP == 0) {
             counter_CMP++;
@@ -103,7 +117,12 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
+            Compare_table(e_systems, uncap_systems, counter_CMP, 1);
+        } else {
+            Compare_table(e_systems, uncap_systems, counter_CMP, 0);
+        }
+        result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, uncapped);
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays
@@ -111,16 +130,7 @@ int main(void) {
         free(candidate_list);
 
         // Compare the tested systems
-        for (int i = 0; i < NO_E_SYSTEMS; i++) {
-            if (strcmp (e_systems[i].system_name, "BC") == 0 || strcmp (e_systems[i].system_name, "PLPR") == 0 || strcmp (e_systems[i].system_name, "STV") == 0) {
-                counter_CMP = i;
-            }
-        }
-        if (strcmp(wyoming_rule_true,"yes") == 0) {
-            Compare_table(e_systems, counter_CMP, 1);
-        } else {
-            Compare_table(e_systems, counter_CMP, 0);
-        }
+        Compare_table(e_systems, uncap_systems, counter_CMP, uncapped);
 
         // Ask the user if they want to end the program
         char choice[4];
@@ -141,5 +151,6 @@ int main(void) {
         }
     }
     free(e_systems);
+    free(uncap_systems);
     return 0;
 }

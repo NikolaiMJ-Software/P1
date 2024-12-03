@@ -3,7 +3,7 @@
 #define NAME_LGT 30
 #define STATES 51
 #define CANDIDATES 25
-#define NO_E_SYSTEMS 4
+#define NO_SYSTEMS 4
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +31,6 @@ typedef struct cmp {
     int DEM_electors;
     int REP_electors;
     int TP_electors;
-    int SUM_electors;
     int year;
 }cmp;
 
@@ -61,12 +60,12 @@ typedef struct candidates {
 }candidates;
 
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_year, int* counter_CMP);
-char* electoral_college(states* USA, cmp* e_systems, int year);
-char* PLPR(states* USA, cmp* e_systems, int counter_CMP);
-char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
-char* BC(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
-void Compare_table(cmp* e_systems, int counter_CMP, int uncapped);
+char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int* counter_CMP, int uncapped);
+char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped);
+char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_CMP, int uncapped);
+char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int uncapped);
+char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int uncapped);
+void Compare_table(cmp* e_systems, cmp* uncap_systems, int counter_CMP, int uncapped);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
