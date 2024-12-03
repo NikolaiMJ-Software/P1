@@ -122,7 +122,7 @@ int main(void) {
         }
 
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
+        char* result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
         if (counter_CMP == 0) {
             counter_CMP++;
@@ -140,6 +140,7 @@ int main(void) {
             Compare_table(e_systems, uncap_systems, counter_CMP, 0);
         }
         result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
+
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays

@@ -96,3 +96,4 @@ void spaces(cmp* e_systems) {
                 e_systems[0].system_name, e_systems[1].system_name);
         }
     }
+}

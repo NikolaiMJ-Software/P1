@@ -91,7 +91,7 @@ char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress
             percentage = percentage + 2;
             printf("Progress: %d%%\n", percentage);
         }
-        if (abolish_states = 1) {
+        if (states_abolished == 1) {
             break;
         }
     }

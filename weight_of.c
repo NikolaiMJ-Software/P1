@@ -29,7 +29,7 @@ void weight(states* USA){
                USA[i].stateName, stateweight[i], USA[i].electors, USA[i].population);
     }
     printf("weight in this case shows how many voters each elector represents, thereby how weighty their position is"
-           "\nbut what is the percentage of a single elector when faced with the whole country?"a);
+           "\nbut what is the percentage of a single elector when faced with the whole country?");
 
     for(int i = 0; i < STATES; i++) {
         total += USA[i].electors;

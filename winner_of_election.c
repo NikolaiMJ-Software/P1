@@ -1,6 +1,6 @@
 #include "connecter.h"
 
-char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_year, int* counter_CMP, int states_abolished, int uncapped) {
+char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int* counter_CMP, int states_abolished, int uncapped) {
     while(true) {
         // Check if the election system has already been calculator
         int already_calculated = 0;
@@ -37,7 +37,7 @@ char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_ye
         if (strcmp(system, "original") == 0) {
             return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped);
         } else if (strcmp(system, "STV") == 0) {
-            return STV(USA, e_systems, 1, *counter_CMP, states_abolished, uncapped);
+            return STV(USA, e_systems, uncap_systems,1, *counter_CMP, states_abolished, uncapped);
         } else if (strcmp(system, "PLPR") == 0) {
             return PLPR(USA, e_systems, uncap_systems, *counter_CMP, uncapped);
         } else if (strcmp(system, "BC") == 0) {
