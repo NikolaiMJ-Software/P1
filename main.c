@@ -15,7 +15,7 @@ int main(void) {
 
         fflush(stdin);
         int input_year;
-        char wyoming_rule_true = 'n';
+        char wyoming_rule_true[4];
         char system[10] = "original";
 
         // Allocate memory for the array USA
@@ -42,8 +42,8 @@ int main(void) {
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
             if (input_year == e_systems[0].year && full_e_systems) {
-                printf("The year %d has already been simulated.\n", input_year);
-                continue;
+                printf("The year %d has already been simulated, but you can still update the election systems.\n", input_year);
+                //continue;
             }
             // Check if the year is part of the files
             file_loaded = ScanData_TXT(input_year, USA);
@@ -79,17 +79,19 @@ int main(void) {
         //parameters(USA, candidate_list, input_year, 0, 1, 0, 0);
 
         do {
-            printf("Would you like to uncap the Electoral College from its current 538 electors (y/n)\n");
-            scanf(" %c", &wyoming_rule_true);
+            printf("Would you like to uncap the Electoral College from its current 538 electors (yes/no)\n");
+            scanf("%s", &wyoming_rule_true);
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
-            wyoming_rule_true = tolower(wyoming_rule_true);
-        } while (wyoming_rule_true != 'y' && wyoming_rule_true != 'n');
-        if (wyoming_rule_true == 'y') {
+            for (int i = 0; wyoming_rule_true[i] != '\0'; i++) {
+                wyoming_rule_true[i] = tolower(wyoming_rule_true[i]);
+            }
+        } while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
         if (counter_CMP == 0) {
             counter_CMP++;
@@ -101,28 +103,39 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays
         free(USA);
         free(candidate_list);
 
-        // Compare the testes systems
-        Compare_table(e_systems, counter_CMP);
+        // Compare the tested systems
+        for (int i = 0; i < NO_E_SYSTEMS; i++) {
+            if (strcmp (e_systems[i].system_name, "BC") == 0 || strcmp (e_systems[i].system_name, "PLPR") == 0 || strcmp (e_systems[i].system_name, "STV") == 0) {
+                counter_CMP = i;
+            }
+        }
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
+            Compare_table(e_systems, counter_CMP, 1);
+        } else {
+            Compare_table(e_systems, counter_CMP, 0);
+        }
 
         // Ask the user if they want to end the program
-        char choice;
+        char choice[4];
         do {
-            printf("Do you want to end the program? (y/n):");
-            scanf(" %c", &choice);
+            printf("Do you want to end the program? (yes/no):");
+            scanf("%s", &choice);
 
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
-            choice = tolower(choice);
-        } while (choice != 'y' && choice != 'n');
-        // Exit the loop if the user chooses 'y'
-        if (choice == 'y') {
+            for (int i = 0; choice[i] != '\0'; i++) {
+                choice[i] = tolower(choice[i]);
+            }
+        } while (strcmp(choice,"yes") != 0 && strcmp(choice,"no") != 0);
+        // Exit the loop if the user chooses 'yes'
+        if (strcmp(choice,"yes") == 0) {
             printf("Exiting the program. Goodbye!\n");
             break;
         }

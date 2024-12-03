@@ -102,6 +102,7 @@ char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP) {
     e_systems[counter_CMP].DEM_electors = dem_electors;
     e_systems[counter_CMP].REP_electors = rep_electors;
     e_systems[counter_CMP].TP_electors = tp_electors;
+    e_systems[counter_CMP].SUM_electors = dem_electors + rep_electors + tp_electors;
     //After every state has been gone through, compare overarching variables to find winner.
     if ((dem_electors > rep_electors) && (dem_electors > tp_electors)) {
         return "Democrats";
