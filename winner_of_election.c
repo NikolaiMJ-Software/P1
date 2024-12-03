@@ -30,14 +30,14 @@ char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* 
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
             }
-            // Stat form teh beginning of the while loop
+            // Start from the beginning of the while loop
             continue;
         }
 
         if (strcmp(system, "original") == 0) {
             return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped);
         } else if (strcmp(system, "STV") == 0) {
-            return STV(USA, e_systems, uncap_systems,1, *counter_CMP, states_abolished, uncapped);
+            return STV(USA, e_systems, uncap_systems, 1, *counter_CMP, states_abolished, uncapped);
         } else if (strcmp(system, "PLPR") == 0) {
             return PLPR(USA, e_systems, uncap_systems, *counter_CMP, uncapped);
         } else if (strcmp(system, "BC") == 0) {

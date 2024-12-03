@@ -31,7 +31,6 @@ typedef struct cmp {
     int DEM_electors;
     int REP_electors;
     int TP_electors;
-    int SUM_electors;
     int year;
 }cmp;
 
