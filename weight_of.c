@@ -4,12 +4,13 @@
 // Forward declaration of the sorting function
 void compare_weights(states* USA, double* stateweight);
 
-void* weight(states* USA){
+void weight(states* USA){
     if (USA == NULL) {
         printf("Error: USA array is NULL.\n");
-        return;  // Return early or handle the error as appropriate
+        return;
     }
     double stateweight[STATES];
+    int total = 0;
 
     printf("Each state has a given number of electors for the Electoral College. This number is decided by the state's population, where each state has at least three electors (two from Senators).\n");
     printf("But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight:\n\n");
@@ -27,6 +28,13 @@ void* weight(states* USA){
         printf("\n---%s: Weight = %.0f Electors = %d, Population = %d---\n",
                USA[i].stateName, stateweight[i], USA[i].electors, USA[i].population);
     }
+    printf("weight in this case shows how many voters each elector represents, thereby how weighty their position is"
+           "\nbut what is the percentage of a single elector when faced with the whole country?"a);
+
+    for(int i = 0; i < STATES; i++) {
+        total += USA[i].electors;
+    }
+    int percentage = 1 / total * 100;
 }
 
 void compare_weights(states* USA, double* stateweight) {

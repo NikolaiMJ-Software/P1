@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* electoral_college(states* USA, cmp* e_systems, int year) {
+char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped) {
     int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
@@ -24,11 +24,17 @@ char* electoral_college(states* USA, cmp* e_systems, int year) {
     printf("Republican electors: %d\n", republicans);
     printf("Third party electors: %d\n\n", third_party);
     // Save the electors in the cmp systems array
-    strcpy(e_systems[0].system_name, "EC");
-    e_systems[0].DEM_electors = democrats;
-    e_systems[0].REP_electors = republicans;
-    e_systems[0].TP_electors = third_party;
-    e_systems[0].SUM_electors = democrats + republicans + third_party;
+    if (uncapped) {
+        strcpy(uncap_systems[0].system_name, "EC");
+        uncap_systems[0].DEM_electors = democrats;
+        uncap_systems[0].REP_electors = republicans;
+        uncap_systems[0].TP_electors = third_party;
+    } else {
+        strcpy(e_systems[0].system_name, "EC");
+        e_systems[0].DEM_electors = democrats;
+        e_systems[0].REP_electors = republicans;
+        e_systems[0].TP_electors = third_party;
+    }
     // Return winning party
     if (democrats > (electors/2)+1) {
         return "Democrats";
