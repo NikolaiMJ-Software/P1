@@ -143,7 +143,7 @@ int main(void) {
 
         // Compare the tested systems
         for (int i = 0; i < NO_SYSTEMS; i++) {
-            if (strcmp(e_systems[3].system_name, "BC") == 0 || strcmp(e_systems[3].system_name, "STV") == 0 || strcmp(e_systems[3].system_name, "PLPR") == 0) {
+            if (strcmp(e_systems[i].system_name, "BC") == 0 || strcmp(e_systems[i].system_name, "STV") == 0 || strcmp(e_systems[i].system_name, "PLPR") == 0) {
                 counter_CMP = i;
             }
         }
