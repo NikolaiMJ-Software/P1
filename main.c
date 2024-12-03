@@ -111,6 +111,11 @@ int main(void) {
         free(candidate_list);
 
         // Compare the tested systems
+        for (int i = 0; i < NO_E_SYSTEMS; i++) {
+            if (strcmp (e_systems[i].system_name, "BC") == 0 || strcmp (e_systems[i].system_name, "PLPR") == 0 || strcmp (e_systems[i].system_name, "STV") == 0) {
+                counter_CMP = i;
+            }
+        }
         Compare_table(e_systems, counter_CMP);
 
         // Ask the user if they want to end the program
