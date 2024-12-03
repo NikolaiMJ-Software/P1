@@ -1,6 +1,7 @@
+#include "connecter.h"
 
+char* weight(states* USA) {
 
-char* STV(states* USA) {
 
 
 }

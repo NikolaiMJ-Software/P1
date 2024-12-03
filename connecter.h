@@ -71,7 +71,7 @@ void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility);
-char* STV(states* USA);
+char* weight(states* USA);
 
 
 #endif //SCAN_DATA_TXT_H
