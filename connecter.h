@@ -60,16 +60,18 @@ typedef struct candidates {
 }candidates;
 
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_year, int counter_CMP);
+char* Winner_of_election(states* USA, cmp* e_systems, char* system, int input_year, int* counter_CMP);
 char* electoral_college(states* USA, cmp* e_systems, int year);
 char* PLPR(states* USA, cmp* e_systems, int counter_CMP);
 char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
 char* BC(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
-void Compare_table(cmp* e_systems, int counter_CMP);
+void Compare_table(cmp* e_systems, int counter_CMP, int uncapped);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility);
+char* weight(states* USA);
+
 
 #endif //SCAN_DATA_TXT_H
