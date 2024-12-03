@@ -76,6 +76,7 @@ char* BC(states* USA, cmp* e_systems, int activate_progress, int counter_CMP) {
     e_systems[counter_CMP].DEM_electors = allocated_dem_electors;
     e_systems[counter_CMP].REP_electors = allocated_rep_electors;
     e_systems[counter_CMP].TP_electors = allocated_tp_electors;
+    e_systems[counter_CMP].SUM_electors = allocated_dem_electors + allocated_rep_electors + allocated_tp_electors;
     // Determine winner
     if (allocated_dem_electors > allocated_rep_electors && allocated_dem_electors > allocated_tp_electors) {
         return "Democrats";

@@ -53,6 +53,7 @@ char* PLPR(states* USA, cmp* e_systems, int counter_CMP) {
     e_systems[counter_CMP].DEM_electors = democrats;
     e_systems[counter_CMP].REP_electors = republicans;
     e_systems[counter_CMP].TP_electors = third_party;
+    e_systems[counter_CMP].SUM_electors = democrats + republicans + third_party;
     // Return the winning party
     if (democrats > republicans && democrats > third_party) {
         return "Democrats";

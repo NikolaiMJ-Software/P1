@@ -4,17 +4,17 @@
 void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
-void legitimacy_function(states state, int legitimacy);
+void legitimacy_function(states* state, int legitimacy);
 void reset(states state);
-int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes;
+int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
-    dem_electors = 0, rep_electors = 0, third_electors = 0;
+    dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
-        legitimacy_function(state[i], legitimacy);
         reset(state[i]);
     }
+    legitimacy_function(state, legitimacy);
     personalization_function(state, candidate_list, personalization);
 }
 void comprehensibility_function(states state, int comprehensibility, int year) {
@@ -23,8 +23,8 @@ void comprehensibility_function(states state, int comprehensibility, int year) {
     informed_rep_votes = (state.dem_votes + state.rep_votes) * (rep_age_lean / 100 + rep_education_lean / (rep_education_lean + dem_education_lean))/2;
     temp_state_dem_votes = state.dem_votes;
     temp_state_rep_votes = state.rep_votes;
-    state.dem_votes += (informed_dem_votes - state.dem_votes) / 100 * comprehensibility;
-    state.rep_votes += (informed_rep_votes - state.rep_votes) / 100 * comprehensibility;
+    state.dem_votes += (informed_dem_votes - state.dem_votes) / 100 * (-100 + comprehensibility * 2);
+    state.rep_votes += (informed_rep_votes - state.rep_votes) / 100 * (-100 + comprehensibility * 2);
 
     // side 28 https://download.ssrn.com/23/04/08/ssrn_id4413410_code2576815.pdf?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIC064MApJX7ba9dZdwnTkYbVMcM8cRTEtQt2XVXhpkQhAiB3AW%2FtB8Oj6Zel2%2FHEXh8M2GuGzANHg9Nf3c%2BeS24JGCq9BQheEAQaDDMwODQ3NTMwMTI1NyIMF46%2B31Y2TMZbARt0KpoFx5lANk02jioFvARlNiskh6RFDzUFlALkCwFtmXzFcdkT7G8Quq0k%2BIyzhuNWS4phr9GU6Q0JEyc6q9iuWXD8RqIaw2a7YvqXzak6IBVwx4BMWYoaVeQj04uhQJbvNYagLghShP3aw8TaCYE320JfnKtH%2FBq1uGLAtck011tP9dfEHiczw4yLyU3MIVMFZV2JiFU0gqhK964P4h89ek%2FQnBAXb%2FGrS6m6ZJO21kx2BJzQKgrJVaSuSoIGkM14WAnuK6tsnXPoPc74RNQ%2Fdsmpp9KiNtCycMvk5Gl64naqTp%2BvQehTQN0GNjAB6LPI6%2FLQXArGgGxZ5pMkNkUwZQORP%2BOJ39rBPE8TU6uhSAvAsQyaf9tRT5nSWkIR3X5JZHFka2LgMziCKFtTnTXGVswv%2Ff%2B6o92W9H0B6ovJq1lBm%2FvSecIBQswkPuKjNIi8koB%2FyNJd%2BMNts1tos4P6ero5PPuifrF9mi1KciFHCaIs8Tj1c%2FLj0FrBHHuQTkPdRhHZf2Ni%2Bj0qEti4aYunet0tX6eS2o0uxxhH4qAXJoa%2Fz1lwc6jOJ8ikt%2F4BsZBB8bOPvkpH47b5yFl30cOvNzGyqygwzNZt3lj6MIg8KkkErxyOxkVZrWOEQiqEaBrEl79DkoLjmwkgSokdFzjH1vSSonmptOni9c%2B9hvU4Tp5RKg7LkKgxfeZtT8q0P7TztYnP1waAlNRZ6IlbmXQR4xnjHX0UF9MTdYzMPoiRaEso%2FUlSBWcf%2BdLtZ5YsELuQqr0ER5qo19wJa8tmCdj%2FOJ7%2F3r2mxO4rfB7ZI006FfFqR3TqLWrtm3fYRWURxbFh2Wr%2F%2FXFUJ409ya7%2BESo4pAa08tceIVfyMSAfNa03splBLSdiUhPeA%2BjSxW19MOnQoboGOrIBdxZwX%2FUGmmyWRMyLYjmqZWYNikoWbeNQVNTSpnuKtzqw49Am6EH%2Fns%2F%2FXHZukRwVby0mQftRT4S1r94s3hSBWVqlTo34juDhmYtzUyKOthMgSDIl6N%2Bg27ca%2BdcKVZZSknQrkFlsxIYUk8IYNchNe6DzZfxotm4an4kdhlh2cBPkgYjsjmRgATMQuvA7BUz%2BUkDJVLcHfhKetIoGfkNXr9Z53x5xkw0IKke4OPq%2BOPutag%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241128T135606Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAUPUUPRWEXDROWOE7%2F20241128%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=7d7e6c6dbda7f9394b5a40f5988da349332a3b37a3a9b53d8e11335e5c530d35&abstractId=3593002
     // https://www.pewresearch.org/politics/2024/04/09/age-generational-cohorts-and-party-identification/
@@ -294,8 +294,59 @@ void personalization_function(states* state, candidates* candidate_list, int per
     }
     }
 
-void legitimacy_function(states state, int legitimacy) {
-
+void legitimacy_function(states* state, int legitimacy) {
+    int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
+    third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
+    if (legitimacy > 50) {
+        for (int i = legitimacy; i >= 50; i--) {
+            rep_high_trust++;
+            dem_high_trust++;
+            third_high_trust++;
+            rep_med_trust++;
+            dem_med_trust++;
+            third_med_trust++;
+            rep_low_trust--;
+            dem_low_trust--;
+            third_low_trust--;
+            rep_no_trust--;
+            dem_no_trust--;
+            third_no_trust--;
+        }
+    } else if (legitimacy < 50) {
+        for (int i = legitimacy; i <= 50; i++) {
+            rep_high_trust--;
+            dem_high_trust--;
+            third_high_trust--;
+            rep_med_trust--;
+            dem_med_trust--;
+            third_med_trust--;
+            rep_low_trust++;
+            dem_low_trust++;
+            third_low_trust++;
+            rep_no_trust++;
+            dem_no_trust++;
+            third_no_trust++;
+        }
+    }
+    for (int i = 0; i < STATES; i++) {
+        if (dem_electors > rep_electors && dem_electors > third_electors) {
+            fully_trusts += (state[i].rep_votes * rep_high_trust + state[i].third_votes * third_high_trust) / 100;
+            somewhat_trusts += (state[i].rep_votes * rep_med_trust + state[i].third_votes * third_med_trust) / 100;
+            slightly_trusts += (state[i].rep_votes * rep_low_trust + state[i].third_votes * third_low_trust) / 100;
+            doesnt_trust += (state[i].rep_votes * rep_no_trust + state[i].third_votes * third_no_trust) / 100;
+        } else if (rep_electors > dem_electors && rep_electors > third_electors) {
+            fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].third_votes * third_high_trust) / 100;
+            somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].third_votes * third_med_trust) / 100;
+            slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].third_votes * third_low_trust) / 100;
+            doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].third_votes * third_no_trust) / 100;
+        } else if (third_electors > dem_electors && third_electors > rep_electors) {
+            fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].rep_votes * rep_high_trust) / 100;
+            somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].rep_votes * rep_med_trust) / 100;
+            slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].rep_votes * rep_low_trust) / 100;
+            doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
+        }
+    }
+    // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }
 void reset(states state) {
     state.dem_votes = temp_state_dem_votes, state.rep_votes = temp_state_rep_votes;

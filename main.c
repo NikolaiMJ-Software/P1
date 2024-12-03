@@ -42,8 +42,8 @@ int main(void) {
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
             if (input_year == e_systems[0].year && full_e_systems) {
-                printf("The year %d has already been simulated.\n", input_year);
-                continue;
+                printf("The year %d has already been simulated, but you can still update the election systems.\n", input_year);
+                //continue;
             }
             // Check if the year is part of the files
             file_loaded = ScanData_TXT(input_year, USA);
@@ -91,7 +91,7 @@ int main(void) {
             wyoming_rule(input_year, USA);
         }
         // Determine the winner
-        char* result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        char* result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
         if (counter_CMP == 0) {
             counter_CMP++;
@@ -103,15 +103,24 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        result = Winner_of_election(USA, e_systems, system, input_year, counter_CMP);
+        result = Winner_of_election(USA, e_systems, system, input_year, &counter_CMP);
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays
         free(USA);
         free(candidate_list);
 
-        // Compare the testes systems
-        Compare_table(e_systems, counter_CMP);
+        // Compare the tested systems
+        for (int i = 0; i < NO_E_SYSTEMS; i++) {
+            if (strcmp (e_systems[i].system_name, "BC") == 0 || strcmp (e_systems[i].system_name, "PLPR") == 0 || strcmp (e_systems[i].system_name, "STV") == 0) {
+                counter_CMP = i;
+            }
+        }
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
+            Compare_table(e_systems, counter_CMP, 1);
+        } else {
+            Compare_table(e_systems, counter_CMP, 0);
+        }
 
         // Ask the user if they want to end the program
         char choice[4];
