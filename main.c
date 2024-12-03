@@ -116,7 +116,11 @@ int main(void) {
                 counter_CMP = i;
             }
         }
-        Compare_table(e_systems, counter_CMP);
+        if (strcmp(wyoming_rule_true,"yes") == 0) {
+            Compare_table(e_systems, counter_CMP, 1);
+        } else {
+            Compare_table(e_systems, counter_CMP, 0);
+        }
 
         // Ask the user if they want to end the program
         char choice[4];

@@ -65,7 +65,7 @@ char* electoral_college(states* USA, cmp* e_systems, int year);
 char* PLPR(states* USA, cmp* e_systems, int counter_CMP);
 char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
 char* BC(states* USA, cmp* e_systems, int activate_progress, int counter_CMP);
-void Compare_table(cmp* e_systems, int counter_CMP);
+void Compare_table(cmp* e_systems, int counter_CMP, int uncapped);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
