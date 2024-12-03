@@ -17,6 +17,7 @@ int main(void) {
         int input_year;
         char wyoming_rule_true[4];
         char system[10] = "original";
+        int abolish_states = 0;
 
         // Allocate memory for the array USA
         states* USA = malloc(STATES * sizeof(states));

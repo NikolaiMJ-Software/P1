@@ -2,7 +2,7 @@
 // a variable to define the amount of voter percentage that have an n+1 priority vote, when they have an n priority vote.
 #define VOTE_DECREASE_RATIO 0.75
 
-char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP) {
+char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP, int abolish_states) {
     int total_votes = 0, state_third_party_votes= 0, state_rep_party_votes = 0, state_dem_party_votes = 0,
         new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0,
         state_dem_electors = 0, state_rep_electors = 0, state_tp_electors = 0,
@@ -90,6 +90,9 @@ char* STV(states* USA, cmp* e_systems, int activate_progress, int counter_CMP) {
             // Print the percentage complete
             percentage = percentage + 2;
             printf("Progress: %d%%\n", percentage);
+        }
+        if (abolish_states = 1) {
+            break;
         }
     }
     // Print the electors for each party
