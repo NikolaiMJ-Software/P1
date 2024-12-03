@@ -134,13 +134,7 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        if (strcmp(wyoming_rule_true,"yes") == 0) {
-            Compare_table(e_systems, uncap_systems, counter_CMP, 1);
-        } else {
-            Compare_table(e_systems, uncap_systems, counter_CMP, 0);
-        }
         result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
-
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
         // Free Arrays
@@ -148,6 +142,11 @@ int main(void) {
         free(candidate_list);
 
         // Compare the tested systems
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            if (strcmp(e_systems[3].system_name, "BC") == 0 || strcmp(e_systems[3].system_name, "BC") == 0 || strcmp(e_systems[3].system_name, "BC") == 0) {
+                counter_CMP = i;
+            }
+        }
         Compare_table(e_systems, uncap_systems, counter_CMP, uncapped);
 
         //ask the user if they wish to see the weight of their vote
