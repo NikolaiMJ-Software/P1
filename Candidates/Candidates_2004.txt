@@ -1,0 +1,11 @@
+Republican, George W. Bush, President, 100, 0
+Republican, Dick Cheney, Vice_President, 0, 100
+Democratic, John Kerry, President, 100, 0
+Democratic, John Edwards, Vice_President, 0, 100
+Democratic, Howard Dean, President, 0, 0
+Democratic, Wesley Clark, President, 0, 0
+Democratic, Dennis Kucinich, President, 0, 0
+Democratic, Joe Lieberman, President, 0, 0
+Democratic, Al Sharpton, President, 0, 0
+Third_Party, Ralph Nader, President, 100, 0
+Third_Party, Michael Badnarik, President, 0, 100

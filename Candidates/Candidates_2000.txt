@@ -1,0 +1,11 @@
+Republican, George W. Bush, President, 100, 0
+Republican, Dick Cheney, Vice_President, 0, 100
+Republican, John McCain, President, 0, 0
+Republican, Alan Keyes, President, 0, 0
+Republican, Steve Forbes, President, 0, 0
+Democratic, Al Gore, President, 100, 0
+Democratic, Joe Lieberman, Vice_President, 0, 100
+Democratic, Bill Bradley, President, 0, 0
+Third_Party, Ralph Nader, President, 100, 0
+Third_Party, Pat Buchanan, Both, 0, 100
+Third_Party, Harry Browne, President, 0, 0
