@@ -137,15 +137,11 @@ int main(void) {
         result = Winner_of_election(USA, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
         printf("The winner was the %s, with the %s system.\n\n", result, system);
 
-        // Free Arrays
-        free(USA);
-        free(candidate_list);
 
         // Compare the tested systems
         Compare_table(e_systems, uncap_systems);
 
         //ask the user if they wish to see the weight of their vote
-        USA = malloc(STATES * sizeof(states));
         char decide[4];
         do {
             printf("do you wish to see the weight of an electors vote? (yes/no):");
@@ -155,7 +151,9 @@ int main(void) {
         if (strcmp(decide,"yes") == 0) {
             weight(USA);
         }
+        // Free Arrays
         free(USA);
+        free(candidate_list);
 
         // Ask the user if they want to end the program
         char choice[4];
