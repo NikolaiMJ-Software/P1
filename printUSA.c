@@ -1,7 +1,12 @@
 #include "connecter.h"
 
 void printUSA() {
-    printf("Map of the USA:\n");
+    printf("                     *******************************   \n");
+    printf("                     *                             *   \n");
+    printf("                     *      UNITED STATES MAP      *   \n");
+    printf("                     *                             *   \n");
+    printf("                     *******************************   \n");
+    printf("\n");
     printf("         ,__                                                  _,\n");
     printf("      \\~\\|  ~~---___              ,                          | \\\n");
     printf("       |      / |   ~~~~~~~|~~~~~| ~~---,                  _/,  >\n");
