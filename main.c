@@ -16,6 +16,9 @@ int main(void) {
         printf("Memory allocation failed!\n");
         exit (EXIT_FAILURE);
     }
+    // empty both arrays
+    memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
+    memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
     while(true) {
         int uncapped = 0;
         list_available_files(directory);
@@ -135,11 +138,17 @@ int main(void) {
         }
         // Determine the winner
         result = Winner_of_election(USA, candidate_list, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
-        printf("The winner was the %s, with the %s system.\n\n", result, system);
-
+        if (strcmp(result, "Custom Done") != 0) {
+            printf("The winner was the %s, with the %s system.\n\n", result, system);
+        }
 
         // Compare the tested systems
-        Compare_table(e_systems, uncap_systems);
+        if (strcmp(result, "Custom Done") != 0) {
+            Compare_table(e_systems, uncap_systems);
+        } else {
+            memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+        }
 
         //ask the user if they wish to see the weight of their vote
         char decide[4];
