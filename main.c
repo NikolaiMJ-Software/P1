@@ -142,12 +142,7 @@ int main(void) {
         free(candidate_list);
 
         // Compare the tested systems
-        for (int i = 0; i < NO_SYSTEMS; i++) {
-            if (strcmp(e_systems[i].system_name, "BC") == 0 || strcmp(e_systems[i].system_name, "STV") == 0 || strcmp(e_systems[i].system_name, "PLPR") == 0) {
-                counter_CMP = i;
-            }
-        }
-        Compare_table(e_systems, uncap_systems, counter_CMP, uncapped);
+        Compare_table(e_systems, uncap_systems);
 
         //ask the user if they wish to see the weight of their vote
         USA = malloc(STATES * sizeof(states));
