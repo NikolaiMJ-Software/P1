@@ -7,8 +7,20 @@ void personalization_function(states* state, candidates* candidate_list, int per
 void legitimacy_function(states* state, int legitimacy);
 void reset(states state);
 int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
-void parameters(states* state, candidates* candidate_list, int year, double minority_proportionality, int personalization, int legitimacy, int comprehensibility) {
+void parameters(states* state, candidates* candidate_list, int year) {
     dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
+    int personalization = 0, legitimacy = 0, comprehensibility = 0;
+    double minority_proportionality = 0;
+    printf("You have chosen to customize the US Electoral System\n");
+    printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters:\n");
+    scanf("%d", &comprehensibility);
+    printf("Now to choose how proportional your system will be, choose an int between 0-100 (base is 0):\n");
+    scanf("%lf", &minority_proportionality);
+    printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their president of choice, instead of a pre selected one (yes/no):\n");
+    scanf("%d", &personalization);
+    printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
+    scanf("%d", &legitimacy);
+
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
@@ -77,7 +89,6 @@ void minority_and_proportionality_function(states state, double minority_proport
     third_electors += state_third_electors;
 }
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
-    //printf("%d, %d %d\n", rep_electors, dem_electors, third_electors);
     //rep, dem and third candidate-lists:
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
@@ -92,7 +103,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
     candidates rep_candidate_list[rep_count];
     candidates dem_candidate_list[dem_count];
     candidates third_candidate_list[third_count];
-    int rep_size, dem_size, third_size;
+    int rep_size = 0, dem_size = 0, third_size = 0;
     for (int i = 0; i < CANDIDATES; i++) {
         if (candidate_list[i].party == 0) {
             rep_candidate_list[rep_size++] = candidate_list[i];
@@ -400,6 +411,6 @@ void legitimacy_function(states* state, int legitimacy) {
     } else if (third_electors > dem_electors && third_electors > rep_electors) {
         printf("This third party president won with %d of the electors", third_electors);
     }
-    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it, %d that somewhat trust it, and %d that fully trust it\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
+    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it, %d that somewhat trust it, and %d that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }

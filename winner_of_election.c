@@ -1,6 +1,6 @@
 #include "connecter.h"
 
-char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int* counter_CMP, int states_abolished, int uncapped) {
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int* counter_CMP, int states_abolished, int uncapped) {
     while(true) {
         // Check if the election system has already been calculator
         int already_calculated = 0;
@@ -44,6 +44,9 @@ char* Winner_of_election(states* USA, cmp* e_systems, cmp* uncap_systems, char* 
             return PLPR(USA, e_systems, uncap_systems, *counter_CMP, uncapped);
         } else if (strcmp(system, "BC") == 0) {
             return BC(USA, e_systems, uncap_systems, 1, *counter_CMP, uncapped);
+        } else if (strcmp(system, "Custom")) {
+            parameters(USA, candidate_list, input_year);
+            return "Custom Done";
         } else {
             printf("The chosen election system is not in the database, try again.\n");
             printf("Chose a new system: STV, PLPR, BC:\n");
