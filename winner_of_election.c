@@ -9,7 +9,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 if (strcmp(uncap_systems[i].system_name, system) == 0) {
                     already_calculated = 1;
-                    *counter_CMP = i;
+                    *counter_CMP++;
                     break;
                 }
             }
@@ -18,7 +18,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 if (strcmp(e_systems[i].system_name, system) == 0) {
                     already_calculated = 1;
-                    *counter_CMP = i;
+                    *counter_CMP++;
                     break;
                 }
             }

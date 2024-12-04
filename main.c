@@ -16,6 +16,9 @@ int main(void) {
         printf("Memory allocation failed!\n");
         exit (EXIT_FAILURE);
     }
+    // empty both arrays
+    memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
+    memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
     while(true) {
         int uncapped = 0;
         list_available_files(directory);
