@@ -8,6 +8,8 @@ https://en.wikipedia.org/wiki/List_of_United_States_presidential_candidates
 https://en.wikipedia.org/wiki/2024_United_States_presidential_election
 https://en.wikipedia.org/wiki/2020_United_States_presidential_election
 https://en.wikipedia.org/wiki/2016_United_States_presidential_election
+https://en.wikipedia.org/wiki/2008_United_States_presidential_election
+https://en.wikipedia.org/wiki/2012_United_States_presidential_election
 */
 Party string_to_party(const char* party);
 Candidacy string_to_candidacy(const char* candidacy);
