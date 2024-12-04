@@ -13,7 +13,9 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
                     counter_uncap++;
                     break;
                 }
-                if (strcmp(uncap_systems[i].system_name, system) == 0 && uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0) {
+            }
+            for (int i = 0; i < NO_SYSTEMS; i++) {
+                if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
                     already_calculated = 1;
                     break;
                 }
@@ -21,13 +23,15 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         } else {
             // Normal_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(uncap_systems[i].system_name, system) == 0) {
+                if (strcmp(e_systems[i].system_name, system) == 0) {
                     counter_cap = i;
                 } else {
                     counter_cap++;
                     break;
                 }
-                if (strcmp(e_systems[i].system_name, system) == 0 || e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0) {
+            }
+            for (int i = 0; i < NO_SYSTEMS; i++) {
+                if (strcmp(e_systems[i].system_name, system) == 0 && (e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0)) {
                     already_calculated = 1;
                     break;
                 }
