@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_CMP, int uncapped) {
+char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped) {
     int total_electors = 0, allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0,
         percentage = -2;
     double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
@@ -73,15 +73,15 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
     printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
     // Save the electors in the cmp systems array
     if (uncapped) {
-        strcpy(uncap_systems[counter_CMP].system_name, "BC");
-        uncap_systems[counter_CMP].DEM_electors = allocated_dem_electors;
-        uncap_systems[counter_CMP].REP_electors = allocated_rep_electors;
-        uncap_systems[counter_CMP].TP_electors = allocated_tp_electors;
+        strcpy(uncap_systems[counter_uncap].system_name, "BC");
+        uncap_systems[counter_uncap].DEM_electors = allocated_dem_electors;
+        uncap_systems[counter_uncap].REP_electors = allocated_rep_electors;
+        uncap_systems[counter_uncap].TP_electors = allocated_tp_electors;
     } else {
-        strcpy(e_systems[counter_CMP].system_name, "BC");
-        e_systems[counter_CMP].DEM_electors = allocated_dem_electors;
-        e_systems[counter_CMP].REP_electors = allocated_rep_electors;
-        e_systems[counter_CMP].TP_electors = allocated_tp_electors;
+        strcpy(e_systems[counter_cap].system_name, "BC");
+        e_systems[counter_cap].DEM_electors = allocated_dem_electors;
+        e_systems[counter_cap].REP_electors = allocated_rep_electors;
+        e_systems[counter_cap].TP_electors = allocated_tp_electors;
     }
 
     // Determine winner
