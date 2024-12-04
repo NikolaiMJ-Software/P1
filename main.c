@@ -135,11 +135,14 @@ int main(void) {
         }
         // Determine the winner
         result = Winner_of_election(USA, candidate_list, e_systems, uncap_systems, system, input_year, &counter_CMP, states_abolished, uncapped);
-        printf("The winner was the %s, with the %s system.\n\n", result, system);
-
+        if (strcmp(result, "Custom Done") != 0) {
+            printf("The winner was the %s, with the %s system.\n\n", result, system);
+        }
 
         // Compare the tested systems
-        Compare_table(e_systems, uncap_systems);
+        if (strcmp(result, "Custom Done") != 0) {
+            Compare_table(e_systems, uncap_systems);
+        }
 
         //ask the user if they wish to see the weight of their vote
         char decide[4];
