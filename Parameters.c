@@ -12,14 +12,59 @@ void parameters(states* state, candidates* candidate_list, int year) {
     int personalization = 0, legitimacy = 0, comprehensibility = 0;
     double minority_proportionality = 0;
     printf("You have chosen to customize the US Electoral System\n");
-    printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters:\n");
-    scanf("%d", &comprehensibility);
-    printf("Now to choose how proportional your system will be, choose an int between 0-100 (base is 0):\n");
-    scanf("%lf", &minority_proportionality);
-    printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their president of choice, instead of a pre selected one (yes/no):\n");
-    scanf("%d", &personalization);
-    printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
-    scanf("%d", &legitimacy);
+
+    while(1) {
+        fflush(stdout);
+        printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters:\n");
+        if (scanf("%d", &comprehensibility) == 1 && comprehensibility >= 0 && comprehensibility <= 100) {
+            break;
+        }else {
+            printf("Invalid input try again!\n");
+            while (getchar() != '\n'); // Clear input buffer
+        }
+    }
+
+    while(1) {
+        fflush(stdout);
+        printf("Now to choose how proportional your system will be, choose an int between 0-100 (base is 0):\n");
+        if (scanf("%lf", &minority_proportionality) == 1 && minority_proportionality >= 0 && minority_proportionality <= 100) {
+            break;
+        }else {
+            printf("Invalid input try again!\n");
+            while (getchar() != '\n'); // Clear input buffer
+        }
+    }
+
+    while(1) {
+        fflush(stdout);
+        char input[10];
+        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their president of choice, instead of a pre selected one (yes/no):\n");
+        scanf("%s", &input);
+        for (int i = 0; input[i]; i++) {
+            input[i] = tolower(input[i]);
+        }
+        if (strcmp(input, "yes") == 0) {
+            personalization = 1;
+            break;
+        } else if (strcmp(input, "no") == 0) {
+            personalization = 0;
+            break;
+        } else {
+            printf("Invalid input. Please enter 'yes' or 'no'.\n");
+            while (getchar() != '\n'); // Clear input buffer
+        }
+    }
+
+    while(1) {
+        fflush(stdout);
+        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
+        if (scanf("%d", &legitimacy) == 1 && legitimacy >= 0 && legitimacy <= 100) {
+            break;
+        }else {
+            printf("Invalid input try again!\n");
+            while (getchar() != '\n'); // Clear input buffer
+        }
+    }
 
     for (int i = 0; i<STATES; i++) {
         comprehensibility_function(state[i], comprehensibility, year);
