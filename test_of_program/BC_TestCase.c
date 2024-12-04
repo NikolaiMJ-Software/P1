@@ -6,12 +6,14 @@ void test_do_next_op_case11(void) {
     int counter_CMP = 3;
     states USA[STATES];
     cmp e_systems[3];
+    cmp* uncap_systems;
+    int states_abolished, uncapped;
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA, e_systems, activate_progress, counter_CMP);
+    char* result = BC(USA, e_systems, uncap_systems, activate_progress, counter_CMP, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -33,12 +35,14 @@ void test_do_next_op_case12(void) {
     int counter_CMP = 3;
     states USA[STATES];
     cmp e_systems[3];
+    cmp* uncap_systems;
+    int states_abolished, uncapped;
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA, e_systems, activate_progress, counter_CMP);
+    char* result = BC(USA, e_systems, uncap_systems, activate_progress, counter_CMP, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -59,13 +63,15 @@ void test_do_next_op_case13(void) {
     int counter_CMP = 3;
     states USA[STATES];
     cmp e_systems[3];
+    cmp* uncap_systems;
+    int states_abolished, uncapped;
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
     wyoming_rule(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA, e_systems, activate_progress, counter_CMP);
+    char* result = BC(USA, e_systems, uncap_systems, activate_progress, counter_CMP, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -86,13 +92,15 @@ void test_do_next_op_case14(void) {
     int counter_CMP = 3;
     states USA[STATES];
     cmp e_systems[3];
+    cmp* uncap_systems;
+    int states_abolished, uncapped;
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
     wyoming_rule(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = BC(USA, e_systems, activate_progress, counter_CMP);
+    char* result = BC(USA, e_systems, uncap_systems, activate_progress, counter_CMP, uncapped);
     // Check if result is not NULL
     assert(result != NULL);
 

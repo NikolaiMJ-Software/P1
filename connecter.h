@@ -73,6 +73,7 @@ int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year);
 void weight(states* USA);
 void abolish_states(states* USA);
+void printUSA();
 
 
 #endif //SCAN_DATA_TXT_H

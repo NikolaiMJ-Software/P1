@@ -19,6 +19,7 @@ add_executable(P1 main.c
         election_systems/Compare_table.c
         weight_of.c
         abolish_states.c
+        printUSA.c
 )
 
 # Add the test directory
