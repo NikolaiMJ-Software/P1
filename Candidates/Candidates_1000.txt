@@ -1,0 +1,12 @@
+Republican, Donald Trump, President, 32, 0
+Republican, Mike Pence, Vice_President, 0, 54
+Republican, Frederik Christensen, President, 68, 0
+Republican, Nikolai Jensen, Vice_President, 0, 46
+Democratic, Barack Obama, President, 85, 0
+Democratic, Joe Biden, Vice_President, 0, 65
+Democratic, Sebastian Brechun, President, 15, 0
+Democratic, Mads Johan, Vice_President, 0, 35
+Third_Party, Ondrej Franek, President, 95, 0
+Third_Party, Vincent Cent, Vice_President, 0, 75
+Third_Party, Luqman Zazi, President, 5, 0
+Third_Party, Alex Jensen, Vice_President, 0, 25
