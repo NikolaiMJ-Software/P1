@@ -1,0 +1,13 @@
+Republican, Mitt Romney, President, 100, 0
+Republican, Paul Ryan, Vice_President, 0, 100
+Republican, Newt Gingrich, President, 0, 0
+Republican, Rick Santorum, President, 0, 0
+Republican, Ron Paul, President, 0, 0
+Republican, Rick Perry, President, 0, 0
+Republican, Michele Bachmann, President, 0, 0
+Republican, Herman Cain, President, 0, 0
+Democratic, Barack Obama, President, 100, 0
+Democratic, Joe Biden, Vice_President, 0, 100
+Third_Party, Gary Johnson, President, 100, 0
+Third_Party, Jill Stein, President, 0, 100
+Third_Party, Virgil Goode, President, 0, 0
