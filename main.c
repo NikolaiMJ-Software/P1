@@ -1,6 +1,7 @@
 #include "connecter.h"
 
 int main(void) {
+    printUSA();
     const char* directory = "US_election_data";
     int counter_CMP = -1;
     // Allocate memory for the array e_systems
