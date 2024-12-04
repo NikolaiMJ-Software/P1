@@ -145,6 +145,9 @@ int main(void) {
         // Compare the tested systems
         if (strcmp(result, "Custom Done") != 0) {
             Compare_table(e_systems, uncap_systems);
+        } else {
+            memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
         }
 
         //ask the user if they wish to see the weight of their vote
