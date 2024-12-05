@@ -51,7 +51,7 @@ void cap_names(cmp* e_systems, int counter_cap) {
     // Empty cap_systems
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
-        printf("Year: %d %34s", e_systems[0].year, empty);
+        printf("Year: %d %51s", e_systems[0].year, empty);
     } else
     // Order BC(1), STV(2), PLPR(3)
     if (strcmp(e_systems[1].system_name, "BC") == 0 && counter_cap >= 1) {
