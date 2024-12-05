@@ -23,7 +23,7 @@ char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int yea
     printf("\nDemocrat electors: %d\n", democrats);
     printf("Republican electors: %d\n", republicans);
     printf("Third party electors: %d\n\n", third_party);
-    // Save the electors in the cmp systems rray
+    // Save the electors in the cmp systems array
     if (states_abolished) {
         if (uncapped) {
             strcpy(uncap_systems[0].system_name, "EC");

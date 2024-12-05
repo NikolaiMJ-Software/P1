@@ -60,7 +60,7 @@ typedef struct candidates {
 }candidates;
 
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int states_abolished, int uncapped);
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished);
 char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
 char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
 char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);

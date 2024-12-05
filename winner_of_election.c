@@ -1,6 +1,6 @@
 #include "connecter.h"
 
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int states_abolished, int uncapped) {
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished) {
     while(true) {
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
         if (uncapped) {
@@ -57,7 +57,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
             // Start from the beginning of the while loop
             continue;
         }
-
+        printf("\n\n\n%d\n\n\n", states_abolished);
         if (strcmp(system, "original") == 0) {
             return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped, states_abolished);
         } else if (strcmp(system, "STV") == 0) {
