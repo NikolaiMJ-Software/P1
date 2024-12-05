@@ -6,8 +6,8 @@ void printUSA() {
     printf("                     *      UNITED STATES MAP      *   \n");
     printf("                     *                             *   \n");
     printf("                     *******************************   \n");
-    printf("\n");
-    printf("         ,__                                                  _,\n");
+    printf("                                                            \n");
+    printf("         ,__         Welcome to the US election simulator     _,\n");
     printf("      \\~\\|  ~~---___              ,                          | \\\n");
     printf("       |      / |   ~~~~~~~|~~~~~| ~~---,                  _/,  >\n");
     printf("      /~-_--__| |          |     \\     / ~\\~~/          /~| ||,'\n");
