@@ -96,7 +96,7 @@ int main(void) {
         //test case
         //parameters(USA, candidate_list, input_year, 0, 1, 0, 0);
 
-        do {
+        while (1) {
             printf("Would you like to uncap the Electoral College from its current 538 electors (yes/no)\n");
             scanf("%s", &wyoming_rule_true);
             // Clear the input buffer to handle invalid input
@@ -107,17 +107,19 @@ int main(void) {
             if (strcmp(wyoming_rule_true,"no") == 0 && full_e_systems == NO_SYSTEMS) {
                 printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
                 continue;
-            }
-            if (strcmp(wyoming_rule_true,"yes") == 0 && full_uncap_systems == NO_SYSTEMS) {
+            } else if (strcmp(wyoming_rule_true,"yes") == 0 && full_uncap_systems == NO_SYSTEMS) {
                 printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
                 continue;
+            } else{
+                break;
             }
-        } while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
+
+        }
+        while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
         if (strcmp(wyoming_rule_true,"yes") == 0) {
             wyoming_rule(input_year, USA);
             uncapped = 1;
         }
-
         do {
             printf("Would you like to disband all states in the US (yes/no)\n");
             scanf("%s", &abolish_states_true);
