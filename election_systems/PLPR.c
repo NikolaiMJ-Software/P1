@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped) {
+char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int democrats = 0, republicans = 0, third_party = 0;
     int total_electors_us = 0;
 
@@ -49,16 +49,18 @@ char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int
     printf("Third party electors: %d\n", third_party);
     printf("\nBecause the following party got the biggest amount of electors, in regards to the \nParty List Proportional Representation, they are the winners.\nIf you are interested in learning more regarding Party List Proportional Representation, \nyou can read up on it on the following link: \nhttps://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n\n");
     // Save the electors in the cmp systems array
-    if (uncapped) {
-        strcpy(uncap_systems[counter_uncap].system_name, "PLPR");
-        uncap_systems[counter_uncap].DEM_electors = democrats;
-        uncap_systems[counter_uncap].REP_electors = republicans;
-        uncap_systems[counter_uncap].TP_electors = third_party;
-    } else {
-        strcpy(e_systems[counter_cap].system_name, "PLPR");
-        e_systems[counter_cap].DEM_electors = democrats;
-        e_systems[counter_cap].REP_electors = republicans;
-        e_systems[counter_cap].TP_electors = third_party;
+    if (!states_abolished) {
+        if (uncapped) {
+            strcpy(uncap_systems[counter_uncap].system_name, "PLPR");
+            uncap_systems[counter_uncap].DEM_electors = democrats;
+            uncap_systems[counter_uncap].REP_electors = republicans;
+            uncap_systems[counter_uncap].TP_electors = third_party;
+        } else {
+            strcpy(e_systems[counter_cap].system_name, "PLPR");
+            e_systems[counter_cap].DEM_electors = democrats;
+            e_systems[counter_cap].REP_electors = republicans;
+            e_systems[counter_cap].TP_electors = third_party;
+        }
     }
     // Return the winning party
     if (democrats > republicans && democrats > third_party) {
