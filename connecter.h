@@ -61,9 +61,9 @@ typedef struct candidates {
 
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int states_abolished, int uncapped);
-char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped);
+char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
 char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
-char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int states_abolished, int uncapped);
+char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
 char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
 void Compare_table(cmp* e_systems, cmp* uncap_systems);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);

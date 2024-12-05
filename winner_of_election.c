@@ -58,9 +58,9 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         }
 
         if (strcmp(system, "original") == 0) {
-            return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped);
+            return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped, states_abolished);
         } else if (strcmp(system, "STV") == 0) {
-            return STV(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, states_abolished, uncapped);
+            return STV(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "PLPR") == 0) {
             return PLPR(USA, e_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "BC") == 0) {
