@@ -170,13 +170,19 @@ int main(void) {
 
         //ask the user if they wish to see the weight of their vote
         char decide[4];
-        do {
-            printf("do you wish to see the weight of an electors vote? (yes/no):");
-            scanf("%s", &decide);
-        }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0);
-        // Exit the loop if the user chooses 'yes'
-        if (strcmp(decide,"yes") == 0) {
-            weight(USA);
+        if (abolish_states_true[0] == 'n') {
+            do {
+                printf("do you wish to see the weight of an electors vote? (yes/no):");
+                scanf("%s", &decide);
+                while (getchar() != '\n');
+                for (int i = 0; decide[i] != '\0'; i++) {
+                    decide[i] = tolower(decide[i]);
+                }
+            }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0);
+            // Exit the loop if the user chooses 'yes'
+            if (strcmp(decide,"yes") == 0) {
+                weight(USA);
+            }
         }
 
         // Compare the tested systems
