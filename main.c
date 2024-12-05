@@ -97,31 +97,43 @@ int main(void) {
 
         //test case
         //parameters(USA, candidate_list, input_year, 0, 1, 0, 0);
-
         while (1) {
+            fflush(stdin);
             printf("Would you like to uncap the Electoral College from its current 538 electors (yes/no)\n");
-            scanf("%s", &wyoming_rule_true);
-            // Clear the input buffer to handle invalid input
-            while (getchar() != '\n');
-            for (int i = 0; wyoming_rule_true[i] != '\0'; i++) {
+
+            if (fgets(wyoming_rule_true, sizeof(wyoming_rule_true), stdin) == NULL) {
+                printf("Error reading input. Please try again.\n");
+                continue;
+            }
+
+            // Remove trailing newline character, if present
+            wyoming_rule_true[strcspn(wyoming_rule_true, "\n")] = '\0';
+
+            // Convert to lowercase for case-insensitive comparison
+            for (int i = 0; wyoming_rule_true[i]; i++) {
                 wyoming_rule_true[i] = tolower(wyoming_rule_true[i]);
             }
-            if (strcmp(wyoming_rule_true,"no") == 0 && full_e_systems == NO_SYSTEMS) {
-                printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
-                continue;
-            } else if (strcmp(wyoming_rule_true,"yes") == 0 && full_uncap_systems == NO_SYSTEMS) {
-                printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
-                continue;
-            } else{
-                break;
+            if(strcmp(wyoming_rule_true, "yes") == 0) {
+                if(full_uncap_systems == NO_SYSTEMS) {
+                    printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                    continue;
+                }else {
+                    wyoming_rule(input_year, USA);
+                    uncapped = 1;
+                    break;
+                }
+            } else if (strcmp(wyoming_rule_true, "no") == 0) {
+                if (full_e_systems == NO_SYSTEMS) {
+                    printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                    continue;
+                }else {
+                    break;
+                }
+            } else {
+                printf("Invalid input. Please try again.\n");
             }
+        }
 
-        }
-        while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
-        if (strcmp(wyoming_rule_true,"yes") == 0) {
-            wyoming_rule(input_year, USA);
-            uncapped = 1;
-        }
         do {
             printf("Would you like to disband all states in the US (yes/no)\n");
             scanf("%s", &abolish_states_true);
