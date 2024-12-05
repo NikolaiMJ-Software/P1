@@ -3,17 +3,17 @@
 
 void test_do_next_op_case7(void) {
     int activate_progress = false;
-    int counter_CMP = 2;
+    int counter_CMP = 0;
     states USA[STATES];
     cmp e_systems[3];
-    cmp* uncap_systems;
-    int states_abolished, uncapped;
+    cmp* uncap_systems[3];
+    int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_CMP, states_abolished, uncapped);
+    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, states_abolished, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -32,17 +32,17 @@ void test_do_next_op_case7(void) {
 
 void test_do_next_op_case8(void) {
     int activate_progress = false;
-    int counter_CMP = 2;
+    int counter_CMP = 0;
     states USA[STATES];
     cmp e_systems[3];
-    cmp* uncap_systems;
-    int states_abolished, uncapped;
+    cmp* uncap_systems[3];
+    int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_CMP, states_abolished, uncapped);
+    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, states_abolished, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -60,18 +60,18 @@ void test_do_next_op_case8(void) {
 
 void test_do_next_op_case9(void) {
     int activate_progress = false;
-    int counter_CMP = 2;
+    int counter_CMP = 0;
     states USA[STATES];
     cmp e_systems[3];
-    cmp* uncap_systems;
-    int states_abolished, uncapped;
+    cmp* uncap_systems[3];
+    int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
 
     // Populate the USA array
     ScanData_TXT(2016, USA);
     wyoming_rule(2016, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_CMP, states_abolished, uncapped);
+    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, states_abolished, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -89,18 +89,18 @@ void test_do_next_op_case9(void) {
 
 void test_do_next_op_case10(void) {
     int activate_progress = false;
-    int counter_CMP = 2;
+    int counter_CMP = 0;
     states USA[STATES];
     cmp e_systems[3];
-    cmp* uncap_systems;
-    int states_abolished, uncapped;
+    cmp* uncap_systems[3];
+    int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
 
     // Populate the USA array
     ScanData_TXT(2024, USA);
     wyoming_rule(2024, USA);
 
     // Call STV with the populated dataset
-    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_CMP, states_abolished, uncapped);
+    char* result = STV(USA, e_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, states_abolished, uncapped);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -111,7 +111,7 @@ void test_do_next_op_case10(void) {
     // Print the result and assert the outcome
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
-    assert(e_systems[counter_CMP].REP_electors == 324 && e_systems[counter_CMP].DEM_electors == 313);
+    assert(e_systems[counter_CMP].REP_electors == 323 && e_systems[counter_CMP].DEM_electors == 308);
 
     printf("STV Test case 4 passed!\n");
 }
