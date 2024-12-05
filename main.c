@@ -178,7 +178,7 @@ int main(void) {
         }
 
         // Compare the tested systems
-        if (strcmp(result, "Custom Done") != 0) {
+        if (strcmp(result, "Custom Done") != 0 || !states_abolished) {
             Compare_table(e_systems, uncap_systems);
         } else {
             memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
