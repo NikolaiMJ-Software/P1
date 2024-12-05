@@ -1,5 +1,5 @@
 #include "../connecter.h"
-
+//function to calculate Borda Count data
 char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int total_electors = 0, allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0,
         percentage = -2;

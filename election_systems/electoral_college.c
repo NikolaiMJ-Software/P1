@@ -1,5 +1,5 @@
 #include "../connecter.h"
-
+//simulates the standard US Electoral system
 char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
     int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state

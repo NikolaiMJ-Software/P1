@@ -1,18 +1,21 @@
 #include "../connecter.h"
 #include <time.h>
 #define EDUCATION_GROWTH_FACTOR 1.1363636363636
+
+//Prototypes
 void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
 int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year) {
+
     //A list of variables for all states are reset at the beginning of the code.
     dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
     int personalization = 0, legitimacy = 0, comprehensibility = 0;
     double minority_proportionality = 0;
 
-    //Data regarding every variable is gotten from the user.
+    //Data regarding every variable which is gotten from the user.
     printf("You have chosen to customize the US Electoral System\n");
     while(1) {
         fflush(stdout);
@@ -74,6 +77,7 @@ void parameters(states* state, candidates* candidate_list, int year) {
     personalization_function(state, candidate_list, personalization);
     legitimacy_function(state, legitimacy);
 }
+
 void comprehensibility_function(states state, int comprehensibility, int year) {
 
     //This function changes the average to either sway towards, or away from, the most informed voters, depending on comprehensibility variable.
@@ -89,6 +93,7 @@ void comprehensibility_function(states state, int comprehensibility, int year) {
     // https://www.pewresearch.org/politics/2024/04/09/age-generational-cohorts-and-party-identification/
     // https://www.americansurveycenter.org/short-reads/a-college-educated-party/
 }
+
 void minority_and_proportionality_function(states state, double minority_proportionality) {
     //This function calculates the amount of electors for each state using their votes, and minority_proportionality variable, to simulate how proportional the electors are given from the votes.
 
@@ -144,8 +149,9 @@ void minority_and_proportionality_function(states state, double minority_proport
     rep_electors += state_rep_electors;
     third_electors += state_third_electors;
 }
+
 void personalization_function(states* state, candidates* candidate_list, int personalization) {
-    //rep, dem and third candidate-lists:
+    //rep, dem and third candidate-lists creation
     int rep_count = 0, dem_count = 0, third_count = 0;
     for (int i = 0; i < CANDIDATES; i++) {
         if (candidate_list[i].party == 0) {
@@ -169,21 +175,14 @@ void personalization_function(states* state, candidates* candidate_list, int per
             third_candidate_list[third_size++] = candidate_list[i];
         }
     }
-    //Test case
-    /*
-    for (int i = 0; i < dem_count; i++) {
-        printf("Name: %s, Candidacy: %d, P_Popularity: %d, VP_Popularity: %d\n",
-               dem_candidate_list[i].name,
-               dem_candidate_list[i].candidacy,
-               dem_candidate_list[i].p_popularity_percentage,
-               dem_candidate_list[i].vp_popularity_percentage);
-    }
-    */
+
     //temp values:
     char* president = NULL;
     char* vice_president = NULL;
-    //normal system
+    //normal system where the winning parties main candidates become president and vice president
     if (personalization == 0) {
+        //checking which elector count is largest
+        //selecting first candidate which party is 0 (republican), and then the next on the list for vice president
         if (rep_electors > dem_electors && rep_electors > third_electors) {
             for (int i = 0; i<CANDIDATES; i++) {
                 if(candidate_list[i].party == 0) {
@@ -194,6 +193,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     break;
                 }
             }
+            //selecting first candidate which party is 1 (democrats), and then the next on the list for vice president
         }else if (dem_electors > third_electors && dem_electors > rep_electors) {
             for (int i = 0; i<CANDIDATES; i++) {
                 if(candidate_list[i].party == 1) {
@@ -204,6 +204,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     break;
                 }
             }
+            //selecting first candidate which party is 2 (third party), and then the next on the list for vice president
         }else if (third_electors > rep_electors && third_electors > dem_electors) {
             for (int i = 0; i<CANDIDATES; i++) {
                 if(candidate_list[i].party == 3) {
@@ -216,18 +217,20 @@ void personalization_function(states* state, candidates* candidate_list, int per
             }
         }
     }
-    //Semi personlized:
+    //Semi personlized where you select a candidate based on their popularity procentage
     int max_p_votes = -1;
     int max_vp_votes = -1;
+    //making empty lists
     candidates* President = NULL;
     candidates* Vice_President = NULL;
     if (personalization == 1) {
-        srand(time(NULL));
+        srand(time(NULL)); //random value
         int temp_votes= 0;
+        //checking votes for each vice president and president from each state to calculate their overall vote based on popularity percentage
         for (int i = 0; i<STATES; i++) {
             if (rep_electors > dem_electors && rep_electors > third_electors) {
                 temp_votes = state[i].rep_votes;
-
+                // Distribute votes for President
                 for (int j = 0; j<temp_votes; j++) {
                     int random_number = rand() % 100;
                     int p_popularity = 0;
@@ -257,7 +260,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
             }
             if (dem_electors > rep_electors && dem_electors > third_electors) {
                 temp_votes = state[i].dem_votes;
-
+                // Distribute votes for President
                 for (int j = 0; j<temp_votes; j++) {
                     int random_number = rand() % 100;
                     int p_popularity = 0;
@@ -287,7 +290,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
             }
             if (third_electors > dem_electors && third_electors > rep_electors) {
                 temp_votes = state[i].third_votes;
-
+                // Distribute votes for President
                 for (int j = 0; j<temp_votes; j++) {
                     int random_number = rand() % 100;
                     int p_popularity = 0;
@@ -317,6 +320,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
             }
 
         }
+        //calculating which elector from winning party is the one with most votes
         if (rep_electors > dem_electors && rep_electors > third_electors) {
             for (int i = 0; i < rep_count; i++) {
                 if (rep_candidate_list[i].p_votes > max_p_votes) {
@@ -358,7 +362,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
         printf("Presidential Winner: %s with %d votes\n", President->name, max_p_votes);
         printf("Vice Presidential Winner: %s with %d votes\n", Vice_President->name, max_vp_votes);
     }
-    }
+}
 
 void legitimacy_function(states* state, int legitimacy) {
     //This functions determines how many voters of non-winning parties trust the election based on the legitimacy variable.
@@ -368,6 +372,7 @@ void legitimacy_function(states* state, int legitimacy) {
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
 
     //according to the legitimacy variable, the scores for trust in the election are skewed.
+    //if legitimacy is higher then 50 it takes trust points away from the lower categories (no/lower trust) and adds them to the higher categories (medium/high trust)
     if (legitimacy > 50) {
         for (int i = legitimacy; i >= 50; i--) {
             if (rep_no_trust > 0) {
@@ -407,6 +412,7 @@ void legitimacy_function(states* state, int legitimacy) {
                 }
             }
         }
+        //if legitimacy is lower than 50, the opposite happens
     } else if (legitimacy < 50) {
         for (int i = legitimacy; i <= 50; i++) {
             if (rep_high_trust > 0) {

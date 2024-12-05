@@ -53,8 +53,6 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
                 }
             }
         }
-        //printf("CAP: %d\n", counter_cap);
-        //printf("UNCAP: %d\n\n\n\n\n\n", counter_uncap);
         // Print an error message to the user, if ether uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);

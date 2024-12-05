@@ -18,7 +18,7 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
     //printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
     //scanf("%d", &procent);
 
-    // All second preference after the differentiated choice choice, 0=all, 1=DEM, 2=REP, 3 =TP
+    // All second preference after the differentiated choice, 0=all, 1=DEM, 2=REP, 3 =TP
     int tot_new_DEM_votes = 0, tot_new_REP_votes = 0, tot_new_TP_votes = 0;
     for (int i = 0; i < N_OF_SIMULATIONS; i++) {
         if (choice == 0) {

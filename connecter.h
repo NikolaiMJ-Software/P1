@@ -60,6 +60,7 @@ typedef struct candidates {
     int vp_votes;
 }candidates;
 
+//prototypes for all functions connecting them to the main and other c files
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished);
 char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
