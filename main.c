@@ -181,8 +181,11 @@ int main(void) {
 
         // Compare the tested systems
         if (strcmp(result, "Custom Done") != 0) {
-            Compare_table(e_systems, uncap_systems);
+            if (!states_abolished) {
+                Compare_table(e_systems, uncap_systems);
+            }
         } else {
+            // Reset the 2 arrays if custom is activated
             memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
             memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
         }
