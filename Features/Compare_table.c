@@ -31,8 +31,6 @@ void Compare_table(cmp* e_systems, cmp* uncap_systems) {
             counter_uncap = i;
         }
     }
-    printf("\n%d %d\n", counter_cap, counter_uncap);
-
     printf("\n-----------------------------------Comparison table-----------------------------------\n");
     // 1 line
     cap_names(e_systems, counter_cap);

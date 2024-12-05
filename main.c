@@ -60,7 +60,7 @@ int main(void) {
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
-            if (input_year == e_systems[0].year && full_e_systems == NO_SYSTEMS - 1 && full_uncap_systems == NO_SYSTEMS - 1) {
+            if (input_year == e_systems[0].year && full_e_systems == NO_SYSTEMS && full_uncap_systems == NO_SYSTEMS) {
                 printf("The year %d has already been simulated.\n", input_year);
                 continue;
             }
@@ -103,6 +103,14 @@ int main(void) {
             while (getchar() != '\n');
             for (int i = 0; wyoming_rule_true[i] != '\0'; i++) {
                 wyoming_rule_true[i] = tolower(wyoming_rule_true[i]);
+            }
+            if (strcmp(wyoming_rule_true,"no") == 0 && full_e_systems == NO_SYSTEMS) {
+                printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                continue;
+            }
+            if (strcmp(wyoming_rule_true,"yes") == 0 && full_uncap_systems == NO_SYSTEMS) {
+                printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                continue;
             }
         } while (strcmp(wyoming_rule_true,"yes") != 0 && strcmp(wyoming_rule_true,"no") != 0);
         if (strcmp(wyoming_rule_true,"yes") == 0) {
