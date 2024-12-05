@@ -77,6 +77,8 @@ int main(void) {
         if (counter_CMP > 0 && e_systems[0].year != input_year) {
             memset(e_systems, 0, NO_SYSTEMS * sizeof(cmp));
             memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            full_e_systems = 0;
+            full_uncap_systems = 0;
             counter_CMP = 0;
             e_systems[0].year = input_year;
         } else {

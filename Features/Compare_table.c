@@ -148,74 +148,74 @@ void uncap_names(cmp* uncap_systems, int counter_uncap) {
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order BC(1), STV(2)
-                printf("%13s %6s %7s\n",
+                printf("%s %6s %7s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         // Order BC(1), PLPR(2), STV(3)
         } else if (strcmp(uncap_systems[2].system_name, "PLPR") == 0 && counter_uncap >= 2) {
             if (uncap_systems[3].DEM_electors != 0 && uncap_systems[3].REP_electors != 0 && uncap_systems[3].TP_electors != 0) {
-                printf("%13s %6s %8s %5s\n",
+                printf("%s %6s %8s %5s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order BC(1), PLPR(2)
-                printf("%13s %6s %8s\n",
+                printf("%s %6s %8s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         } else {
             // Order BC(1)
-            printf("%13s %6s\n",
+            printf("%s %6s\n",
                 uncap_systems[0].system_name, uncap_systems[1].system_name);
         }
     // Order STV(1), BC(2), PLPR(3)
     } else if (strcmp(uncap_systems[1].system_name, "STV") == 0 && counter_uncap >= 1) {
         if (strcmp(uncap_systems[2].system_name, "BC") == 0 && counter_uncap >= 2) {
             if (uncap_systems[3].DEM_electors != 0 && uncap_systems[3].REP_electors != 0 && uncap_systems[3].TP_electors != 0) {
-                printf("%13s %7s %5s %8s\n",
+                printf("%s %7s %5s %8s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order STV(1), BC(2)
-                printf("%13s %7s %5s\n",
+                printf("%s %7s %5s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         // Order STV(1), PLPR(2), BC(3)
         } else if (strcmp(uncap_systems[2].system_name, "PLPR") == 0 && counter_uncap >= 2) {
             if (uncap_systems[3].DEM_electors != 0 && uncap_systems[3].REP_electors != 0 && uncap_systems[3].TP_electors != 0) {
-                printf("%13s %7s %7s %4s\n",
+                printf("%s %7s %7s %4s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order STV(1), PLPR(2)
-                printf("%13s %7s %7s\n",
+                printf("%s %7s %7s\n",
             uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         } else {
             // Order STV(1)
-            printf("%13s %7s\n",
+            printf("%s %7s\n",
                 uncap_systems[0].system_name, uncap_systems[1].system_name);
         }
     // Order PLPR(1), BC(2), STV(3)
     } else if (strcmp(uncap_systems[1].system_name, "PLPR") == 0 && counter_uncap >= 1) {
         if (strcmp(uncap_systems[2].system_name, "BC") == 0 && counter_uncap >= 2) {
             if (uncap_systems[3].DEM_electors != 0 && uncap_systems[3].REP_electors != 0 && uncap_systems[3].TP_electors != 0) {
-                printf("%13s %8s %4s %7s\n",
+                printf("%s %8s %4s %7s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order PLPR(1), BC(2)
-                printf("%13s %8s %4s\n",
+                printf("%s %8s %4s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         // Order PLPR(1), STV(2), BC(3)
         } else if (strcmp(uncap_systems[2].system_name, "STV") == 0 && counter_uncap >= 2) {
             if (uncap_systems[3].DEM_electors != 0 && uncap_systems[3].REP_electors != 0 && uncap_systems[3].TP_electors != 0) {
-                printf("%13s %8s %5s %5s\n",
+                printf("%s %8s %5s %5s\n",
                     uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name, uncap_systems[3].system_name);
             } else {
                 // Order PLPR(1), STV(2)
-                printf("%13s %8s %5s\n",
+                printf("%s %8s %5s\n",
             uncap_systems[0].system_name, uncap_systems[1].system_name, uncap_systems[2].system_name);
             }
         } else {
             // Order PLPR(1)
-            printf("%13s %8s\n",
+            printf("%s %8s\n",
                 uncap_systems[0].system_name, uncap_systems[1].system_name);
         }
     }
