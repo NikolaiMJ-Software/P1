@@ -1,7 +1,7 @@
 #include "../connecter.h"
 
 //simulate the party list proportional representation system from Norway (PLPR)
-char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
+char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int democrats = 0, republicans = 0, third_party = 0;
     int total_electors_us = 0;
 
