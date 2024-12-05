@@ -2,7 +2,6 @@
 
 char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int states_abolished, int uncapped) {
     while(true) {
-        // Check if the election system has already been calculator
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
         if (uncapped) {
             // Uncap_system
@@ -18,6 +17,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
                     break;
                 }
             }
+            // Check if the UNCAP election system has already been calculator
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
                     already_calculated = 1;
@@ -38,6 +38,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
                     break;
                 }
             }
+            // Check if the CAP election system has already been calculator
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 if (strcmp(e_systems[i].system_name, system) == 0 && (e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0)) {
                     already_calculated = 1;
