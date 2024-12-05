@@ -135,7 +135,7 @@ int main(void) {
                 printf("Invalid input. Please try again.\n");
             }
         }
-
+        //Disbanding all states, so the entire vote is only between the people instead of each state
         do {
             printf("Would you like to disband all states in the US (yes/no)?\n");
             scanf("%s", &abolish_states_true);
