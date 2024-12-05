@@ -28,5 +28,5 @@ void printUSA() {
     printf("                             \\    /                   \\  |\n");
     printf("                              \\  |                     '\\'\n");
     printf("                               `~'\n");
-    sleep(5);
+    sleep(2.5);
 }
