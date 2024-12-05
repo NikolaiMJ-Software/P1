@@ -8,16 +8,15 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Uncap_system
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 int full_data = uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0;
-                // If the "input system" in not the system in the array
-                if (strcmp(uncap_systems[i].system_name, system) != 0) {
-                    // If there is no data in the array and the "input system" equal to the array system, then break, else counter +1
-                    if (!full_data && strlen(uncap_systems[i].system_name) == 0) {
-                        break;
-                    }
+                // If there is no data and no name to the array, then break, else counter +1
+                if (!full_data && strlen(uncap_systems[i].system_name) == 0) {
+                    break;
+                } else {
                     counter_uncap++;
-                // Else if the array is full and "input system" equal to the array system, counter +1 then break
-                } else if (full_data){
-                    counter_uncap++;
+                }
+                // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
+                if (!full_data && strcmp(uncap_systems[i].system_name, system) == 0){
+                    counter_uncap = i;
                     break;
                 }
             }
@@ -32,16 +31,15 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Cap_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
                 int full_data = cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0;
-                // If the "input system" in not the system in the array
-                if (strcmp(cap_systems[i].system_name, system) != 0) {
-                    // If there is no data in the array and the "input system" equal to the array system, then break, else counter +1
-                    if (!full_data && strlen(cap_systems[i].system_name) == 0) {
-                        break;
-                    }
+                // If there is no data and no name to the array, then break, else counter +1
+                if (!full_data && strlen(cap_systems[i].system_name) == 0) {
+                    break;
+                } else {
                     counter_cap++;
-                // Else if the array is full and "input system" equal to the array system, counter +1 then break
-                } else if (full_data){
-                    counter_cap++;
+                }
+                // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
+                if (!full_data && strcmp(cap_systems[i].system_name, system) == 0){
+                    counter_cap = i;
                     break;
                 }
             }
