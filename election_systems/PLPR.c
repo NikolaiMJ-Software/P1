@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
+char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int democrats = 0, republicans = 0, third_party = 0;
     int total_electors_us = 0;
 
@@ -56,10 +56,10 @@ char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int
             uncap_systems[counter_uncap].REP_electors = republicans;
             uncap_systems[counter_uncap].TP_electors = third_party;
         } else {
-            strcpy(e_systems[counter_cap].system_name, "PLPR");
-            e_systems[counter_cap].DEM_electors = democrats;
-            e_systems[counter_cap].REP_electors = republicans;
-            e_systems[counter_cap].TP_electors = third_party;
+            strcpy(cap_systems[counter_cap].system_name, "PLPR");
+            cap_systems[counter_cap].DEM_electors = democrats;
+            cap_systems[counter_cap].REP_electors = republicans;
+            cap_systems[counter_cap].TP_electors = third_party;
         }
     }
     // Return the winning party
