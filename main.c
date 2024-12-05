@@ -98,7 +98,7 @@ int main(void) {
         //Uncapping the US Electoral College
         while (1) {
             fflush(stdin);
-            printf("Would you like to uncap the Electoral College from its current 538 electors (yes/no)?\n");
+            printf("Would you like to uncap the Electoral College from its current 538 electors? (yes/no)\n");
 
             //Checking for faulty input
             if (fgets(wyoming_rule_true, sizeof(wyoming_rule_true), stdin) == NULL) {
@@ -137,7 +137,7 @@ int main(void) {
         }
         //Disbanding all states, so the entire vote is only between the people instead of each state
         do {
-            printf("Would you like to disband all states in the US (yes/no)?\n");
+            printf("Would you like to disband all states in the US? (yes/no)\n");
             scanf("%s", &abolish_states_true);
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
@@ -172,7 +172,7 @@ int main(void) {
         char decide[4];
         if (abolish_states_true[0] == 'n') {
             do {
-                printf("do you wish to see the weight of an electors vote? (yes/no):");
+                printf("Do you wish to see the weight of an electors vote? (yes/no):");
                 scanf("%s", &decide);
                 while (getchar() != '\n');
                 for (int i = 0; decide[i] != '\0'; i++) {
