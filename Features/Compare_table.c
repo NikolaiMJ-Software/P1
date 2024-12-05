@@ -1,15 +1,12 @@
 #include "../connecter.h"
-
 void cap_names(cmp* e_systems, int counter_cap);
 void uncap_names(cmp* uncap_systems, int counter_uncap);
-void cap_DEM(cmp* e_systems, int counter_cap);
-void uncap_DEM(cmp* uncap_systems, int counter_uncap);
-void cap_REP(cmp* e_systems, int counter_cap);
-void uncap_REP(cmp* uncap_systems, int counter_uncap);
-void cap_TP(cmp* e_systems, int counter_cap);
-void uncap_TP(cmp* uncap_systems, int counter_uncap);
-
+void line_DEM(cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
+void line_REP(cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
+void line_TP(cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
+// Run compare_tabel from main.c
 void Compare_table(cmp* e_systems, cmp* uncap_systems) {
+    // Copy systems names between the cap_system and uncap_system
     for(int i = 0; i < NO_SYSTEMS; i++) {
         if (strlen(e_systems[i].system_name) == 0) {
             strcpy(e_systems[i].system_name, uncap_systems[i].system_name);
@@ -17,35 +14,31 @@ void Compare_table(cmp* e_systems, cmp* uncap_systems) {
                 strcpy(uncap_systems[i].system_name, e_systems[i].system_name);
         }
     }
+    // Find how many systems is already simulated for cap and uncap
     int counter_cap = 0, counter_uncap = 0;
-
-    // Normal systems
     for (int i = 0; i < NO_SYSTEMS; i++) {
+        // Normal systems
         if (e_systems[i].DEM_electors != 0 && e_systems[i].REP_electors != 0 && e_systems[i].TP_electors != 0) {
             counter_cap = i;
         }
-    }
-    // Uncap systems
-    for (int i = 0; i < NO_SYSTEMS; i++) {
+        // Uncap systems
         if (uncap_systems[i].DEM_electors != 0 && uncap_systems[i].REP_electors != 0 && uncap_systems[i].TP_electors != 0) {
             counter_uncap = i;
         }
     }
+    // Print the Comparison table
+    // 0 line
     printf("\n-----------------------------------Comparison table-----------------------------------\n");
     // 1 line
     cap_names(e_systems, counter_cap);
     uncap_names(uncap_systems, counter_uncap);
     // 2 line
-    cap_DEM(e_systems, counter_cap);
-    uncap_DEM(uncap_systems, counter_uncap);
+    line_DEM(e_systems, uncap_systems, counter_cap, counter_uncap);
     // 3 line
-    cap_REP(e_systems, counter_cap);
-    uncap_REP(uncap_systems, counter_uncap);
+    line_REP(e_systems, uncap_systems, counter_cap, counter_uncap);
     // 4 line
-    cap_TP(e_systems, counter_cap);
-    uncap_TP(uncap_systems, counter_uncap);
+    line_TP(e_systems, uncap_systems, counter_cap, counter_uncap);
 }
-
 // Print spaces between systems name in comparison table, based on the simulated order. If the system has not been compare yet, it will not be printed.
 void cap_names(cmp* e_systems, int counter_cap) {
     // Empty cap_systems
@@ -133,7 +126,7 @@ void cap_names(cmp* e_systems, int counter_cap) {
         }
     }
 }
-
+// Print uncap_names
 void uncap_names(cmp* uncap_systems, int counter_uncap) {
     // Empty cap_systems
     if (counter_uncap == 0) {
@@ -220,8 +213,9 @@ void uncap_names(cmp* uncap_systems, int counter_uncap) {
         }
     }
 }
-
-void cap_DEM(cmp* e_systems, int counter_cap) {
+// Print of 2 line
+void line_DEM(cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap) {
+    // Cap DEM
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
         printf("Democrat electors: %31s", empty);
@@ -235,8 +229,7 @@ void cap_DEM(cmp* e_systems, int counter_cap) {
         printf("Democrat electors: %6d %6d %6d %6d %3s",
                e_systems[0].DEM_electors, e_systems[1].DEM_electors, e_systems[2].DEM_electors, e_systems[3].DEM_electors, empty);
     }
-}
-void uncap_DEM(cmp* uncap_systems, int counter_uncap) {
+    // Uncap DEM
     if (counter_uncap == 0) {
         printf("\n");
     } else if (counter_uncap == 1) {
@@ -250,7 +243,9 @@ void uncap_DEM(cmp* uncap_systems, int counter_uncap) {
                uncap_systems[0].DEM_electors, uncap_systems[1].DEM_electors, uncap_systems[2].DEM_electors, uncap_systems[3].DEM_electors);
     }
 }
-void cap_REP(cmp* e_systems, int counter_cap) {
+// Print of 3 line
+void line_REP(cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap) {
+    // Cap REP
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
         printf("Republican electors: %29s", empty);
@@ -264,8 +259,7 @@ void cap_REP(cmp* e_systems, int counter_cap) {
         printf("Republican electors: %4d %6d %6d %6d %3s",
                e_systems[0].REP_electors, e_systems[1].REP_electors, e_systems[2].REP_electors, e_systems[3].REP_electors, empty);
     }
-}
-void uncap_REP(cmp* uncap_systems, int counter_uncap) {
+    // Uncap REP
     if (counter_uncap == 0) {
         printf("\n");
     } else if (counter_uncap == 1) {
@@ -279,7 +273,9 @@ void uncap_REP(cmp* uncap_systems, int counter_uncap) {
                uncap_systems[0].REP_electors, uncap_systems[1].REP_electors, uncap_systems[2].REP_electors, uncap_systems[3].REP_electors);
     }
 }
-void cap_TP(cmp* e_systems, int counter_cap) {
+// Print of 4 line
+void line_TP(cmp* e_systems, cmp* uncap_systems, int counter_cap , int counter_uncap) {
+    // Cap TP
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
         printf("Third party electors: %40s", empty);
@@ -293,8 +289,7 @@ void cap_TP(cmp* e_systems, int counter_cap) {
         printf("Third party electors: %3d %6d %6d %6d %15s",
                e_systems[0].TP_electors, e_systems[1].TP_electors, e_systems[2].TP_electors, e_systems[3].TP_electors, empty);
     }
-}
-void uncap_TP(cmp* uncap_systems, int counter_uncap) {
+    // Uncap TP
     if (counter_uncap == 0) {
         printf("\n\n");
     } else if (counter_uncap == 1) {

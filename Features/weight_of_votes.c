@@ -13,8 +13,8 @@ void weight(states* USA) {
     int totalElectors = 0;
 
 
-    printf("Each state has a given number of electors for the Electoral College. This number is decided by the state's population, where each state has at least three electors (two from Senators).\n"
-           "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight:\n\n");
+    printf("\nEach state has a given number of electors for the Electoral College. This number is decided by the state's population,  where each state has at least three electors (two from Senators).\n"
+           "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight with   weight being defined as population/votes(pops) divided by electors:\n\n");
 
     // Calculate weights and validate data
 
@@ -35,20 +35,19 @@ void weight(states* USA) {
     }
 
     // Print the header
-    printf("\nWeight in this case shows how many voters each elector represents, thereby how weighty their position is.\nBut what is the percentage of a single elector when faced with the whole country?\n");
-    printf("--------------------------------------------------------------------------------------------------\n");
-    printf("State                 Weight             Electors          Percentage     Population\n");
-    printf("--------------------------------------------------------------------------------------------------\n");
+    printf("||--------------------------------------------------------------------------------------------------------||\n");
+    printf("||State              Weight (pops/electors)        Electors        Percentage            Population       ||\n");
+    printf("||--------------------------------------------------------------------------------------------------------||\n");
 
     // Print the sorted states and their weights
     for (int i = 0; i < STATES; i++) {
         double statePercentage = (double)USA[i].electors / totalElectors * 100;
-        printf("%-20s: Weight = %8.0f, Electors = %2d (%5.2f%% of total), Population = %9d\n",
+        printf("||%-20s: Weight = %8.0f,       Electors = %2d (%5.2f%% of total),  Population = %9d ||\n",
                USA[i].stateName, stateweight[i], USA[i].electors, statePercentage, USA[i].population);
     }
 
-    printf("--------------------------------------------------------------------------------------------------\n");
-    printf("\nWeight represents the number of voters each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
+    printf("||--------------------------------------------------------------------------------------------------------||\n");
+    printf("\nWeight represents the number of voters (pops) each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
 }
 
 void compare_weights(states* USA, double* stateweight) {

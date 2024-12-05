@@ -62,9 +62,9 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         } else if (strcmp(system, "STV") == 0) {
             return STV(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, states_abolished, uncapped);
         } else if (strcmp(system, "PLPR") == 0) {
-            return PLPR(USA, e_systems, uncap_systems, counter_cap, counter_uncap, uncapped);
+            return PLPR(USA, e_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "BC") == 0) {
-            return BC(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped);
+            return BC(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "Custom") == 0) {
             parameters(USA, candidate_list, input_year);
             return "Custom Done";
