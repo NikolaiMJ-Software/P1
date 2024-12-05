@@ -1,6 +1,6 @@
 #include "../connecter.h"
 #include "../election_systems/PLPR.c"
-#include "../monte_carlo.c"
+#include "../Features/monte_carlo.c"
 #include <assert.h>
 
 void test_do_next_op_case3(void) {

@@ -1,7 +1,7 @@
 //
 // Created by Nikolai on 03-12-2024.
 //
-#include "connecter.h"
+#include "../connecter.h"
 
 void abolish_states(states* USA){
   states* one_state = malloc(STATES*sizeof(states));

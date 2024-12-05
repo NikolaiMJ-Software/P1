@@ -1,4 +1,4 @@
-#include "connecter.h"
+#include "../connecter.h"
 #include <time.h>
 #define EDUCATION_GROWTH_FACTOR 1.1363636363636
 void comprehensibility_function(states state, int comprehensibility, int year);

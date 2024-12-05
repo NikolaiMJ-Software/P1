@@ -1,4 +1,4 @@
-#include "connecter.h"
+#include "../connecter.h"
 #include <time.h>
 #define N_OF_SIMULATIONS 10
 

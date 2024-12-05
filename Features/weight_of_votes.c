@@ -1,4 +1,4 @@
-#include "connecter.h"
+#include "../connecter.h"
 #include <stdio.h>
 
 void compare_weights(states* USA, double* stateweight);

@@ -5,21 +5,21 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(P1 main.c
         connecter.h
-        scan_data.c
+        US_election_data/scan_data.c
         winner_of_election.c
         election_systems/electoral_college.c
         election_systems/PLPR.c
         election_systems/STV.c
         election_systems/BC.c
-        monte_carlo.c
-        Wyoming_Rule.c
+        Features/monte_carlo.c
+        Features/Wyoming_Rule.c
         available_files.c
-        Parameters.c
-        scan_candidates.c
-        election_systems/Compare_table.c
-        weight_of.c
-        abolish_states.c
-        printUSA.c
+        election_systems/Custom.c
+        Candidates/scan_candidates.c
+        Features/Compare_table.c
+        Features/weight_of_votes.c
+        Features/abolish_states.c
+        Features/printUSA.c
 )
 
 # Add the test directory
