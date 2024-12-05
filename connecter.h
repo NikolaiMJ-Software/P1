@@ -4,6 +4,7 @@
 #define STATES 51
 #define CANDIDATES 25
 #define NO_SYSTEMS 4
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
