@@ -26,9 +26,9 @@ int main(void) {
 
         fflush(stdin);
         int input_year;
-        char wyoming_rule_true[4];
+        char wyoming_rule_true[10];
         char system[10] = "original";
-        char abolish_states_true[4];
+        char abolish_states_true[10];
         int states_abolished = 0;
 
         // Allocate memory for the array USA
