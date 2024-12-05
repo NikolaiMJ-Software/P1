@@ -1,6 +1,6 @@
 #include "../connecter.h"
 
-char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
+char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped) {
     int total_electors = 0, allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0,
         percentage = -2;
     double dem_points_sum = 0, rep_points_sum = 0, tp_points_sum = 0;
@@ -72,8 +72,7 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
     printf("Third party electors: %d\n", allocated_tp_electors);
     printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
     // Save the electors in the cmp systems array
-    if (states_abolished) {
-    } else if (uncapped) {
+    if (uncapped) {
         strcpy(uncap_systems[counter_uncap].system_name, "BC");
         uncap_systems[counter_uncap].DEM_electors = allocated_dem_electors;
         uncap_systems[counter_uncap].REP_electors = allocated_rep_electors;
