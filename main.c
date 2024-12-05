@@ -153,6 +153,7 @@ int main(void) {
         if (strcmp(result, "Custom Done") != 0) {
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
+
         //ask the user if they wish to see the weight of their vote
         char decide[4];
         do {
@@ -163,6 +164,7 @@ int main(void) {
         if (strcmp(decide,"yes") == 0) {
             weight(USA);
         }
+
         // Compare the tested systems
         if (strcmp(result, "Custom Done") != 0) {
             Compare_table(e_systems, uncap_systems);
