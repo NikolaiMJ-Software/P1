@@ -7,9 +7,13 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         if (uncapped) {
             // Uncap_system
             for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(uncap_systems[i].system_name, system) == 0) {
-                    counter_uncap = i;
-                } else {
+                int full_data = uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0;
+                if (strcmp(uncap_systems[i].system_name, system) != 0) {
+                    if (!full_data && strlen(uncap_systems[i].system_name) == 0) {
+                        break;
+                    }
+                    counter_uncap++;
+                } else if (full_data){
                     counter_uncap++;
                     break;
                 }
@@ -23,9 +27,13 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         } else {
             // Normal_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(e_systems[i].system_name, system) == 0) {
-                    counter_cap = i;
-                } else {
+                int full_data = e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0;
+                if (strcmp(e_systems[i].system_name, system) != 0) {
+                    if (!full_data && strlen(e_systems[i].system_name) == 0) {
+                        break;
+                    }
+                    counter_cap++;
+                } else if (full_data){
                     counter_cap++;
                     break;
                 }
@@ -38,7 +46,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
             }
         }
         printf("CAP: %d\n", counter_cap);
-        printf("UNCAP: %d\n\n\n\n\n\n\n\n\n\n", counter_uncap);
+        printf("UNCAP: %d\n\n\n\n\n\n", counter_uncap);
         // Print an error message to the user
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
