@@ -101,7 +101,7 @@ char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress
     printf("Third party electors: %d\n", tp_electors);
     printf("\nBecause the following party, got the biggest amount of electors, in regards to the Single Transferable Vote,\nthey are the winners.\nIf you are interested in learning more regarding Single Transferable Vote, you can read up on it on the following link: https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n\n");
     // Save the electors in the cmp systems array
-    if (!states_abolished) {
+    if (states_abolished) {
     } else if (uncapped) {
         strcpy(uncap_systems[counter_uncap].system_name, "STV");
         uncap_systems[counter_uncap].DEM_electors = dem_electors;
