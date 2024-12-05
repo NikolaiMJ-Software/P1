@@ -39,20 +39,19 @@ int main(void) {
             return 1;
         }
 
-        // Check if cmp e_systems is full
-        int full_e_systems = 1;
-        if (strcmp (e_systems[3].system_name, "BC") != 0 &&
-            strcmp (e_systems[3].system_name, "PLPR") != 0 &&
-            strcmp (e_systems[3].system_name, "STV") != 0) {
-            full_e_systems = 0;
-        }
-        // Check if cmp uncap_systems is full
-        int full_uncap_systems = 1;
-        if (strcmp (uncap_systems[3].system_name, "BC") != 0 &&
-            strcmp (uncap_systems[3].system_name, "PLPR") != 0 &&
-            strcmp (uncap_systems[3].system_name, "STV") != 0) {
-            full_uncap_systems = 0;
+        // Check if cmp e_systems and uncap_systems is full
+        int full_e_systems = 0;
+        int full_uncap_systems = 0;
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            // cap_system
+            if (e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0) {
+                full_e_systems++;
             }
+            // uncap system
+            if (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0) {
+                full_uncap_systems++;
+            }
+        }
 
         // Get data from year file, and return USA array
         int file_loaded = 0; // Variable to track file loading
@@ -61,7 +60,7 @@ int main(void) {
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
             // If year already simulated and the comparison is full, user try again
-            if (input_year == e_systems[0].year && full_e_systems && full_uncap_systems) {
+            if (input_year == e_systems[0].year && full_e_systems == NO_SYSTEMS - 1 && full_uncap_systems == NO_SYSTEMS - 1) {
                 printf("The year %d has already been simulated.\n", input_year);
                 continue;
             }
