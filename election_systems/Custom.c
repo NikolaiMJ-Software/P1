@@ -5,14 +5,15 @@ void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
-void reset(states state);
 int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year) {
+    //A list of variables for all states are reset at the beginning of the code.
     dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
     int personalization = 0, legitimacy = 0, comprehensibility = 0;
     double minority_proportionality = 0;
-    printf("You have chosen to customize the US Electoral System\n");
 
+    //Data regarding every variable is gotten from the user.
+    printf("You have chosen to customize the US Electoral System\n");
     while(1) {
         fflush(stdout);
         printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters:\n");
@@ -23,7 +24,6 @@ void parameters(states* state, candidates* candidate_list, int year) {
             while (getchar() != '\n'); // Clear input buffer
         }
     }
-
     while(1) {
         fflush(stdout);
         printf("Now to choose how proportional your system will be, choose an int between 0-100 (base is 0):\n");
@@ -34,7 +34,6 @@ void parameters(states* state, candidates* candidate_list, int year) {
             while (getchar() != '\n'); // Clear input buffer
         }
     }
-
     while(1) {
         fflush(stdout);
         char input[10];
@@ -54,7 +53,6 @@ void parameters(states* state, candidates* candidate_list, int year) {
             while (getchar() != '\n'); // Clear input buffer
         }
     }
-
     while(1) {
         fflush(stdout);
         printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
@@ -66,14 +64,19 @@ void parameters(states* state, candidates* candidate_list, int year) {
         }
     }
 
+    //The main function then calls each of the functions.
     for (int i = 0; i<STATES; i++) {
+        //The functions use the US_election_data to calculate electors for each state depending on variables.
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
     }
+    //These functions then interpret the outcome based on the electors.
     personalization_function(state, candidate_list, personalization);
     legitimacy_function(state, legitimacy);
 }
 void comprehensibility_function(states state, int comprehensibility, int year) {
+
+    //This function changes the average to either sway towards, or away from, the most informed voters, depending on comprehensibility variable.
     double rep_age_lean = 55, dem_age_lean = 45, rep_education_lean = 32, dem_education_lean = 23 + (year - 1999) * EDUCATION_GROWTH_FACTOR;
     double informed_dem_votes = (state.dem_votes + state.rep_votes) * (dem_age_lean / 100 + dem_education_lean / (rep_education_lean + dem_education_lean))/2,
     informed_rep_votes = (state.dem_votes + state.rep_votes) * (rep_age_lean / 100 + rep_education_lean / (rep_education_lean + dem_education_lean))/2;
@@ -87,6 +90,10 @@ void comprehensibility_function(states state, int comprehensibility, int year) {
     // https://www.americansurveycenter.org/short-reads/a-college-educated-party/
 }
 void minority_and_proportionality_function(states state, double minority_proportionality) {
+    //This function calculates the amount of electors for each state using their votes, and minority_proportionality variable, to simulate how proportional the electors are given from the votes.
+
+    //First the votes are changed depending on how much proportionality we want to introduce as a percentage.
+    //For example, if proportionality is 0, all votes go to the winning party in a state, and if 100, they are completely proportional. If 50, somewhere between the two.
     double state_dem_votes = state.dem_votes, state_rep_votes = state.rep_votes, state_third_votes = state.third_votes;
     if (state_dem_votes > state_rep_votes && state_dem_votes > state_third_votes) {
         state_dem_votes = state_dem_votes + state_rep_votes + state_third_votes - (state_rep_votes + state_third_votes) * minority_proportionality / 100;
@@ -101,6 +108,8 @@ void minority_and_proportionality_function(states state, double minority_proport
         state_rep_votes *= minority_proportionality / 100;
         state_dem_votes *= minority_proportionality / 100;
     }
+
+    //Electors are then distributed according to a proportional method.
     int total_votes = state.dem_votes + state.rep_votes + state.third_votes, state_third_electors = 0, state_dem_electors = 0, state_rep_electors = 0, required_votes = total_votes / state.electors;
     while (state_third_votes >= required_votes || state_rep_votes >= required_votes || state_dem_votes >= required_votes) {
         if (state_third_votes >= required_votes) {
@@ -129,6 +138,8 @@ void minority_and_proportionality_function(states state, double minority_proport
             break;
         }
     }
+
+    //The amount of electors for the state, are then added to the global amount of electors the party has.
     dem_electors += state_dem_electors;
     rep_electors += state_rep_electors;
     third_electors += state_third_electors;
@@ -350,8 +361,13 @@ void personalization_function(states* state, candidates* candidate_list, int per
     }
 
 void legitimacy_function(states* state, int legitimacy) {
+    //This functions determines how many voters of non-winning parties trust the election based on the legitimacy variable.
+
+    //Firstly a set of variables, that determine the average amount of trust in the system after losing the election are set up.
     int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
+
+    //according to the legitimacy variable, the scores for trust in the election are skewed.
     if (legitimacy > 50) {
         for (int i = legitimacy; i >= 50; i--) {
             if (rep_no_trust > 0) {
@@ -431,6 +447,8 @@ void legitimacy_function(states* state, int legitimacy) {
             }
         }
     }
+
+    //The amount of voters that feel different levels of trust, are then calculated based on population of each state and skewed trust values.
     for (int i = 0; i < STATES; i++) {
         if (dem_electors > rep_electors && dem_electors > third_electors) {
             fully_trusts += (state[i].rep_votes * rep_high_trust + state[i].third_votes * third_high_trust) / 100;
@@ -449,6 +467,8 @@ void legitimacy_function(states* state, int legitimacy) {
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
         }
     }
+
+    //Lastly we have a summary of the data from all states, and the data from this function, that are shown to the user.
     if (dem_electors > rep_electors && dem_electors > third_electors) {
         printf("This democratic president won with %d of the electors", dem_electors);
     } else if (rep_electors > dem_electors && rep_electors > third_electors) {
