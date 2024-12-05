@@ -1,6 +1,6 @@
 #include "connecter.h"
 
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished) {
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished) {
     while(true) {
         // Check if the election system has already been calculator
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
@@ -31,11 +31,11 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         } else {
             // Cap_systems
             for (int i = 0; i < NO_SYSTEMS; i++) {
-                int full_data = e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0;
+                int full_data = cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0;
                 // If the "input system" in not the system in the array
-                if (strcmp(e_systems[i].system_name, system) != 0) {
+                if (strcmp(cap_systems[i].system_name, system) != 0) {
                     // If there is no data in the array and the "input system" equal to the array system, then break, else counter +1
-                    if (!full_data && strlen(e_systems[i].system_name) == 0) {
+                    if (!full_data && strlen(cap_systems[i].system_name) == 0) {
                         break;
                     }
                     counter_cap++;
@@ -47,7 +47,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
             }
             // Check if the cap_system is already calculator
             for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(e_systems[i].system_name, system) == 0 && (e_systems[i].DEM_electors > 0 || e_systems[i].REP_electors > 0 || e_systems[i].TP_electors > 0)) {
+                if (strcmp(cap_systems[i].system_name, system) == 0 && (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0)) {
                     already_calculated = 1;
                     break;
                 }
@@ -66,13 +66,13 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems
         }
         // Return the result from the 4 system based on what the input is
         if (strcmp(system, "original") == 0) {
-            return electoral_college(USA, e_systems, uncap_systems, input_year, uncapped, states_abolished);
+            return electoral_college(USA, cap_systems, uncap_systems, input_year, uncapped, states_abolished);
         } else if (strcmp(system, "STV") == 0) {
-            return STV(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
+            return STV(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "PLPR") == 0) {
-            return PLPR(USA, e_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
+            return PLPR(USA, cap_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "BC") == 0) {
-            return BC(USA, e_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
+            return BC(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "Custom")) {
             parameters(USA, candidate_list, input_year);
             return "Custom Done";

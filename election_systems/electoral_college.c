@@ -1,6 +1,6 @@
 #include "../connecter.h"
 //simulates the standard US Electoral system
-char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
+char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
     int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
@@ -31,10 +31,10 @@ char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int yea
             uncap_systems[0].REP_electors = republicans;
             uncap_systems[0].TP_electors = third_party;
         } else {
-            strcpy(e_systems[0].system_name, "EC");
-            e_systems[0].DEM_electors = democrats;
-            e_systems[0].REP_electors = republicans;
-            e_systems[0].TP_electors = third_party;
+            strcpy(cap_systems[0].system_name, "EC");
+            cap_systems[0].DEM_electors = democrats;
+            cap_systems[0].REP_electors = republicans;
+            cap_systems[0].TP_electors = third_party;
         }
     }
     // Return winning party

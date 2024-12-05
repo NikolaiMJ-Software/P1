@@ -1,8 +1,9 @@
 #include "../connecter.h"
 // a variable to define the amount of voter percentage that have an n+1 priority vote, when they have an n priority vote.
 #define VOTE_DECREASE_RATIO 0.75
+
 //simulate the Single Transferable Vote from Australia
-char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
+char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int total_votes = 0, state_third_party_votes= 0, state_rep_party_votes = 0, state_dem_party_votes = 0,
         new_DEM_votes = 0, new_REP_votes = 0, new_TP_votes = 0,
         state_dem_electors = 0, state_rep_electors = 0, state_tp_electors = 0,
@@ -108,10 +109,10 @@ char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress
             uncap_systems[counter_uncap].REP_electors = rep_electors;
             uncap_systems[counter_uncap].TP_electors = tp_electors;
         } else {
-            strcpy(e_systems[counter_cap].system_name, "STV");
-            e_systems[counter_cap].DEM_electors = dem_electors;
-            e_systems[counter_cap].REP_electors = rep_electors;
-            e_systems[counter_cap].TP_electors = tp_electors;
+            strcpy(cap_systems[counter_cap].system_name, "STV");
+            cap_systems[counter_cap].DEM_electors = dem_electors;
+            cap_systems[counter_cap].REP_electors = rep_electors;
+            cap_systems[counter_cap].TP_electors = tp_electors;
         }
     }
     //After every state has been gone through, compare overarching variables to find winner.
