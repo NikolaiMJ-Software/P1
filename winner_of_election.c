@@ -51,6 +51,10 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
                 }
             }
         }
+        // If states is abolished, then the system has neve been calculated before
+        if (states_abolished) {
+            already_calculated = 0;
+        }
         // Print an error message to the user, if ether uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
