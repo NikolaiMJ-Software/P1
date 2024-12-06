@@ -77,7 +77,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         } else {
             // Error message if the system does not exist
             printf("The chosen election system is not in the database, try again.\n");
-            printf("Chose a new system: STV, PLPR, BC:\n");
+            printf("Chose a new system: STV, PLPR, BC, or Custom:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
