@@ -71,7 +71,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             return PLPR(USA, cap_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "BC") == 0) {
             return BC(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
-        } else if (strcmp(system, "Custom") == 0) {
+        } else if (strcmp(system, "CUSTOM") == 0) {
             parameters(USA, candidate_list, input_year);
             return "Custom Done";
         } else {
