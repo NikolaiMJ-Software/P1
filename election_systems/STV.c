@@ -81,7 +81,6 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
                     state_tp_electors++;
                     state_third_party_votes -= required_votes;
                 }
-                printf("%d %d %d\n", state_dem_electors, state_rep_electors, state_tp_electors);
             } else {
                 break;
             }
