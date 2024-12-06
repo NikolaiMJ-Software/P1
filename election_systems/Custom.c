@@ -7,7 +7,7 @@ void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
-unsigned int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
+int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
     //A list of variables for all states are reset at the beginning of the code.
@@ -40,7 +40,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     while(1) {
         fflush(stdout);
         char input[10];
-        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their president of choice, instead of a pre selected one (yes/no):\n");
+        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no):\n");
         scanf("%s", &input);
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);
@@ -58,7 +58,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     }
     while(1) {
         fflush(stdout);
-        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
+        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50):\n");
         if (scanf("%d", &legitimacy) == 1 && legitimacy >= 0 && legitimacy <= 100) {
             break;
         }else {
@@ -371,7 +371,7 @@ void legitimacy_function(states* state, int legitimacy) {
     //This functions determines how many voters of non-winning parties trust the election based on the legitimacy variable.
 
     //Firstly a set of variables, that determine the average amount of trust in the system after losing the election are set up.
-    unsigned int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
+    int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
 
     //according to the legitimacy variable, the scores for trust in the election are skewed.
