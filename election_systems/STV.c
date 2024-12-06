@@ -73,14 +73,15 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
             if (state_dem_electors + state_rep_electors + state_tp_electors < USA[i].electors) {
                 if ((state_dem_party_votes > state_rep_party_votes) && (state_dem_party_votes > state_third_party_votes)) {
                     state_dem_electors++;
-                    state_dem_party_votes = 0;
+                    state_dem_party_votes -= required_votes;
                 } else if ((state_rep_party_votes > state_dem_party_votes) && (state_rep_party_votes > state_third_party_votes)) {
                     state_rep_electors++;
-                    state_rep_party_votes = 0;
+                    state_rep_party_votes -= required_votes;
                 } else if ((state_third_party_votes > state_dem_party_votes) && (state_third_party_votes > state_rep_party_votes)) {
                     state_tp_electors++;
-                    state_third_party_votes = 0;
+                    state_third_party_votes -= required_votes;
                 }
+                printf("%d %d %d\n", state_dem_electors, state_rep_electors, state_tp_electors);
             } else {
                 break;
             }
@@ -92,7 +93,7 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
         tp_electors += state_tp_electors;
         state_dem_electors = 0, state_rep_electors = 0, state_tp_electors = 0;
 
-        if (activate_progress) {
+        if (activate_progress && !states_abolished) {
             // Print the percentage complete
             percentage = percentage + 2;
             printf("Progress: %d%%\n", percentage);
