@@ -7,7 +7,7 @@ void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
-int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
+unsigned int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
     //A list of variables for all states are reset at the beginning of the code.
@@ -371,7 +371,7 @@ void legitimacy_function(states* state, int legitimacy) {
     //This functions determines how many voters of non-winning parties trust the election based on the legitimacy variable.
 
     //Firstly a set of variables, that determine the average amount of trust in the system after losing the election are set up.
-    int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
+    unsigned int rep_high_trust = 18, rep_med_trust = 26, rep_low_trust = 22, rep_no_trust = 34, dem_high_trust = 45, dem_med_trust = 34, dem_low_trust = 11, dem_no_trust = 10,
     third_high_trust = (rep_high_trust+dem_high_trust)/2, third_med_trust = (rep_med_trust+dem_med_trust)/2, third_low_trust = (rep_low_trust+dem_low_trust)/2, third_no_trust = (rep_no_trust+dem_no_trust)/2;
 
     //according to the legitimacy variable, the scores for trust in the election are skewed.
@@ -459,6 +459,10 @@ void legitimacy_function(states* state, int legitimacy) {
 
     //The amount of voters that feel different levels of trust, are then calculated based on population of each state and skewed trust values.
     for (int i = 0; i < STATES; i++) {
+        if (state[i].dem_votes == 0 && state[i].rep_votes == 0 && state[i].third_votes == 0) {
+            continue; // Skip zero-vote states
+        }
+        //printf("trust values: %d %d %d %d\n", fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust);
         if (dem_electors > rep_electors && dem_electors > third_electors) {
             fully_trusts += (state[i].rep_votes * rep_high_trust + state[i].third_votes * third_high_trust) / 100;
             somewhat_trusts += (state[i].rep_votes * rep_med_trust + state[i].third_votes * third_med_trust) / 100;
@@ -475,6 +479,11 @@ void legitimacy_function(states* state, int legitimacy) {
             slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].rep_votes * rep_low_trust) / 100;
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
         }
+        // Tests for this function.
+        //printf("trust values: %d %d %d %d\n", fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust);
+        // printf("Trust factors: rep_high=%d, rep_med=%d, rep_low=%d, rep_no=%d, third_high=%d, third_med=%d, third_low=%d, third_no=%d\n",
+        // rep_high_trust, rep_med_trust, rep_low_trust, rep_no_trust, third_high_trust, third_med_trust, third_low_trust, third_no_trust);
+        // printf("Votes: rep=%d, dem=%d, third=%d\n", state[0].rep_votes, state[0].dem_votes, state[0].third_votes);
     }
 
     //Lastly we have a summary of the data from all states, and the data from this function, that are shown to the user.
@@ -485,6 +494,6 @@ void legitimacy_function(states* state, int legitimacy) {
     } else if (third_electors > dem_electors && third_electors > rep_electors) {
         printf("This third party president won with %d of the electors", third_electors);
     }
-    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it, %d that somewhat trust it, and %d that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
+    printf("\nIn the opposing parties, there are %u that don't trust the outcome, %u that only slightly trust it, %u that somewhat trust it, and %u that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }
