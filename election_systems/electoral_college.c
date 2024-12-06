@@ -5,16 +5,22 @@ char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int y
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
         electors += USA[i].electors;
-        if (USA[i].democrats > USA[i].third_party  && USA[i].democrats > USA[i].republicans) {
+        if (USA[i].dem_votes > USA[i].third_votes  && USA[i].dem_votes > USA[i].rep_votes) {
             if (strcmp(USA[i].stateName,"Maine") == 0 && year == 2016) {
                 democrats += USA[i].electors;
                 democrats--;
                 republicans++;
-            } else {
+            }else {
                 democrats += USA[i].electors;
             }
-        } else if (USA[i].republicans > USA[i].third_party) {
-            republicans += USA[i].electors;
+        } else if (USA[i].rep_votes > USA[i].third_votes) {
+            if (strcmp(USA[i].stateName,"Nebraska") == 0 && year == 2008) {
+                republicans += USA[i].electors;
+                republicans--;
+                democrats ++;
+            }else {
+                republicans += USA[i].electors;
+            }
         } else {
             third_party += USA[i].electors;
         }

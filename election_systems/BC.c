@@ -48,7 +48,7 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
 
         total_electors += USA[i].electors;
 
-        if (activate_progress) {
+        if (activate_progress && !states_abolished) {
             // Print the percentage complete
             percentage = percentage + 2;
             printf("Progress: %d%%\n", percentage);
