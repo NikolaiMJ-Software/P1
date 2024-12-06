@@ -54,7 +54,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         // Print an error message to the user, if ether uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
-            printf("Chose a new system: STV, PLPR, BC:\n");
+            printf("Chose a new system: STV, PLPR, BC, Custom:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
