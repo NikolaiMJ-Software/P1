@@ -76,7 +76,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         } else if (strcmp(system, "BC") == 0) {
             return BC(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "CUSTOM") == 0) {
-            parameters(USA, candidate_list, input_year);
+            parameters(USA, candidate_list, input_year, states_abolished);
             return "Custom Done";
         } else {
             // Error message if the system does not exist

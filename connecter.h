@@ -72,7 +72,7 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
-void parameters(states* state, candidates* candidate_list, int year);
+void parameters(states* state, candidates* candidate_list, int year, int states_abolished);
 void weight(states* USA);
 void abolish_states(states* USA);
 void printUSA();

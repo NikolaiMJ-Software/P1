@@ -8,7 +8,7 @@ void minority_and_proportionality_function(states state, double minority_proport
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
 int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
-void parameters(states* state, candidates* candidate_list, int year) {
+void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
     //A list of variables for all states are reset at the beginning of the code.
     dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
@@ -72,6 +72,9 @@ void parameters(states* state, candidates* candidate_list, int year) {
         //The functions use the US_election_data to calculate electors for each state depending on variables.
         comprehensibility_function(state[i], comprehensibility, year);
         minority_and_proportionality_function(state[i], minority_proportionality);
+        if (states_abolished) {
+            break;
+        }
     }
     //These functions then interpret the outcome based on the electors.
     personalization_function(state, candidate_list, personalization);
