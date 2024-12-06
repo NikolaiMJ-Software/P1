@@ -57,6 +57,7 @@ int main(void) {
         int file_loaded = 0; // Variable to track file loading
         while (1) {
             fflush(stdin);
+            input_year = 0;
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
             printf("\n");
