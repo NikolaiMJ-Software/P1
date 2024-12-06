@@ -57,8 +57,10 @@ int main(void) {
         int file_loaded = 0; // Variable to track file loading
         while (1) {
             fflush(stdin);
+            input_year = 0;
             printf("Which year do you want to investigate?\n");
             scanf("%d", &input_year);
+            printf("\n");
             // If year already simulated and the comparison is full, user try again
             if (input_year == cap_systems[0].year && full_cap_systems == NO_SYSTEMS && full_uncap_systems == NO_SYSTEMS) {
                 printf("The year %d has already been simulated.\n", input_year);
@@ -135,10 +137,12 @@ int main(void) {
                 printf("Invalid input. Please try again.\n");
             }
         }
+        printf("\n");
         //Disbanding all states, so the entire vote is only between the people instead of each state
         do {
             printf("Would you like to disband all states in the US? (yes/no)\n");
             scanf("%s", &abolish_states_true);
+            printf("\n");
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
             for (int i = 0; abolish_states_true[i] != '\0'; i++) {
@@ -174,6 +178,7 @@ int main(void) {
             do {
                 printf("Do you wish to see the weight of an electors vote? (yes/no):");
                 scanf("%s", &decide);
+                printf("\n");
                 while (getchar() != '\n');
                 for (int i = 0; decide[i] != '\0'; i++) {
                     decide[i] = tolower(decide[i]);
@@ -203,8 +208,9 @@ int main(void) {
         // Ask the user if they want to end the program
         char choice[4];
         do {
-            printf("Do you want to end the program? (yes/no):");
+            printf("Do you want to end the program? (yes/no):\n");
             scanf("%s", &choice);
+            printf("\n");
 
             // Clear the input buffer to handle invalid input
             while (getchar() != '\n');
