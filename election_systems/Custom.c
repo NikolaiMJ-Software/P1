@@ -40,7 +40,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     while(1) {
         fflush(stdout);
         char input[10];
-        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their president of choice, instead of a pre selected one (yes/no):\n");
+        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no):\n");
         scanf("%s", &input);
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);
@@ -58,7 +58,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     }
     while(1) {
         fflush(stdout);
-        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties, by giving an int from 0-100 (base is 50):\n");
+        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50):\n");
         if (scanf("%d", &legitimacy) == 1 && legitimacy >= 0 && legitimacy <= 100) {
             break;
         }else {
@@ -485,6 +485,6 @@ void legitimacy_function(states* state, int legitimacy) {
     } else if (third_electors > dem_electors && third_electors > rep_electors) {
         printf("This third party president won with %d of the electors", third_electors);
     }
-    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it, %d that somewhat trust it, and %d that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
+    printf("\nIn the opposing parties, there are %d that don't trust the outcome, %d that only slightly trust it,\n%d that somewhat trust it, and %d that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }
