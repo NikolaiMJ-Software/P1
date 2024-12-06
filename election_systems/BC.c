@@ -9,6 +9,11 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
     // Arrays to store fractional values and remaining electors
     double dem_fraction[STATES], rep_fraction[STATES], tp_fraction[STATES];
 
+    // Print a wait message to the user when the states is abolished
+    if (states_abolished) {
+        printf("Please wait...\n");
+    }
+
     for (int i = 0; i < STATES; i++) {
         int total_votes = USA[i].dem_votes + USA[i].rep_votes + USA[i].third_votes;
 
