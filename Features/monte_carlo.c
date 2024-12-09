@@ -2,8 +2,7 @@
 #include <time.h>
 #define N_OF_SIMULATIONS 10
 
-void MC_all(int old_DEM_votes, int old_REP_votes, int old_TP_votes,
-        int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
+void MC_all(int old_DEM_votes, int old_REP_votes, int old_TP_votes, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 void DISTR_DEM(int old_DEM_votes, int* new_REP_votes, int* new_TP_votes, int procent);
 void DISTR_REP(int old_REP_votes, int* new_DEM_votes, int* new_TP_votes, int procent);
 void DISTR_TP(int old_TP_votes, int* new_DEM_votes, int* new_REP_votes);
