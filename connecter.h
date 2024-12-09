@@ -60,18 +60,19 @@ typedef struct candidates {
     int vp_votes;
 }candidates;
 
+//prototypes for all functions connecting them to the main and other c files
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* e_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished);
-char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
-char* PLPR(states* USA, cmp* e_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
-char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
-char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
-void Compare_table(cmp* e_systems, cmp* uncap_systems);
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished);
+char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
+char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
+char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
+char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
+void Compare_table(cmp* cap_systems, cmp* uncap_systems);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
-void parameters(states* state, candidates* candidate_list, int year);
+void parameters(states* state, candidates* candidate_list, int year, int states_abolished);
 void weight(states* USA);
 void abolish_states(states* USA);
 void printUSA();

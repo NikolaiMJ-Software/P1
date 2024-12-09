@@ -1,8 +1,4 @@
 #include "../connecter.h"
-//
-// Created by Nikolai on 27-11-2024.
-//
-
 /*information pages regarding candidate members:
 https://en.wikipedia.org/wiki/List_of_United_States_presidential_candidates
 https://en.wikipedia.org/wiki/2024_United_States_presidential_election
@@ -11,9 +7,11 @@ https://en.wikipedia.org/wiki/2016_United_States_presidential_election
 https://en.wikipedia.org/wiki/2008_United_States_presidential_election
 https://en.wikipedia.org/wiki/2012_United_States_presidential_election
 */
+//Prototypes
 Party string_to_party(const char* party);
 Candidacy string_to_candidacy(const char* candidacy);
 
+//Function to scan candidate txt files
 int ScanCandidatesTXT(int input_year, candidates* candidate_list) {
     //define file size
     char filename[50];

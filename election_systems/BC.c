@@ -1,5 +1,6 @@
 #include "../connecter.h"
 
+//function to calculate Borda Count data
 char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int total_electors = 0, allocated_dem_electors = 0, allocated_rep_electors = 0, allocated_tp_electors = 0,
         percentage = -2;
@@ -7,6 +8,11 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
 
     // Arrays to store fractional values and remaining electors
     double dem_fraction[STATES], rep_fraction[STATES], tp_fraction[STATES];
+
+    // Print a wait message to the user when the states is abolished
+    if (states_abolished) {
+        printf("Please wait...\n");
+    }
 
     for (int i = 0; i < STATES; i++) {
         int total_votes = USA[i].dem_votes + USA[i].rep_votes + USA[i].third_votes;
@@ -42,7 +48,7 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
 
         total_electors += USA[i].electors;
 
-        if (activate_progress) {
+        if (activate_progress && !states_abolished) {
             // Print the percentage complete
             percentage = percentage + 2;
             printf("Progress: %d%%\n", percentage);

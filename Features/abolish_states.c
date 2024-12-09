@@ -1,14 +1,13 @@
-//
-// Created by Nikolai on 03-12-2024.
-//
 #include "../connecter.h"
 
 void abolish_states(states* USA){
+  //make a new temp list
   states* one_state = malloc(STATES*sizeof(states));
   if (!one_state) {
     fprintf(stderr, "Memory allocation failed\n");
     return;
   }
+  //define all values in list as 0 or empty, except for stateName[0]
   for(int i = 0; i < STATES; i++) {
     strcpy(one_state[i].stateName, "empty");
     one_state[i].electors = 0;
@@ -23,7 +22,7 @@ void abolish_states(states* USA){
       strcpy(one_state[i].stateName, "one_state");
     }
   }
-
+  //insert all USA list data within the temp list on its [0] position
   for(int i=0;i<STATES;i++) {
     one_state->electors += USA[i].electors;
     one_state->democrats += USA[i].democrats;
@@ -34,6 +33,7 @@ void abolish_states(states* USA){
     one_state->rep_votes += USA[i].rep_votes;
     one_state->third_votes += USA[i].third_votes;
   }
+  //overwrite the Original USA list with the temp list data
   for(int i=0;i<STATES;i++) {
     strcpy(USA[i].stateName, one_state[i].stateName);
     USA[i].electors = one_state[i].electors;

@@ -1,20 +1,26 @@
 #include "../connecter.h"
-
-char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
+//simulates the standard US Electoral system
+char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
     int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
         electors += USA[i].electors;
-        if (USA[i].democrats > USA[i].third_party  && USA[i].democrats > USA[i].republicans) {
+        if (USA[i].dem_votes > USA[i].third_votes  && USA[i].dem_votes > USA[i].rep_votes) {
             if (strcmp(USA[i].stateName,"Maine") == 0 && year == 2016) {
                 democrats += USA[i].electors;
                 democrats--;
                 republicans++;
-            } else {
+            }else {
                 democrats += USA[i].electors;
             }
-        } else if (USA[i].republicans > USA[i].third_party) {
-            republicans += USA[i].electors;
+        } else if (USA[i].rep_votes > USA[i].third_votes) {
+            if (strcmp(USA[i].stateName,"Nebraska") == 0 && year == 2008) {
+                republicans += USA[i].electors;
+                republicans--;
+                democrats ++;
+            }else {
+                republicans += USA[i].electors;
+            }
         } else {
             third_party += USA[i].electors;
         }
@@ -31,10 +37,10 @@ char* electoral_college(states* USA, cmp* e_systems, cmp* uncap_systems, int yea
             uncap_systems[0].REP_electors = republicans;
             uncap_systems[0].TP_electors = third_party;
         } else {
-            strcpy(e_systems[0].system_name, "EC");
-            e_systems[0].DEM_electors = democrats;
-            e_systems[0].REP_electors = republicans;
-            e_systems[0].TP_electors = third_party;
+            strcpy(cap_systems[0].system_name, "EC");
+            cap_systems[0].DEM_electors = democrats;
+            cap_systems[0].REP_electors = republicans;
+            cap_systems[0].TP_electors = third_party;
         }
     }
     // Return winning party

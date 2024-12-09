@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 void compare_weights(states* USA, double* stateweight);
-
+//Function to print the weight for an elector from each state
 void weight(states* USA) {
     if (USA == NULL) {
         printf("Error: USA array is NULL.\n");

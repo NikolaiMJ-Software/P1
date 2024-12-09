@@ -1,5 +1,5 @@
 #include "../connecter.h"
-
+//Print ascii art
 void printUSA() {
     printf("                     *******************************   \n");
     printf("                     *                             *   \n");
@@ -28,5 +28,5 @@ void printUSA() {
     printf("                             \\    /                   \\  |\n");
     printf("                              \\  |                     '\\'\n");
     printf("                               `~'\n");
-    sleep(2.5);
+    sleep(2.5);     //2.5 seconds break before continuing the code
 }
