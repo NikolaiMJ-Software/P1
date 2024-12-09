@@ -13,7 +13,7 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
     // Make randomize based on time
     srand(time(NULL));
 
-    // All voters second preference, 0=all, 1=DEM, 2=REP, 3=TP
+    // Second preference (0=all, 1=DEM, 2=REP, 3=TP)
     int tot_new_DEM_votes = 0, tot_new_REP_votes = 0, tot_new_TP_votes = 0;
     for (int i = 0; i < N_OF_SIMULATIONS; i++) {
         if (choice == 0) {
