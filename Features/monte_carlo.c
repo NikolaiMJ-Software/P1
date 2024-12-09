@@ -12,10 +12,8 @@ void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* ne
     // Make the randomize based on the time
     srand(time(NULL));
 
-    // User chose the percentage a DEM will vote for a REP, and the opposite, as second preference
+    // The chance a DEM will vote for a REP, and the opposite, as second preference
     int procent = 40;
-    //printf("What percentage chance shod democrats voters chose republicain party as there second choice, and the opposite?\n");
-    //scanf("%d", &procent);
 
     // All second preference after the differentiated choice, 0=all, 1=DEM, 2=REP, 3 =TP
     int tot_new_DEM_votes = 0, tot_new_REP_votes = 0, tot_new_TP_votes = 0;
