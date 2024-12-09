@@ -35,27 +35,27 @@ char* STV(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress
         //After the electors are given, the party with the least amount of votes is eliminated, and their votes are given to the other parties based on their second priority.
         if ((state_third_party_votes <= state_rep_party_votes) && (state_third_party_votes <= state_dem_party_votes) && (state_third_party_votes != 0)) {
             // Third party second preference
-            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
-            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
-            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            USA[i].dem_votes = state_dem_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].rep_votes = state_rep_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].third_votes = state_third_party_votes * VOTE_DECREASE_RATIO;
             monte_carlo(USA, i, 3, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
             state_third_party_votes = 0;
             state_dem_party_votes += new_DEM_votes;
             state_rep_party_votes += new_REP_votes;
         } else if ((state_dem_party_votes <= state_third_party_votes) && (state_dem_party_votes <= state_rep_party_votes) && (state_dem_party_votes != 0)) {
             // DEM second preference
-            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
-            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
-            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            USA[i].dem_votes = state_dem_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].rep_votes = state_rep_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].third_votes = state_third_party_votes * VOTE_DECREASE_RATIO;
             monte_carlo(USA, i, 1, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
             state_third_party_votes += new_TP_votes;
             state_dem_party_votes = 0;
             state_rep_party_votes += new_REP_votes;
         } else if ((state_rep_party_votes <= state_third_party_votes) && (state_rep_party_votes <= state_dem_party_votes) && (state_rep_party_votes != 0)) {
             // REP second preference
-            USA[i].dem_votes *= VOTE_DECREASE_RATIO;
-            USA[i].rep_votes *= VOTE_DECREASE_RATIO;
-            USA[i].third_votes *= VOTE_DECREASE_RATIO;
+            USA[i].dem_votes = state_dem_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].rep_votes = state_rep_party_votes * VOTE_DECREASE_RATIO;
+            USA[i].third_votes = state_third_party_votes * VOTE_DECREASE_RATIO;
             monte_carlo(USA, i, 2, &new_DEM_votes, &new_REP_votes, &new_TP_votes);
             state_third_party_votes += new_TP_votes;
             state_dem_party_votes += new_DEM_votes;
