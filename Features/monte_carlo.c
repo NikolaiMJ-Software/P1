@@ -10,7 +10,7 @@ void DISTR_TP(int old_TP_votes, int* new_DEM_votes, int* new_REP_votes);
 
 // Make simulations with monte carlo
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes) {
-    // Make the randomize based on the time
+    // Make randomize based on time
     srand(time(NULL));
 
     // All voters second preference, 0=all, 1=DEM, 2=REP, 3=TP
