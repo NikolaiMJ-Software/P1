@@ -59,7 +59,12 @@ int main(void) {
             fflush(stdin);
             input_year = 0;
             printf("Which year do you want to investigate?\n");
-            scanf("%d", &input_year);
+            if(scanf("%d", &input_year) !=1) {
+                printf("Invalid input. Please enter a valid year.\n");
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF);
+                continue;
+            }
             printf("\n");
             // If year already simulated and the comparison is full, user try again
             if (input_year == cap_systems[0].year && full_cap_systems == NO_SYSTEMS && full_uncap_systems == NO_SYSTEMS) {
@@ -161,7 +166,7 @@ int main(void) {
             counter_CMP++;
         }
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom:\n");
+        printf("Chose a new system: STV, PLPR, BC, Custom,\nor write 'INFO' for further information:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);

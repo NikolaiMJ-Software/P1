@@ -76,8 +76,7 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
     // Print results
     printf("\nDemocrat electors: %d\n", allocated_dem_electors);
     printf("Republican electors: %d\n", allocated_rep_electors);
-    printf("Third party electors: %d\n", allocated_tp_electors);
-    printf("\nBecause the following party, got the biggest amount of points, in regards to the Nauru Borda Count system,\nthey are the winners.\nIf you are interested in learning more regarding Nauru Borda Count, you can read up on it on the following link: \nhttps://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n\n");
+    printf("Third party electors: %d\n\n", allocated_tp_electors);
     // Save the electors in the cmp systems array
     if (!states_abolished) {
         if (uncapped) {
