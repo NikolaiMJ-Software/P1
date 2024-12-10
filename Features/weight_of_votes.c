@@ -49,6 +49,7 @@ void weight(states* USA) {
 
     printf("||--------------------------------------------------------------------------------------------------------||\n");
     printf("\nWeight represents the number of voters (pops) each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
+    sleep(3);
 }
 
 void compare_weights(states* USA, double* stateweight) {

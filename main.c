@@ -194,7 +194,6 @@ int main(void) {
                 weight(USA);
             }
         }
-    sleep(3);
         // Compare the tested systems
         if (strcmp(result, "Custom Done") != 0) {
             if (!states_abolished) {
