@@ -80,10 +80,10 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             return "Custom Done";
         } else if (strcmp(system, "INFO") == 0) {
             // Print information links
-            printf("STV: https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n");
-            printf("PLPR: https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n");
-            printf("BC: https://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n");
-            printf("Custom: Follow Gallagher and Michel core values\n\n");
+            printf("Single Transferable Vote (STV): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n");
+            printf("Party List Proportional Representation (PLPR): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n");
+            printf("Borda Count (BC): https://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n");
+            printf("Custom: Follow Gallagher and Mitchell core values\n\n");
             // Error message if the system does not exist
             printf("Chose a new system: STV, PLPR, BC, or Custom,\nor write 'INFO' for further information:\n");
             scanf("%s", system);
