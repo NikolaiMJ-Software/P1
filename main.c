@@ -122,7 +122,7 @@ int main(void) {
             }
 
             //Checking if input is valid, as well if its possible to uncap the system for that specific year
-            if(strcmp(wyoming_rule_true, "yes") == 0 || strcmp(wyoming_rule_true, "n") == 0) {
+            if(strcmp(wyoming_rule_true, "yes") == 0 || strcmp(wyoming_rule_true, "y") == 0) {
                 if(full_uncap_systems == NO_SYSTEMS) {
                     printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
                     continue;
