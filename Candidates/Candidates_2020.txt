@@ -1,15 +1,6 @@
 Republican, Donald Trump, President, 100, 0
 Republican, Mike Pence, Vice_President, 0, 100
-Republican, Nikki Haley, Both, 0, 0
 Democratic, Joe Biden, President, 100, 0
-Democratic, Kamala Harris, Both, 0, 100
-Democratic, Bernie Sanders, Both, 0, 0
-Democratic, Elizabeth Warren, President, 0, 0
-Democratic, Pete Buttigieg, Both, 0, 0
-Democratic, Amy Klobuchar, Both, 0, 0
-Democratic, Andrew Yang, President, 0, 0
-Democratic, Cory Booker, Vice_President, 0, 0
+Democratic, Kamala Harris, Vice_President, 0, 100
 Third_Party, Jo Jorgensen, President, 100, 0
-Third_Party, Spike Cohen, Vice_President, 0, 100
-Third_Party, Howie Hawkins, Both, 0, 0
-Third_Party, Angela Walker, Vice_President, 0, 0
+Third_Party, Howie Hawkins, Vice_President, 0, 100
