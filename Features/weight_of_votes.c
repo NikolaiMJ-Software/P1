@@ -14,7 +14,7 @@ void weight(states* USA) {
 
 
     printf("\nEach state has a given number of electors for the Electoral College. This number is decided by the state's population,  where each state has at least three electors (two from Senators).\n"
-           "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight with   weight being defined as population/votes(pops) divided by electors:\n\n");
+           "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight with   weight being defined as population/votes divided by electors:\n\n");
 
     sleep(10);
     // Calculate weights and validate data
@@ -37,7 +37,7 @@ void weight(states* USA) {
 
     // Print the header
     printf("||--------------------------------------------------------------------------------------------------------||\n");
-    printf("||State              Weight (pops/electors)        Electors        Percentage            Population       ||\n");
+    printf("||State             Weight (Voters/electors)       Electors        Percentage            Population       ||\n");
     printf("||--------------------------------------------------------------------------------------------------------||\n");
 
     // Print the sorted states and their weights
@@ -48,7 +48,7 @@ void weight(states* USA) {
     }
 
     printf("||--------------------------------------------------------------------------------------------------------||\n");
-    printf("\nWeight represents the number of voters (pops) each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
+    printf("\nWeight represents the number of voters each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
     sleep(3);
 }
 
