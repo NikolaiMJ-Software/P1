@@ -161,7 +161,7 @@ int main(void) {
             counter_CMP++;
         }
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom:\n");
+        printf("Chose a new system: STV, PLPR, BC, Custom,\nor write 'INFO' for further information:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);

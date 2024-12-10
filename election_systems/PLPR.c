@@ -47,8 +47,7 @@ char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, i
     // Print the electors for each party
     printf("\nDemocrat electors: %d\n", democrats);
     printf("Republican electors: %d\n", republicans);
-    printf("Third party electors: %d\n", third_party);
-    printf("\nBecause the following party got the biggest amount of electors, in regards to the \nParty List Proportional Representation, they are the winners.\nIf you are interested in learning more regarding Party List Proportional Representation, \nyou can read up on it on the following link: \nhttps://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n\n");
+    printf("Third party electors: %d\n\n", third_party);
     // Save the electors in the cmp systems array
     if (!states_abolished) {
         if (uncapped) {
