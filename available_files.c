@@ -15,7 +15,7 @@ void list_available_files(const char* directory) {
     }
 
     //print available data in form of years
-    printf("Available years: ");
+    printf("Available years (1 = example Custom file): ");
     int comma = 1;
     while ((entry = readdir(dir)) != NULL) {
         if (entry->d_name[0] != '.') {

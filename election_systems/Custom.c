@@ -7,7 +7,7 @@ void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
-int dem_electors, rep_electors, third_electors, temp_state_rep_votes, temp_state_dem_votes, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
+int dem_electors, rep_electors, third_electors, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
     //A list of variables for all states are reset at the beginning of the code.
@@ -87,8 +87,6 @@ void comprehensibility_function(states state, int comprehensibility, int year) {
     double rep_age_lean = 55, dem_age_lean = 45, rep_education_lean = 32, dem_education_lean = 23 + (year - 1999) * EDUCATION_GROWTH_FACTOR;
     double informed_dem_votes = (state.dem_votes + state.rep_votes) * (dem_age_lean / 100 + dem_education_lean / (rep_education_lean + dem_education_lean))/2,
     informed_rep_votes = (state.dem_votes + state.rep_votes) * (rep_age_lean / 100 + rep_education_lean / (rep_education_lean + dem_education_lean))/2;
-    temp_state_dem_votes = state.dem_votes;
-    temp_state_rep_votes = state.rep_votes;
     state.dem_votes += (informed_dem_votes - state.dem_votes) / 100 * (-100 + comprehensibility * 2);
     state.rep_votes += (informed_rep_votes - state.rep_votes) / 100 * (-100 + comprehensibility * 2);
 
