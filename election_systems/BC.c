@@ -21,6 +21,7 @@ char* BC(states* USA, cmp* e_systems, cmp* uncap_systems, int activate_progress,
         int new_DEM_votes_2nd, new_REP_votes_2nd, new_TP_votes_2nd;
         monte_carlo(USA, i, 0, &new_DEM_votes_2nd, &new_REP_votes_2nd, &new_TP_votes_2nd);
 
+        //Third-choice votes
         int new_DEM_votes_3rd = total_votes - new_DEM_votes_2nd - USA[i].dem_votes;
         int new_REP_votes_3rd = total_votes - new_REP_votes_2nd - USA[i].rep_votes;
         int new_TP_votes_3rd = total_votes - new_TP_votes_2nd - USA[i].third_votes;

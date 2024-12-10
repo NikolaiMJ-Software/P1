@@ -117,18 +117,18 @@ int main(void) {
             }
 
             //Checking if input is valid, as well if its possible to uncap the system for that specific year
-            if(strcmp(wyoming_rule_true, "yes") == 0) {
+            if(strcmp(wyoming_rule_true, "yes") == 0 || strcmp(wyoming_rule_true, "n") == 0) {
                 if(full_uncap_systems == NO_SYSTEMS) {
-                    printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                    printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
                     continue;
                 }else {
                     wyoming_rule(input_year, USA);
                     uncapped = 1;
                     break;
                 }
-            } else if (strcmp(wyoming_rule_true, "no") == 0) {
+            } else if (strcmp(wyoming_rule_true, "no") == 0 || strcmp(wyoming_rule_true, "n") == 0) {
                 if (full_cap_systems == NO_SYSTEMS) {
-                    printf("Your choice '%s' has already been simulate for all systems\n", wyoming_rule_true);
+                    printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
                     continue;
                 }else {
                     break;
@@ -148,8 +148,8 @@ int main(void) {
             for (int i = 0; abolish_states_true[i] != '\0'; i++) {
                 abolish_states_true[i] = tolower(abolish_states_true[i]);
             }
-        } while (strcmp(abolish_states_true,"yes") != 0 && strcmp(abolish_states_true,"no") != 0);
-        if (strcmp(abolish_states_true,"yes") == 0) {
+        } while (strcmp(abolish_states_true,"yes") != 0 && strcmp(abolish_states_true,"no") != 0 && strcmp(abolish_states_true,"y") != 0 && strcmp(abolish_states_true,"n") != 0);
+        if (strcmp(abolish_states_true,"yes") == 0 || strcmp(abolish_states_true,"y") == 0) {
             abolish_states(USA);
             states_abolished = 1;
         }
@@ -183,9 +183,9 @@ int main(void) {
                 for (int i = 0; decide[i] != '\0'; i++) {
                     decide[i] = tolower(decide[i]);
                 }
-            }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0);
+            }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0 && strcmp(decide,"y") != 0 && strcmp(decide,"n") != 0);
             // Exit the loop if the user chooses 'yes'
-            if (strcmp(decide,"yes") == 0) {
+            if (strcmp(decide,"yes") == 0 || strcmp(decide,"y") == 0) {
                 weight(USA);
             }
         }
@@ -217,9 +217,9 @@ int main(void) {
             for (int i = 0; choice[i] != '\0'; i++) {
                 choice[i] = tolower(choice[i]);
             }
-        } while (strcmp(choice,"yes") != 0 && strcmp(choice,"no") != 0);
+        } while (strcmp(choice,"yes") != 0 && strcmp(choice,"no") != 0 && strcmp(choice,"y") != 0 && strcmp(choice,"n") != 0);
         // Exit the loop if the user chooses 'yes'
-        if (strcmp(choice,"yes") == 0) {
+        if (strcmp(choice,"yes") == 0 || strcmp(choice,"y") == 0) {
             printf("Exiting the program. Goodbye!\n");
             break;
         }
