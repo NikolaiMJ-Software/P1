@@ -45,10 +45,10 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);
         }
-        if (strcmp(input, "yes") == 0) {
+        if (strcmp(input, "yes") == 0 ||strcmp(input, "y") == 0) {
             personalization = 1;
             break;
-        } else if (strcmp(input, "no") == 0) {
+        } else if (strcmp(input, "no") == 0 || strcmp(input, "n") == 0) {
             personalization = 0;
             break;
         } else {
