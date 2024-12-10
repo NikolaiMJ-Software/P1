@@ -7,7 +7,7 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_
 // Run compare_tabel from main.c
 void Compare_table(cmp* cap_systems, cmp* uncap_systems) {
     // Copy systems names between the cap_system and uncap_system
-    for(int i = 0; i < NO_SYSTEMS; i++) {
+    for (int i = 0; i < NO_SYSTEMS; i++) {
         if (strlen(cap_systems[i].system_name) == 0) {
             strcpy(cap_systems[i].system_name, uncap_systems[i].system_name);
         } else if (strlen(uncap_systems[i].system_name) == 0) {
@@ -41,87 +41,100 @@ void Compare_table(cmp* cap_systems, cmp* uncap_systems) {
 }
 // Print spaces between systems name in comparison table, based on the simulated order. If the system has not been compare yet, it will not be printed.
 void cap_names(cmp* cap_systems, int counter_cap) {
+    // Add extra space to system witch year is under 1000
+    char year_scale[4] = {'\0'};
+    if (cap_systems[0].year < 1000) {
+        if(cap_systems[0].year < 100) {
+            if (cap_systems[0].year < 10) {
+                strcpy(year_scale, "   ");
+            } else {
+                strcpy(year_scale, "  ");
+            }
+        } else {
+            strcpy(year_scale, " ");
+        }
+    }
     // Empty cap_systems
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
-        printf("Year: %d %51s", cap_systems[0].year, empty);
+        printf("Year: %d%s %51s", cap_systems[0].year, year_scale, empty);
     } else
     // Order BC(1), STV(2), PLPR(3)
     if (strcmp(cap_systems[1].system_name, "BC") == 0 && counter_cap >= 1) {
         if (strcmp(cap_systems[2].system_name, "STV") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %6s %7s %7s %14s", cap_systems[0].year,
+                printf("Year: %d%s %13s %6s %7s %7s %14s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order BC(1), STV(2)
-                printf("Year: %d %13s %6s %7s %22s", cap_systems[0].year,
+                printf("Year: %d%s %13s %6s %7s %22s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         // Order BC(1), PLPR(2), STV(3)
         } else if (strcmp(cap_systems[2].system_name, "PLPR") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %6s %8s %5s %15s", cap_systems[0].year,
+                printf("Year: %d%s %13s %6s %8s %5s %15s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order BC(1), PLPR(2)
-                printf("Year: %d %13s %6s %8s %21s", cap_systems[0].year,
+                printf("Year: %d%s %13s %6s %8s %21s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         } else {
             // Order BC(1)
-            printf("Year: %d %13s %6s %30s", cap_systems[0].year,
+            printf("Year: %d%s %13s %6s %30s", cap_systems[0].year, year_scale,
                 cap_systems[0].system_name, cap_systems[1].system_name, empty);
         }
     // Order STV(1), BC(2), PLPR(3)
     } else if (strcmp(cap_systems[1].system_name, "STV") == 0 && counter_cap >= 1) {
         if (strcmp(cap_systems[2].system_name, "BC") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %7s %5s %8s %14s", cap_systems[0].year,
+                printf("Year: %d%s %13s %7s %5s %8s %14s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order STV(1), BC(2)
-                printf("Year: %d %13s %7s %5s %23s", cap_systems[0].year,
+                printf("Year: %d%s %13s %7s %5s %23s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         // Order STV(1), PLPR(2), BC(3)
         } else if (strcmp(cap_systems[2].system_name, "PLPR") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %7s %7s %4s %16s", cap_systems[0].year,
+                printf("Year: %d%s %13s %7s %7s %4s %16s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order STV(1), PLPR(2)
-                printf("Year: %d %13s %7s %7s %21s", cap_systems[0].year,
+                printf("Year: %d%s %13s %7s %7s %21s", cap_systems[0].year, year_scale,
             cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         } else {
             // Order STV(1)
-            printf("Year: %d %13s %7s %29s", cap_systems[0].year,
+            printf("Year: %d%s %13s %7s %29s", cap_systems[0].year, year_scale,
                 cap_systems[0].system_name, cap_systems[1].system_name, empty);
         }
     // Order PLPR(1), BC(2), STV(3)
     } else if (strcmp(cap_systems[1].system_name, "PLPR") == 0 && counter_cap >= 1) {
         if (strcmp(cap_systems[2].system_name, "BC") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %8s %4s %7s %15s", cap_systems[0].year,
+                printf("Year: %d%s %13s %8s %4s %7s %15s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order PLPR(1), BC(2)
-                printf("Year: %d %13s %8s %4s %23s", cap_systems[0].year,
+                printf("Year: %d%s %13s %8s %4s %23s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         // Order PLPR(1), STV(2), BC(3)
         } else if (strcmp(cap_systems[2].system_name, "STV") == 0 && counter_cap >= 2) {
             if (cap_systems[3].DEM_electors != 0 && cap_systems[3].REP_electors != 0 && cap_systems[3].TP_electors != 0) {
-                printf("Year: %d %13s %8s %5s %5s %16s", cap_systems[0].year,
+                printf("Year: %d%s %13s %8s %5s %5s %16s", cap_systems[0].year, year_scale,
                     cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, cap_systems[3].system_name, empty);
             } else {
                 // Order PLPR(1), STV(2)
-                printf("Year: %d %13s %8s %5s %22s", cap_systems[0].year,
+                printf("Year: %d%s %13s %8s %5s %22s", cap_systems[0].year, year_scale,
             cap_systems[0].system_name, cap_systems[1].system_name, cap_systems[2].system_name, empty);
             }
         } else {
             // Order PLPR(1)
-            printf("Year: %d %13s %8s %28s", cap_systems[0].year,
+            printf("Year: %d%s %13s %8s %28s", cap_systems[0].year, year_scale,
                 cap_systems[0].system_name, cap_systems[1].system_name, empty);
         }
     }
