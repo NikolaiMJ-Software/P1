@@ -24,10 +24,15 @@ void list_available_files(const char* directory) {
             char* file_type_remove = ".txt";
             //if statement which compares file names, with former variables
             if (strncmp(entry->d_name, file_name_remove, strlen(file_name_remove)) == 0 && strstr(entry->d_name, file_type_remove) != NULL) {
+                //calculating length of year
+                size_t year_start = strlen(file_name_remove); // Start of the year (length of "US_Election_")
+                size_t year_end = strstr(entry->d_name, file_type_remove) - entry->d_name; // Position of ".txt"
+                size_t year_length = year_end - year_start; // Length of the year substring
+
                 //extracting the year out of the file name, and printing the year
-                char year[5];
-                strncpy(year, entry->d_name + strlen(file_name_remove), 4);
-                year[4] = '\0';
+                char year[year_length+1];
+                strncpy(year, entry->d_name + year_start, year_length);
+                year[year_length] = '\0';
 
                 if (!comma) {
                     printf(", ");
