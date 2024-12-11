@@ -317,23 +317,13 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
 void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems) {
     int uncapped = 0, states_abolished = 0;
     // Calc EC if missing
-    printf("YEAR: %d", cap_systems[0].year);
-    sleep(2);
     for(int i = 0; i<STATES; i++) {
         USA[i].electors = USA[i].original_electors;
     }
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
-    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
-        uncapped = 1;
-        wyoming_rule(USA, cap_systems);
-        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
-    }
 
-    for(int i = 0; i<STATES; i++) {
-        USA[i].electors = USA[i].original_electors;
-    }
     char system[5] = {'\0'};
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in cap_systems array
@@ -364,6 +354,10 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
         // Reset system array
         memset(system, 0, sizeof(system));
         wyoming_rule(USA, cap_systems);
+        if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
+            uncapped = 1;
+            electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
+        }
         // Locate and calculate missing systems in uncap_systems array
         if (uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
             strcpy(system, uncap_systems[i].system_name);
