@@ -58,7 +58,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         // Print an error message to the user, if ether uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
-            printf("Chose a new system: STV, PLPR, BC, Custom,\nor write 'INFO' for further information:\n");
+            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
@@ -78,14 +78,18 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         } else if (strcmp(system, "CUSTOM") == 0) {
             parameters(USA, candidate_list, input_year, states_abolished);
             return "Custom Done";
+        } else if (strcmp(system, "ALL") == 0) {
+            //Compare_table(cap_systems, uncap_systems, 1);
+            return "All systems";
         } else if (strcmp(system, "INFO") == 0) {
             // Print information links
             printf("Single Transferable Vote (STV): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n");
             printf("Party List Proportional Representation (PLPR): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n");
             printf("Borda Count (BC): https://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n");
-            printf("Custom: Follow Gallagher and Mitchell core values\n\n");
+            printf("Custom: Follow Gallagher and Mitchell core values\n");
+            printf("All: Test all systems both cap and uncap\n\n");
             // Error message if the system does not exist
-            printf("Chose a new system: STV, PLPR, BC, or Custom,\nor write 'INFO' for further information:\n");
+            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);

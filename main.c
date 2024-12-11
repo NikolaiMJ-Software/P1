@@ -38,7 +38,7 @@ int main(void) {
             return 1;
         }
 
-        // Check if cmp cap_systems and uncap_systems is full
+        // Check if cap_systems and uncap_systems is full
         int full_cap_systems = 0;
         int full_uncap_systems = 0;
         for (int i = 0; i < NO_SYSTEMS; i++) {
@@ -161,45 +161,48 @@ int main(void) {
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
 
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom,\nor write 'INFO' for further information:\n");
+        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
         result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, input_year, uncapped, states_abolished);
-        if (strcmp(result, "Custom Done") != 0) {
+        if (strcmp(result, "Custom Done") != 0 && strcmp(result, "All systems") != 0) {
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
 
-        //ask the user if they wish to see the weight of their vote
-        char decide[4];
-        if (abolish_states_true[0] == 'n') {
-            do {
-                printf("Do you wish to see the weight of an electors vote? (yes/no):");
-                scanf("%s", &decide);
-                printf("\n");
-                while (getchar() != '\n');
-                for (int i = 0; decide[i] != '\0'; i++) {
-                    decide[i] = tolower(decide[i]);
-                }
-            }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0 && strcmp(decide,"y") != 0 && strcmp(decide,"n") != 0);
-            // Exit the loop if the user chooses 'yes'
-            if (strcmp(decide,"yes") == 0 || strcmp(decide,"y") == 0) {
-                weight(USA);
-            }
-        }
-        // Compare the tested systems
-        if (strcmp(result, "Custom Done") != 0) {
-            if (!states_abolished) {
-                Compare_table(cap_systems, uncap_systems);
-            }
+        if (strcmp(result, "All systems") == 0) {
+            // Nothing
         } else {
-            // Reset the 2 arrays if custom is activated
-            memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
-            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            //ask the user if they wish to see the weight of their vote
+            char decide[4];
+            if (abolish_states_true[0] == 'n') {
+                do {
+                    printf("Do you wish to see the weight of an electors vote? (yes/no):");
+                    scanf("%s", &decide);
+                    printf("\n");
+                    while (getchar() != '\n');
+                    for (int i = 0; decide[i] != '\0'; i++) {
+                        decide[i] = tolower(decide[i]);
+                    }
+                }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0 && strcmp(decide,"y") != 0 && strcmp(decide,"n") != 0);
+                // Exit the loop if the user chooses 'yes'
+                if (strcmp(decide,"yes") == 0 || strcmp(decide,"y") == 0) {
+                    weight(USA);
+                }
+            }
+            // Compare the tested systems
+            if (strcmp(result, "Custom Done") != 0) {
+                if (!states_abolished) {
+                    Compare_table(cap_systems, uncap_systems, 0);
+                }
+            } else {
+                // Reset the 2 arrays if custom is activated
+                memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+                memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            }
         }
-
         // Free Arrays
         free(USA);
         free(candidate_list);

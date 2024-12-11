@@ -5,7 +5,7 @@ void line_DEM(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter
 void line_REP(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
 void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
 // Run compare_tabel from main.c
-void Compare_table(cmp* cap_systems, cmp* uncap_systems) {
+void Compare_table(cmp* cap_systems, cmp* uncap_systems, int all_systems) {
     // Copy systems names between the cap_system and uncap_system
     for (int i = 0; i < NO_SYSTEMS; i++) {
         if (strlen(cap_systems[i].system_name) == 0) {
