@@ -4,53 +4,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
     while(true) {
         // Check if the election system has already been calculator
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
-        if (uncapped) {
-            // Uncap_system
-            for (int i = 0; i < NO_SYSTEMS; i++) {
-                int full_data = uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0;
-                // If there is no data and no name to the array, then break, else counter +1
-                if (!full_data && strlen(uncap_systems[i].system_name) == 0) {
-                    break;
-                } else {
-                    counter_uncap++;
-                }
-                // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
-                if (!full_data && strcmp(uncap_systems[i].system_name, system) == 0){
-                    counter_uncap = i;
-                    break;
-                }
-            }
-            // Check if the uncap_system is already calculator
-            for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
-                    already_calculated = 1;
-                    break;
-                }
-            }
-        } else {
-            // Cap_systems
-            for (int i = 0; i < NO_SYSTEMS; i++) {
-                int full_data = cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0;
-                // If there is no data and no name to the array, then break, else counter +1
-                if (!full_data && strlen(cap_systems[i].system_name) == 0) {
-                    break;
-                } else {
-                    counter_cap++;
-                }
-                // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
-                if (!full_data && strcmp(cap_systems[i].system_name, system) == 0){
-                    counter_cap = i;
-                    break;
-                }
-            }
-            // Check if the cap_system is already calculator
-            for (int i = 0; i < NO_SYSTEMS; i++) {
-                if (strcmp(cap_systems[i].system_name, system) == 0 && (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0)) {
-                    already_calculated = 1;
-                    break;
-                }
-            }
-        }
+        already_calc(cap_systems, uncap_systems, system, &already_calculated, &counter_cap, &counter_uncap, uncapped);
         // If states is abolished, then the system has neve been calculated before
         if (states_abolished) {
             already_calculated = 0;
@@ -101,6 +55,56 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
+            }
+        }
+    }
+}
+
+void already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int* already_calculated, int* counter_cap, int* counter_uncap, int uncapped) {
+    if (uncapped) {
+        // Uncap_system
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            int full_data = uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0;
+            // If there is no data and no name to the array, then break, else counter +1
+            if (!full_data && strlen(uncap_systems[i].system_name) == 0) {
+                break;
+            } else {
+                (*counter_uncap)++;
+            }
+            // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
+            if (!full_data && strcmp(uncap_systems[i].system_name, system) == 0){
+                *counter_uncap = i;
+                break;
+            }
+        }
+        // Check if the uncap_system is already calculator
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
+                *already_calculated = 1;
+                break;
+            }
+        }
+    } else {
+        // Cap_systems
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            int full_data = cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0;
+            // If there is no data and no name to the array, then break, else counter +1
+            if (!full_data && strlen(cap_systems[i].system_name) == 0) {
+                break;
+            } else {
+                (*counter_cap)++;
+            }
+            // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
+            if (!full_data && strcmp(cap_systems[i].system_name, system) == 0){
+                *counter_cap = i;
+                break;
+            }
+        }
+        // Check if the cap_system is already calculator
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            if (strcmp(cap_systems[i].system_name, system) == 0 && (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0)) {
+                *already_calculated = 1;
+                break;
             }
         }
     }

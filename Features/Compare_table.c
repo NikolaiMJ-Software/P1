@@ -4,8 +4,13 @@ void uncap_names(cmp* uncap_systems, int counter_uncap);
 void line_DEM(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
 void line_REP(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
 void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
+void missing_systems(cmp* cap_systems, cmp* uncap_systems);
 // Run compare_tabel from main.c
 void Compare_table(cmp* cap_systems, cmp* uncap_systems, int all_systems) {
+    // If all systems is true the missing system will be calculated and added to the compare table
+    if (all_systems) {
+        missing_systems(cap_systems, uncap_systems);
+    }
     // Copy systems names between the cap_system and uncap_system
     for (int i = 0; i < NO_SYSTEMS; i++) {
         if (strlen(cap_systems[i].system_name) == 0) {
@@ -315,4 +320,11 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
         printf("%3d %6d %6d %6d\n\n",
                uncap_systems[0].TP_electors, uncap_systems[1].TP_electors, uncap_systems[2].TP_electors, uncap_systems[3].TP_electors);
     }
+}
+// Calculate missing systems
+void missing_systems(cmp* cap_systems, cmp* uncap_systems) {
+    // Locate existing names in both arrays
+    //already_calc(cap_systems, uncap_systems, system, &already_calculated, &counter_cap, &counter_uncap, uncapped);
+    // Call winner_of_election for the missing systems
+
 }
