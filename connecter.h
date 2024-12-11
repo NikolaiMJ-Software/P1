@@ -17,7 +17,6 @@
 typedef struct states {
     char stateName[NAME_LGT];
     int electors;
-    int original_electors;
     double democrats;
     double republicans;
     double third_party;

@@ -316,16 +316,13 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
 // Calculate missing systems
 void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems) {
     int uncapped = 0, states_abolished = 0;
-    // Rest electors to cap
-    for(int i = 0; i<STATES; i++) {
-        USA[i].electors = USA[i].original_electors;
-    }
+    // Rest data and call from txt again
+    ScanData_TXT(cap_systems[0].year, USA);
     // Calc EC if missing
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
         printf("Simulate election system (capped): %s\n", uncap_systems[0].system_name);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
-
     char system[5] = {'\0'};
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in cap_systems array
@@ -356,13 +353,10 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
             }
         }
     }
+    // Rest data and call from txt again
+    ScanData_TXT(cap_systems[0].year, USA);
     // Uncap the electors
     wyoming_rule(USA, cap_systems);
-    /* debug tool
-    for(int i = 0; i<STATES; i++) {
-        printf("state: %d, electors: %d, original electors: %d\n", i, USA[i].electors, USA[i].original_electors);
-    }
-    */
     if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
         uncapped = 1;
         printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
