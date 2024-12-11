@@ -124,7 +124,7 @@ int main(void) {
                     printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
                     continue;
                 }else {
-                    wyoming_rule(input_year, USA);
+                    wyoming_rule(USA, cap_systems);
                     uncapped = 1;
                     break;
                 }

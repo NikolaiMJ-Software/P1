@@ -2,7 +2,7 @@
 
 
 //wyoming rule (https://elections-daily.com/2021/06/25/can-the-wyoming-rule-improve-representation/ & https://www.amacad.org/ourcommonpurpose/enlarging-the-house/section/5)
-void wyoming_rule(int input_year,states* USA){
+void wyoming_rule(states* USA, cmp* cap_systems){
     int total_population = 0;
     //defining the population of Wyoming, as its the last dataset in all data
     int wyoming_population = USA[50].population;
@@ -13,6 +13,6 @@ void wyoming_rule(int input_year,states* USA){
         USA[i].electors = (USA[i].population/wyoming_population)+2;
         new_total_elector_count += USA[i].electors;
     }
-    printf("The total population for the dataset %d: %d people, which means the new electoral college has %d electors\n",input_year, total_population, new_total_elector_count);
+    printf("The total population for the dataset %d: %d people, which means the new electoral college has %d electors\n", cap_systems[0].year, total_population, new_total_elector_count);
 }
 

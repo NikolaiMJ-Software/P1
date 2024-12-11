@@ -315,24 +315,32 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
 }
 // Calculate missing systems
 void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems) {
-    int already_calculated = 0,  uncapped = 0, states_abolished = 0;
+    int uncapped = 0, states_abolished = 0;
     // Calc EC if missing
+    printf("YEAR: %d", cap_systems[0].year);
+    sleep(2);
+    for(int i = 0; i<STATES; i++) {
+        USA[i].electors = USA[i].original_electors;
+    }
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
     if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
         uncapped = 1;
+        wyoming_rule(USA, cap_systems);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
 
+    for(int i = 0; i<STATES; i++) {
+        USA[i].electors = USA[i].original_electors;
+    }
     char system[5] = {'\0'};
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in cap_systems array
-        uncapped = 0;
         if (cap_systems[i].DEM_electors == 0 && cap_systems[i].REP_electors == 0 && cap_systems[i].TP_electors == 0) {
             if (strlen(cap_systems[i].system_name) != 0) {
                 strcpy(system, cap_systems[i].system_name);
-                Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 1);
+                Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
             } else {
                 // Predefined order BC, PLPR, STV
                 const char* predefined_order[] = {"BC", "PLPR", "STV"};
@@ -348,16 +356,18 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
                     }
                     if (!found) {
                         strcpy(system, predefined_order[j]);
-                        Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 1);
+                        Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
                     }
                 }
             }
         }
+        // Reset system array
+        memset(system, 0, sizeof(system));
+        wyoming_rule(USA, cap_systems);
         // Locate and calculate missing systems in uncap_systems array
-        uncapped = 1;
-        if (strlen(uncap_systems[i].system_name) != 0 && uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
+        if (uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
             strcpy(system, uncap_systems[i].system_name);
-            Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 1);
+            Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 1, states_abolished, 1);
         }
     }
 }
