@@ -61,6 +61,8 @@ char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, i
             cap_systems[counter_cap].REP_electors = republicans;
             cap_systems[counter_cap].TP_electors = third_party;
         }
+        // Copy system names from cap to uncap, and opposite
+        copy_systems_names(cap_systems, uncap_systems);
     }
     // Return the winning party
     if (democrats > republicans && democrats > third_party) {

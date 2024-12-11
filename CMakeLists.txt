@@ -20,6 +20,7 @@ add_executable(P1 main.c
         Features/weight_of_votes.c
         Features/abolish_states.c
         Features/printUSA.c
+        Features/copy_systems_names.c
 )
 
 # Add the test directory

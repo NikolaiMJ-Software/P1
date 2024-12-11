@@ -118,6 +118,8 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
             cap_systems[counter_cap].REP_electors = rep_electors;
             cap_systems[counter_cap].TP_electors = tp_electors;
         }
+        // Copy system names from cap to uncap, and opposite
+        copy_systems_names(cap_systems, uncap_systems);
     }
     //After every state has been gone through, compare overarching variables to find winner.
     if ((dem_electors > rep_electors) && (dem_electors > tp_electors)) {

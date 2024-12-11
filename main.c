@@ -157,7 +157,7 @@ int main(void) {
         }
 
         // Determine the winner
-        char* result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, input_year, uncapped, states_abolished);
+        char* result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 0);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
 
         // User chose a new system
@@ -167,7 +167,7 @@ int main(void) {
             system[i] = toupper(system[i]);
         }
         // Determine the winner
-        result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, input_year, uncapped, states_abolished);
+        result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 0);
         if (strcmp(result, "Custom Done") != 0 && strcmp(result, "All systems") != 0) {
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
@@ -195,7 +195,7 @@ int main(void) {
             // Compare the tested systems
             if (strcmp(result, "Custom Done") != 0) {
                 if (!states_abolished) {
-                    Compare_table(cap_systems, uncap_systems, 0);
+                    Compare_table(USA, candidate_list, cap_systems, uncap_systems, 0);
                 }
             } else {
                 // Reset the 2 arrays if custom is activated

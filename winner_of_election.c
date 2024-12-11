@@ -1,15 +1,17 @@
 #include "connecter.h"
+void calc_counter(cmp* cap_systems, cmp* uncap_systems, char* system, int* counter_cap, int* counter_uncap, int uncapped);
+int already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped);
 
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished) {
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped, int states_abolished, int from_compare_table) {
     while(true) {
-        // Check if the election system has already been calculator
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
-        already_calc(cap_systems, uncap_systems, system, &already_calculated, &counter_cap, &counter_uncap, uncapped);
-        // If states is abolished, then the system has neve been calculated before
-        if (states_abolished) {
-            already_calculated = 0;
+        // Check if the election system has already been calculator, no need to double-check if Winner_of_election is called from_compare_table or states is abolished
+        if (from_compare_table || states_abolished) {
+            // Nothing
+        } else {
+            already_calculated = already_calc(cap_systems, uncap_systems, system, uncapped);
         }
-        // Print an error message to the user, if ether uncap or cap system is already calculator
+        // Print an error message to the user, if uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
             printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
@@ -20,9 +22,11 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Start from the beginning of the while loop
             continue;
         }
+        // Calculate the correct place in the array
+        calc_counter(cap_systems, uncap_systems, system, &counter_cap, &counter_uncap, uncapped);
         // Return the result from the 4 system based on what the input is
         if (strcmp(system, "original") == 0) {
-            return electoral_college(USA, cap_systems, uncap_systems, input_year, uncapped, states_abolished);
+            return electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
         } else if (strcmp(system, "STV") == 0) {
             return STV(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "PLPR") == 0) {
@@ -30,10 +34,11 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         } else if (strcmp(system, "BC") == 0) {
             return BC(USA, cap_systems, uncap_systems, 1, counter_cap, counter_uncap, uncapped, states_abolished);
         } else if (strcmp(system, "CUSTOM") == 0) {
+            int input_year = cap_systems[0].year;
             parameters(USA, candidate_list, input_year, states_abolished);
             return "Custom Done";
-        } else if (strcmp(system, "ALL") == 0) {
-            //Compare_table(cap_systems, uncap_systems, 1);
+        } else if (strcmp(system, "ALL") == 0 && !states_abolished) {
+            //Compare_table(USA, candidate_list, cap_systems, uncap_systems, 1);
             return "All systems";
         } else if (strcmp(system, "INFO") == 0) {
             // Print information links
@@ -50,7 +55,11 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             }
         } else {
             // Error message if the system does not exist
-            printf("The chosen election system is not in the database, try again.\n");
+            if (strcmp(system, "ALL") == 0 && states_abolished) {
+                printf("The chosen system 'All' is not possible when the states are abolished, try again.\n");
+            } else {
+                printf("The chosen election system is not in the database, try again.\n");
+            }
             printf("Chose a new system: STV, PLPR, BC, or Custom,\nor write 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
@@ -59,8 +68,27 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         }
     }
 }
+// Check if the system is already calculator
+int already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped) {
+    if (uncapped) {
+        // Check if the uncap_system is already calculator
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
+                return 1;
+            }
+        }
+    } else {
+        // Check if the cap_system is already calculator
+        for (int i = 0; i < NO_SYSTEMS; i++) {
+            if (strcmp(cap_systems[i].system_name, system) == 0 && (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0)) {
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
-void already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int* already_calculated, int* counter_cap, int* counter_uncap, int uncapped) {
+void calc_counter(cmp* cap_systems, cmp* uncap_systems, char* system, int* counter_cap, int* counter_uncap, int uncapped) {
     if (uncapped) {
         // Uncap_system
         for (int i = 0; i < NO_SYSTEMS; i++) {
@@ -77,13 +105,6 @@ void already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int* alrea
                 break;
             }
         }
-        // Check if the uncap_system is already calculator
-        for (int i = 0; i < NO_SYSTEMS; i++) {
-            if (strcmp(uncap_systems[i].system_name, system) == 0 && (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0)) {
-                *already_calculated = 1;
-                break;
-            }
-        }
     } else {
         // Cap_systems
         for (int i = 0; i < NO_SYSTEMS; i++) {
@@ -97,13 +118,6 @@ void already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int* alrea
             // If the array is not full and "input system" equal to the array system, counter = to the system place in the array (i)
             if (!full_data && strcmp(cap_systems[i].system_name, system) == 0){
                 *counter_cap = i;
-                break;
-            }
-        }
-        // Check if the cap_system is already calculator
-        for (int i = 0; i < NO_SYSTEMS; i++) {
-            if (strcmp(cap_systems[i].system_name, system) == 0 && (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0)) {
-                *already_calculated = 1;
                 break;
             }
         }

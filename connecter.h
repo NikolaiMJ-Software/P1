@@ -62,13 +62,13 @@ typedef struct candidates {
 
 //prototypes for all functions connecting them to the main and other c files
 int ScanData_TXT(int input_year, states* USA);
-char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int input_year, int uncapped, int states_abolished);
-char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished);
+char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped, int states_abolished, int from_compare_table);
+char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int uncapped, int states_abolished);
 char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
 char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
 char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progress, int counter_cap, int counter_uncap, int uncapped, int states_abolished);
-void already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int* already_calculated, int* counter_cap, int* counter_uncap, int uncapped);
-void Compare_table(cmp* cap_systems, cmp* uncap_systems, int all_systems);
+void Compare_table(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, int all_systems);
+void copy_systems_names(cmp* cap_systems, cmp* uncap_systems);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
 void wyoming_rule(int input_year,states* USA);
 void list_available_files(const char* directory);
