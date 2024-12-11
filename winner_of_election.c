@@ -38,8 +38,31 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             parameters(USA, candidate_list, input_year, states_abolished);
             return "Custom Done";
         } else if (strcmp(system, "ALL") == 0 && !states_abolished) {
-            //Compare_table(USA, candidate_list, cap_systems, uncap_systems, 1);
-            return "All systems";
+            char decide[4];
+            do {
+                printf("It could take up to 1 min, are you sure? (yes/no):");
+                scanf("%s", &decide);
+                printf("\n");
+                while (getchar() != '\n');
+                for (int i = 0; decide[i] != '\0'; i++) {
+                    decide[i] = tolower(decide[i]);
+                }
+            }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0 && strcmp(decide,"y") != 0 && strcmp(decide,"n") != 0);
+            // Exit the loop if the user chooses 'yes'
+            if (strcmp(decide,"yes") == 0 || strcmp(decide,"y") == 0) {
+                Compare_table(USA, candidate_list, cap_systems, uncap_systems, 1);
+                return "All systems";
+            } else {
+                // If "no/n", restart the prompt by continuing the loop
+                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor write 'INFO' for further information:\n");
+                scanf("%s", system);
+                // Convert system input to uppercase
+                for (int i = 0; system[i] != '\0'; i++) {
+                    system[i] = toupper(system[i]);
+                }
+                // Restart the while loop
+                continue;
+            }
         } else if (strcmp(system, "INFO") == 0) {
             // Print information links
             printf("Single Transferable Vote (STV): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n");
@@ -57,10 +80,11 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Error message if the system does not exist
             if (strcmp(system, "ALL") == 0 && states_abolished) {
                 printf("The chosen system 'All' is not possible when the states are abolished, try again.\n");
+                printf("Chose a new system: STV, PLPR, BC or Custom\nor write 'INFO' for further information:\n");
             } else {
                 printf("The chosen election system is not in the database, try again.\n");
+                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor write 'INFO' for further information:\n");
             }
-            printf("Chose a new system: STV, PLPR, BC, or Custom,\nor write 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
