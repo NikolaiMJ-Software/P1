@@ -3,7 +3,6 @@
 int main(void) {
     printUSA();
     const char* directory = "US_election_data";
-    int counter_CMP = -1;
     // Allocate memory for the array cap_systems
     cmp* cap_systems = malloc(NO_SYSTEMS * sizeof(cmp));
     if (cap_systems == NULL) {
@@ -81,16 +80,14 @@ int main(void) {
         }
 
         // Insert the year in the cmp system array, empty arrays if different year is entered
-        if (counter_CMP > 0 && cap_systems[0].year != input_year) {
+        if (cap_systems[0].year != input_year) {
             memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
             memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
             full_cap_systems = 0;
             full_uncap_systems = 0;
-            counter_CMP = 0;
             cap_systems[0].year = input_year;
         } else {
             cap_systems[0].year = input_year;
-            counter_CMP++;
         }
 
         // Allocate memory for the array candidate_list
@@ -162,9 +159,7 @@ int main(void) {
         // Determine the winner
         char* result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, input_year, uncapped, states_abolished);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
-        if (counter_CMP == 0) {
-            counter_CMP++;
-        }
+
         // User chose a new system
         printf("Chose a new system: STV, PLPR, BC, Custom,\nor write 'INFO' for further information:\n");
         scanf("%s", system);
