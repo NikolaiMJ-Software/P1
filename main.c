@@ -161,7 +161,7 @@ int main(void) {
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
 
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
+        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information:\n");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);

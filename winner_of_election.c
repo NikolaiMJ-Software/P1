@@ -14,7 +14,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         // Print an error message to the user, if uncap or cap system is already calculator
         if (already_calculated) {
             printf("The system '%s' has already been calculated\n", system);
-            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
+            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
@@ -54,7 +54,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
                 return "All systems";
             } else {
                 // If "no/n", restart the prompt by continuing the loop
-                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor write 'INFO' for further information:\n");
+                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor 'INFO' for further information:\n");
                 scanf("%s", system);
                 // Convert system input to uppercase
                 for (int i = 0; system[i] != '\0'; i++) {
@@ -71,7 +71,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             printf("Custom: Follow Gallagher and Mitchell core values\n");
             printf("All: Test all systems both cap and uncap\n\n");
             // Error message if the system does not exist
-            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor write 'INFO' for further information:\n");
+            printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information:\n");
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
                 system[i] = toupper(system[i]);
@@ -80,10 +80,10 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Error message if the system does not exist
             if (strcmp(system, "ALL") == 0 && states_abolished) {
                 printf("The chosen system 'All' is not possible when the states are abolished, try again.\n");
-                printf("Chose a new system: STV, PLPR, BC or Custom\nor write 'INFO' for further information:\n");
+                printf("Chose a new system: STV, PLPR, BC or Custom\nor 'INFO' for further information:\n");
             } else {
                 printf("The chosen election system is not in the database, try again.\n");
-                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor write 'INFO' for further information:\n");
+                printf("Chose a new system: STV, PLPR, BC, Custom or all\nor 'INFO' for further information:\n");
             }
             scanf("%s", system);
             for (int i = 0; system[i] != '\0'; i++) {
