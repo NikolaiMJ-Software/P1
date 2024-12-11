@@ -316,10 +316,11 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
 // Calculate missing systems
 void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems) {
     int uncapped = 0, states_abolished = 0;
-    // Calc EC if missing
+    // Rest electors to cap
     for(int i = 0; i<STATES; i++) {
         USA[i].electors = USA[i].original_electors;
     }
+    // Calc EC if missing
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
@@ -328,22 +329,23 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in cap_systems array
         if (cap_systems[i].DEM_electors == 0 && cap_systems[i].REP_electors == 0 && cap_systems[i].TP_electors == 0) {
+            // If cap system has a name and no electors, then simulate the system
             if (strlen(cap_systems[i].system_name) != 0) {
                 strcpy(system, cap_systems[i].system_name);
                 Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
             } else {
                 // Predefined order BC, PLPR, STV
                 const char* predefined_order[] = {"BC", "PLPR", "STV"};
-                int found = 0;
                 for (int j = 0; j < 3; j++) {
+                    int found = 0;
                     for (int k = 1; k <= i; k++) {
+                        // Check if a system name is already in the array
                         if (strcmp(cap_systems[k].system_name, predefined_order[j]) == 0) {
                             found = 1;
                             break;
-                        } else {
-                            found = 0;
                         }
                     }
+                    // If the system name is not found it will be simulated
                     if (!found) {
                         strcpy(system, predefined_order[j]);
                         Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
@@ -351,16 +353,17 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
                 }
             }
         }
-        // Reset system array
-        memset(system, 0, sizeof(system));
-        wyoming_rule(USA, cap_systems);
-        if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
-            uncapped = 1;
-            electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
-        }
+    }
+    // Uncap the electors
+    wyoming_rule(USA, cap_systems);
+    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
+        uncapped = 1;
+        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
+    }
+    for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in uncap_systems array
         if (uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
-            strcpy(system, uncap_systems[i].system_name);
+            strcpy(system, cap_systems[i].system_name);
             Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 1, states_abolished, 1);
         }
     }
