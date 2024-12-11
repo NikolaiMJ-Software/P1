@@ -322,6 +322,7 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
     }
     // Calc EC if missing
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
+        printf("Simulate election system (capped): %s\n", uncap_systems[0].system_name);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
 
@@ -348,6 +349,7 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
                     // If the system name is not found it will be simulated
                     if (!found) {
                         strcpy(system, predefined_order[j]);
+                        printf("Simulate election system (capped): %s\n", predefined_order[j]);
                         Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
                     }
                 }
@@ -356,14 +358,21 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
     }
     // Uncap the electors
     wyoming_rule(USA, cap_systems);
+    /* debug tool
+    for(int i = 0; i<STATES; i++) {
+        printf("state: %d, electors: %d, original electors: %d\n", i, USA[i].electors, USA[i].original_electors);
+    }
+    */
     if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
         uncapped = 1;
+        printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Locate and calculate missing systems in uncap_systems array
         if (uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
             strcpy(system, cap_systems[i].system_name);
+            printf("Simulate election system (uncapped): %s \n", uncap_systems[i].system_name);
             Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 1, states_abolished, 1);
         }
     }
