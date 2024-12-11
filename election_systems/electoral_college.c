@@ -1,12 +1,12 @@
 #include "../connecter.h"
 //simulates the standard US Electoral system
-char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int year, int uncapped, int states_abolished) {
+char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int uncapped, int states_abolished) {
     int electors = 0, democrats = 0, republicans = 0, third_party = 0;
     // Distribute the electors based on the highest percentage in the state
     for (int i = 0; i < STATES; i++) {
         electors += USA[i].electors;
         if (USA[i].dem_votes > USA[i].third_votes  && USA[i].dem_votes > USA[i].rep_votes) {
-            if (strcmp(USA[i].stateName,"Maine") == 0 && year == 2016) {
+            if (strcmp(USA[i].stateName,"Maine") == 0 && cap_systems[0].year == 2016) {
                 democrats += USA[i].electors;
                 democrats--;
                 republicans++;
@@ -14,7 +14,7 @@ char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int y
                 democrats += USA[i].electors;
             }
         } else if (USA[i].rep_votes > USA[i].third_votes) {
-            if (strcmp(USA[i].stateName,"Nebraska") == 0 && year == 2008) {
+            if (strcmp(USA[i].stateName,"Nebraska") == 0 && cap_systems[0].year == 2008) {
                 republicans += USA[i].electors;
                 republicans--;
                 democrats ++;
