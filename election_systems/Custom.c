@@ -509,7 +509,7 @@ void legitimacy_function(states* state, int legitimacy) {
     formatNumber(slightly_trusts, slightly_t_votes);
     formatNumber(somewhat_trusts, somewhat_t_votes);
     formatNumber(fully_trusts, fully_t_votes);
-    printf("\nIn the opposing parties, there are %s electors that don't trust the outcome,\n%s electors that only slightly trust it, %s electors that somewhat trust it,\nand %s electors that fully trust it.\n\n", doesnt_t_votes, slightly_t_votes, somewhat_t_votes, fully_t_votes);
+    printf("\nIn the opposing parties, there are %s voters that don't trust the outcome,\n%s voters that only slightly trust it, %s voters that somewhat trust it,\nand %s voters that fully trust it.\n\n", doesnt_t_votes, slightly_t_votes, somewhat_t_votes, fully_t_votes);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
 }
 // Helper function to format numbers with commas
