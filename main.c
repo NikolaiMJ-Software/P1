@@ -172,20 +172,19 @@ int main(void) {
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
 
-        // Compare the tested systems
-        if (strcmp(result, "Custom Done") != 0) {
-            if (!states_abolished) {
-                Compare_table(USA, candidate_list, cap_systems, uncap_systems, 0);
-            }
-        } else {
-            // Reset the 2 arrays if custom is activated
-            memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
-            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
-        }
-
         if (strcmp(result, "All systems") == 0) {
             // Nothing
         } else {
+            // Compare the tested systems
+            if (strcmp(result, "Custom Done") != 0) {
+                if (!states_abolished) {
+                    Compare_table(USA, candidate_list, cap_systems, uncap_systems, 0);
+                }
+            } else {
+                // Reset the 2 arrays if custom is activated
+                memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+                memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            }
             //ask the user if they wish to see the weight of their vote
             char decide[4];
             if (abolish_states_true[0] == 'n') {
@@ -203,7 +202,6 @@ int main(void) {
                     weight(USA);
                 }
             }
-
         }
         // Free Arrays
         free(USA);
