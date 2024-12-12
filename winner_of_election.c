@@ -7,7 +7,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;
         // Check if the election system has already been calculator, no need to double-check if Winner_of_election is called from_compare_table or states is abolished
         if (from_compare_table || states_abolished) {
-            // Nothing
+            states_abolished = 1;
         } else {
             already_calculated = already_calc(cap_systems, uncap_systems, system, uncapped);
         }
