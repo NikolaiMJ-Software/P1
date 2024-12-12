@@ -187,6 +187,7 @@ int main(void) {
             }
             //ask the user if they wish to see the weight of their vote
             char decide[4];
+            int first_run = 0;
             if (abolish_states_true[0] == 'n') {
                 do {
                     printf("Do you wish to see the weight of an electors vote? (yes/no):");
@@ -199,7 +200,8 @@ int main(void) {
                 }while (strcmp(decide,"yes") != 0 && strcmp(decide,"no") != 0 && strcmp(decide,"y") != 0 && strcmp(decide,"n") != 0);
                 // Exit the loop if the user chooses 'yes'
                 if (strcmp(decide,"yes") == 0 || strcmp(decide,"y") == 0) {
-                    weight(USA);
+                    weight(USA,&first_run);
+                    //first_run = 1;
                 }
             }
         }

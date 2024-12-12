@@ -74,7 +74,7 @@ void wyoming_rule(states* USA, cmp* cap_systems);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished);
-void weight(states* USA);
+void weight(states* USA, int *first_run);
 void abolish_states(states* USA);
 void printUSA();
 

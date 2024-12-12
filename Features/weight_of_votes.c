@@ -3,7 +3,8 @@
 
 void compare_weights(states* USA, double* stateweight);
 //Function to print the weight for an elector from each state
-void weight(states* USA) {
+void weight(states* USA, int* first_run) {
+
     if (USA == NULL) {
         printf("Error: USA array is NULL.\n");
         return;
@@ -15,8 +16,11 @@ void weight(states* USA) {
 
     printf("\nEach state has a given number of electors for the Electoral College. This number is decided by the state's population,  where each state has at least three electors (two from Senators).\n"
            "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight with   weight being defined as population divided by the amount of electors in the state:\n\n");
-
-    sleep(10);
+    if (first_run == 0) {
+        sleep(10);
+    } else {
+//nothing
+    }
     // Calculate weights and validate data
 
     for (int i = 0; i < STATES; i++) {
@@ -49,7 +53,7 @@ void weight(states* USA) {
 
     printf("||--------------------------------------------------------------------------------------------------------||\n");
     printf("\nWeight represents the number of voters each elector represents. Percentage shows each state's contribution to the total Electoral College.\n\n");
-    sleep(3);
+    *first_run = 1;
 }
 
 void compare_weights(states* USA, double* stateweight) {
