@@ -7,12 +7,12 @@ void test_do_next_op_case3(void) {
     int counter_CMP = 0;
     states USA[STATES];
     cmp cap_systems[3];
-    cmp* uncap_systems[3];
+    cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
     // Populate the USA array
     ScanData_TXT(2016, USA);
     // Call PLPR with the populated dataset
-    char* result = PLPR(USA, cap_systems,  uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
+    char* result = PLPR(USA, cap_systems, uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
 
     // Check if result is not NULL
     assert(result != NULL);
@@ -32,7 +32,7 @@ void test_do_next_op_case4(void) {
     int counter_CMP = 0;
     states USA[STATES];
     cmp cap_systems[3];
-    cmp* uncap_systems[3];
+    cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
 
     // Populate the USA array
@@ -59,12 +59,12 @@ void test_do_next_op_case5(void) {
     int counter_CMP = 0;
     states USA[STATES];
     cmp cap_systems[3];
-    cmp* uncap_systems[3];
+    cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
-
+    cap_systems[0].year = 2016;
     // Populate the USA array
     ScanData_TXT(2016, USA);
-    wyoming_rule(2016, USA);
+    wyoming_rule(USA,cap_systems);
 
     // Call PLPR with the populated dataset
     char* result = PLPR(USA, cap_systems,  uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
@@ -86,12 +86,12 @@ void test_do_next_op_case6(void) {
     int counter_CMP = 0;
     states USA[STATES];
     cmp cap_systems[3];
-    cmp* uncap_systems[3];
+    cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
-
+    cap_systems[0].year = 2024;
     // Populate the USA array
     ScanData_TXT(2024, USA);
-    wyoming_rule(2024, USA);
+    wyoming_rule(USA, cap_systems);
 
     // Call PLPR with the populated dataset
     char* result = PLPR(USA, cap_systems,  uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);

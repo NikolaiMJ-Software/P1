@@ -5,7 +5,7 @@ void test_do_next_op_case11(void) {
     int activate_progress = false;
     int counter_CMP = 0;
     states USA[STATES];
-    cmp* uncap_systems[3];
+    cmp uncap_systems[3];
     cmp cap_systems[3];
 
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
@@ -66,10 +66,10 @@ void test_do_next_op_case13(void) {
     cmp cap_systems[3];
     cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
-
+    cap_systems[0].year = 2016;
     // Populate the USA array
     ScanData_TXT(2016, USA);
-    wyoming_rule(2016, USA);
+    wyoming_rule(USA,cap_systems);
 
     // Call STV with the populated dataset
     char* result = BC(USA, cap_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, uncapped, states_abolished);
@@ -95,10 +95,10 @@ void test_do_next_op_case14(void) {
     cmp cap_systems[3];
     cmp uncap_systems[3];
     int states_abolished = 0, uncapped = 0,counter_cap = 0, counter_uncap = 0;
-
+    cap_systems[0].year = 2024;
     // Populate the USA array
     ScanData_TXT(2024, USA);
-    wyoming_rule(2024, USA);
+    wyoming_rule(USA,cap_systems);
 
     // Call STV with the populated dataset
     char* result = BC(USA, cap_systems, uncap_systems, activate_progress, counter_cap, counter_uncap, uncapped, states_abolished);
