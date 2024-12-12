@@ -102,7 +102,7 @@ int main(void) {
         //Uncapping the US Electoral College
         while (1) {
             fflush(stdin);
-            printf("Would you like to uncap the Electoral College from its current 538 electors? (yes/no)\n");
+            printf("Would you like to uncap the Electoral College (EC) from its current 538 electors? (yes/no)\n");
 
             //Checking for faulty input
             if (fgets(wyoming_rule_true, sizeof(wyoming_rule_true), stdin) == NULL) {

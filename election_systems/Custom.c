@@ -7,6 +7,7 @@ void comprehensibility_function(states state, int comprehensibility, int year);
 void minority_and_proportionality_function(states state, double minority_proportionality);
 void personalization_function(states* state, candidates* candidate_list, int personalization);
 void legitimacy_function(states* state, int legitimacy);
+void formatNumber(int number, char* buffer);
 int dem_electors, rep_electors, third_electors, temp_state_third_votes, fully_trusts, somewhat_trusts, slightly_trusts, doesnt_trust;
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
@@ -358,10 +359,16 @@ void personalization_function(states* state, candidates* candidate_list, int per
                 }
             }
         }
+        // Buffers to hold formatted numbers
+        char formatted_p_votes[30] = "";
+        char formatted_vp_votes[30] = "";
+        // Return voters with commas
+        formatNumber(max_p_votes, formatted_p_votes);
+        formatNumber(max_vp_votes, formatted_vp_votes);
         // Display results
         printf("Election Results:\n");
-        printf("Presidential Winner: %s with %d votes\n", President->name, max_p_votes);
-        printf("Vice Presidential Winner: %s with %d votes\n", Vice_President->name, max_vp_votes);
+        printf("Presidential Winner: %s with %s votes\n", President->name, formatted_p_votes);
+        printf("Vice Presidential Winner: %s with %s votes\n", Vice_President->name, formatted_vp_votes);
     }
 }
 
@@ -486,12 +493,39 @@ void legitimacy_function(states* state, int legitimacy) {
 
     //Lastly we have a summary of the data from all states, and the data from this function, that are shown to the user.
     if (dem_electors > rep_electors && dem_electors > third_electors) {
-        printf("This democratic president won with %d of the electors", dem_electors);
+        printf("This democratic president won with %d electors", dem_electors);
     } else if (rep_electors > dem_electors && rep_electors > third_electors) {
-        printf("This republican president won with %d of the electors", rep_electors);
+        printf("This republican president won with %d electors", rep_electors);
     } else if (third_electors > dem_electors && third_electors > rep_electors) {
-        printf("This third party president won with %d of the electors", third_electors);
+        printf("This third party president won with %d electors", third_electors);
     }
-    printf("\nIn the opposing parties, there are %u that don't trust the outcome, %u that only slightly trust it, %u that somewhat trust it, and %u that fully trust it\n\n", doesnt_trust, slightly_trusts, somewhat_trusts, fully_trusts);
+    // Buffers to hold formatted numbers
+    char doesnt_t_votes[30] = "";
+    char slightly_t_votes[30] = "";
+    char somewhat_t_votes[30] = "";
+    char fully_t_votes[30] = "";
+    // Return voters with commas
+    formatNumber(doesnt_trust, doesnt_t_votes);
+    formatNumber(slightly_trusts, slightly_t_votes);
+    formatNumber(somewhat_trusts, somewhat_t_votes);
+    formatNumber(fully_trusts, fully_t_votes);
+    printf("\nIn the opposing parties, there are %s electors that don't trust the outcome,\n%s electors that only slightly trust it, %s electors that somewhat trust it,\nand %s electors that fully trust it.\n\n", doesnt_t_votes, slightly_t_votes, somewhat_t_votes, fully_t_votes);
     // https://www.pewresearch.org/politics/2024/11/22/americans-feelings-about-the-state-of-the-nation-reactions-to-the-2024-election/
+}
+// Helper function to format numbers with commas
+void formatNumber(int number, char* buffer) {
+    char temp[20];
+    // Convert the number to a string
+    sprintf(temp, "%d", number);
+    int len = strlen(temp);
+    // Check if buffer is large enough
+    buffer[0] = '\0';
+    int tempIndex = 0, bufferIndex = 0;
+    // Loop to copy characters and insert commas
+    for (int i = 0; i < len; i++) {
+        if (i > 0 && (len - i) % 3 == 0) {
+            buffer[bufferIndex++] = ',';
+        }
+        buffer[bufferIndex++] = temp[tempIndex++];
+    }
 }
