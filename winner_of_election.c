@@ -67,7 +67,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
             // Print information links
             printf("Single Transferable Vote (STV): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/single-transferable-vote/\n");
             printf("Party List Proportional Representation (PLPR): https://www.electoral-reform.org.uk/voting-systems/types-of-voting-system/party-list-pr/\n");
-            printf("Borda Count (BC): https://crawford.anu.edu.au/pdf/staff/ben_reilly/ReillyB_05.pdf\n");
+            printf("Borda Count (BC): https://journals.sagepub.com/doi/epdf/10.1177/0192512102023004002\n");
             printf("Custom: Follow Gallagher and Mitchell core values\n");
             printf("All: Test all systems both cap and uncap\n\n");
             // Error message if the system does not exist
