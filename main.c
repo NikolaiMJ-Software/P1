@@ -172,6 +172,17 @@ int main(void) {
             printf("The winner was the %s, with the %s system.\n\n", result, system);
         }
 
+        // Compare the tested systems
+        if (strcmp(result, "Custom Done") != 0) {
+            if (!states_abolished) {
+                Compare_table(USA, candidate_list, cap_systems, uncap_systems, 0);
+            }
+        } else {
+            // Reset the 2 arrays if custom is activated
+            memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+            memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
+        }
+
         if (strcmp(result, "All systems") == 0) {
             // Nothing
         } else {
@@ -192,16 +203,7 @@ int main(void) {
                     weight(USA);
                 }
             }
-            // Compare the tested systems
-            if (strcmp(result, "Custom Done") != 0) {
-                if (!states_abolished) {
-                    Compare_table(USA, candidate_list, cap_systems, uncap_systems, 0);
-                }
-            } else {
-                // Reset the 2 arrays if custom is activated
-                memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
-                memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
-            }
+
         }
         // Free Arrays
         free(USA);
