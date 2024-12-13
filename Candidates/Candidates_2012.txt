@@ -1,6 +1,12 @@
 Republican, Mitt Romney, President, 100, 0
 Republican, Paul Ryan, Vice_President, 0, 100
+Republican, Dummy Candidate1, President, 0, 0
+Republican, Dummy Candidate2, Vice_President, 0, 0
 Democratic, Barack Obama, President, 100, 0
 Democratic, Joe Biden, Vice_President, 0, 100
+Democratic, Dummy Candidate1, President, 0, 0
+Democratic, Dummy Candidate2, Vice_President, 0, 0
 Third_Party, Gary Johnson, President, 100, 0
 Third_Party, Honkala Stein, Vice_President, 0, 100
+Third_Party, Dummy Candidate1, President, 0, 0
+Third_Party, Dummy Candidate2, Vice_President, 0, 0
