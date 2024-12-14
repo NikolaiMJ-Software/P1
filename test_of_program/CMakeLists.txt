@@ -19,6 +19,8 @@ target_sources(run_test PRIVATE
         ../Features/Wyoming_Rule.c
         ../election_systems/STV.c
         ../election_systems/BC.c
+        ../election_systems/PLPR.c
+        ../Features/monte_carlo.c
         ../Features/copy_systems_names.c
         ../Features/format_number.c)
 #target_sources(run_test PRIVATE ../wyoming_rule.c )
