@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <dirent.h>
+#include <time.h>
 
 // Creation of the states struct
 typedef struct states {
@@ -79,7 +80,9 @@ int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished);
 void weight(states* USA, int *first_run);
 void abolish_states(states* USA);
+void format_number(int number, char* buffer);
 void printUSA();
+
 
 
 #endif //SCAN_DATA_TXT_H

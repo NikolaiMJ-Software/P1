@@ -46,9 +46,19 @@ void weight(states* USA, int* first_run) {
 
     // Print the sorted states and their weights
     for (int i = 0; i < STATES; i++) {
+        // Convert double array to int array
+        int int_stateweight = (int)stateweight[i];
+        int int_pop= USA[i].population;
+        // Buffers to hold formatted numbers
+        char weight[30] = "";
+        char pop[30] = "";
+        // Return voters with commas
+        format_number(int_stateweight, weight);
+        format_number(int_pop, pop);
+
         double statePercentage = (double)USA[i].electors / totalElectors * 100;
-        printf("||%-20s: Weight = %8.0f,       Electors = %2d (%5.2f%% of total),  Population = %9d ||\n",
-               USA[i].stateName, stateweight[i], USA[i].electors, statePercentage, USA[i].population);
+        printf("||%-20s: Weight = %s,       Electors = %2d (%5.2f%% of total),  Population = %10s ||\n",
+               USA[i].stateName, weight, USA[i].electors, statePercentage, pop);
     }
 
     printf("||--------------------------------------------------------------------------------------------------------||\n");

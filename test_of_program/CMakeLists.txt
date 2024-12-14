@@ -15,9 +15,10 @@ add_test(NAME run_test COMMAND run_test)
 # Link the test executable to the necessary source files from the main project
 target_sources(run_test PRIVATE
         ../US_election_data/scan_data.c
-                ../connecter.h
+        ../connecter.h
         ../Features/Wyoming_Rule.c
-                ../election_systems/STV.c
-                ../election_systems/BC.c
-                ../Features/copy_systems_names.c)
+        ../election_systems/STV.c
+        ../election_systems/BC.c
+        ../Features/copy_systems_names.c
+        ../Features/format_number.c)
 #target_sources(run_test PRIVATE ../wyoming_rule.c )

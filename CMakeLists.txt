@@ -21,6 +21,7 @@ add_executable(P1 main.c
         Features/abolish_states.c
         Features/printUSA.c
         Features/copy_systems_names.c
+        Features/format_number.c
 )
 
 # Add the test directory

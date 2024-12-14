@@ -265,7 +265,7 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
     // Cap TP
     char empty[1] = {'\0'};
     if (counter_cap == 0) {
-        printf("Third party electors: %40s", empty);
+        printf("Third party electors: %37s", empty);
     } else {
         printf("Third party electors: %s%3d\033[0m ", cap_systems[0].TP_color, cap_systems[0].TP_electors);
         for (int i = 1; i <= counter_cap; i++) {
