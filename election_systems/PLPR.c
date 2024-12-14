@@ -1,6 +1,5 @@
 #include "../connecter.h"
-
-//simulate the party list proportional representation system from Norway (PLPR)
+// Simulate the party list proportional representation system from Norway (PLPR)
 char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap, int uncapped, int states_abolished) {
     int democrats = 0, republicans = 0, third_party = 0;
     int total_electors_us = 0;
@@ -27,13 +26,13 @@ char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, i
 
             if (dem_quotient >= rep_quotient && dem_quotient >= tp_quotient) {
                 electors_dem++;
-                k_dem += 2; //divisor Increase
+                k_dem += 2; // Divisor Increase
             } else if (rep_quotient >= dem_quotient && rep_quotient >= tp_quotient) {
                 electors_rep++;
-                k_rep += 2; // divisor Increase
+                k_rep += 2; // Divisor Increase
             } else {
                 electors_tp++;
-                k_tp += 2; // divisor Increase
+                k_tp += 2; // Divisor Increase
             }
 
             total_electors--; // Decrement remaining electors
@@ -74,5 +73,4 @@ char* PLPR(states* USA, cmp* cap_systems, cmp* uncap_systems, int counter_cap, i
     } else {
         return "Tie";
     }
-
 }

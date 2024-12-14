@@ -1,8 +1,6 @@
 #include "../connecter.h"
-#include <stdio.h>
-
 void compare_weights(states* USA, double* stateweight);
-//Function to print the weight for an elector from each state
+// Function to print the weight for an elector from each state
 void weight(states* USA, int* first_run) {
 
     if (USA == NULL) {
@@ -13,13 +11,12 @@ void weight(states* USA, int* first_run) {
     double stateweight[STATES];
     int totalElectors = 0;
 
-
     printf("\nEach state has a given number of electors for the Electoral College. This number is decided by the state's population,  where each state has at least three electors (two from Senators).\n"
            "But what is the weight of the votes for each state? That can be observed below, sorted from most to least weight with   weight being defined as population divided by the amount of electors in the state:\n\n");
     if (first_run == 0) {
         sleep(10);
     } else {
-//nothing
+    // Nothing
     }
     // Calculate weights and validate data
 

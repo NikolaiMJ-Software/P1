@@ -1,7 +1,6 @@
 #include "connecter.h"
 void calc_counter(cmp* cap_systems, cmp* uncap_systems, char* system, int* counter_cap, int* counter_uncap, int uncapped);
 int already_calc(cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped);
-
 char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped, int states_abolished, int from_compare_table) {
     while(true) {
         int already_calculated = 0, counter_cap = 0, counter_uncap = 0;

@@ -1,5 +1,4 @@
 #include "../connecter.h"
-#include <time.h>
 #define N_OF_SIMULATIONS 10
 #define PERCENT 40 // The chance a DEM will vote for a REP, and the opposite, as second preference
 void MC_all(int old_DEM_votes, int old_REP_votes, int old_TP_votes, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);

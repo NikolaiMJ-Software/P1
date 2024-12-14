@@ -1,6 +1,5 @@
 #include "../connecter.h"
 #include <assert.h>
-
 void test_do_next_op_case7(void) {
     int activate_progress = false;
     int counter_CMP = 0;
@@ -25,7 +24,6 @@ void test_do_next_op_case7(void) {
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
     assert(cap_systems[counter_CMP].REP_electors == 251 && cap_systems[counter_CMP].DEM_electors == 258);
-
 
     printf("STV Test case 1 passed!\n");
 }

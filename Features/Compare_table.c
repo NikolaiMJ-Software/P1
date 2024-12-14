@@ -31,16 +31,16 @@ void Compare_table(states* USA, candidates* candidate_list, cmp* cap_systems, cm
     // Add colors to the winner of each system
     assign_cmp_colors(cap_systems, uncap_systems);
     // Print the Comparison table
-    // 0 line
+    // Line: 0
     printf("\n-----------------------------------Comparison table-----------------------------------\n");
-    // 1 line
+    // Line: 1
     cap_names(cap_systems, counter_cap);
     uncap_names(uncap_systems, counter_uncap);
-    // 2 line
+    // Line: 2
     line_DEM(cap_systems, uncap_systems, counter_cap, counter_uncap);
-    // 3 line
+    // Line: 3
     line_REP(cap_systems, uncap_systems, counter_cap, counter_uncap);
-    // 4 line
+    // Line: 4
     line_TP(cap_systems, uncap_systems, counter_cap, counter_uncap);
 }
 // Print spaces between systems name in comparison table, based on the simulated order. If the system has not been compare yet, it will not be printed.

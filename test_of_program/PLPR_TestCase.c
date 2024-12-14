@@ -1,8 +1,5 @@
 #include "../connecter.h"
-#include "../election_systems/PLPR.c"
-#include "../Features/monte_carlo.c"
 #include <assert.h>
-
 void test_do_next_op_case3(void) {
     int counter_CMP = 0;
     states USA[STATES];
@@ -106,7 +103,6 @@ void test_do_next_op_case6(void) {
     printf("Expected: '%s', Got: '%s'\n", expected_result, result);
     assert(strcmp(result, expected_result) == 0);
     assert(cap_systems[counter_CMP].REP_electors == 331 && cap_systems[counter_CMP].DEM_electors == 320);
-
 
     printf("PLPR Test case 4 passed!\n");
 }

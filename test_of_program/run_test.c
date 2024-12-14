@@ -1,30 +1,28 @@
 #include "../connecter.h"
-#include <assert.h>
-//scan_data
+// Scan_data
 void test_do_next_op_case1(void);
 void test_do_next_op_case2(void);
 
-//PLPR
+// PLPR
 void test_do_next_op_case3(void);
 void test_do_next_op_case4(void);
 void test_do_next_op_case5(void);
 void test_do_next_op_case6(void);
 
-//STV
+// STV
 void test_do_next_op_case7(void);
 void test_do_next_op_case8(void);
 void test_do_next_op_case9(void);
 void test_do_next_op_case10(void);
 
-//BC
+// BC
 void test_do_next_op_case11(void);
 void test_do_next_op_case12(void);
 void test_do_next_op_case13(void);
 void test_do_next_op_case14(void);
 
-
 int main(void) {
-    /* Kør alle test-funktioner. */
+    // Run all test functions
     printf("test of Scan Data function\n");
         test_do_next_op_case1();
         test_do_next_op_case2();
@@ -77,5 +75,3 @@ int main(void) {
     printf("All tests passed successfully!\n");
     return 0;
 }
-
-

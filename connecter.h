@@ -53,7 +53,7 @@ typedef enum {
     Both
 } Candidacy;
 
-//Creation of the candidates struct
+// Creation of the candidates struct
 typedef struct candidates {
     Party party;
     char name[NAME_LGT];
@@ -64,7 +64,7 @@ typedef struct candidates {
     int vp_votes;
 }candidates;
 
-//prototypes for all functions connecting them to the main and other c files
+// Prototypes for all functions connecting them to the main and other c files
 int ScanData_TXT(int input_year, states* USA);
 char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, char* system, int uncapped, int states_abolished, int from_compare_table);
 char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int uncapped, int states_abolished);
@@ -82,7 +82,4 @@ void weight(states* USA, int *first_run);
 void abolish_states(states* USA);
 void format_number(int number, char* buffer);
 void printUSA();
-
-
-
 #endif //SCAN_DATA_TXT_H

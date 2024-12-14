@@ -1,5 +1,5 @@
 #include "../connecter.h"
-//Print ascii art
+// Print ASCII art
 void printUSA() {
     printf("                     *******************************   \n");
     printf("                     *                             *   \n");

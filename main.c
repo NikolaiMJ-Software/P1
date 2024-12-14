@@ -1,5 +1,4 @@
 #include "connecter.h"
-
 int main(void) {
     printUSA();
     const char* directory = "US_election_data";
@@ -16,7 +15,7 @@ int main(void) {
         printf("Memory allocation failed!\n");
         exit (EXIT_FAILURE);
     }
-    // empty both arrays
+    // Empty both arrays
     memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
     memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
     while(true) {
@@ -42,11 +41,11 @@ int main(void) {
         int full_cap_systems = 0;
         int full_uncap_systems = 0;
         for (int i = 0; i < NO_SYSTEMS; i++) {
-            // cap_system
+            // Cap_system
             if (cap_systems[i].DEM_electors > 0 || cap_systems[i].REP_electors > 0 || cap_systems[i].TP_electors > 0) {
                 full_cap_systems++;
             }
-            // uncap system
+            // Uncap system
             if (uncap_systems[i].DEM_electors > 0 || uncap_systems[i].REP_electors > 0 || uncap_systems[i].TP_electors > 0) {
                 full_uncap_systems++;
             }
@@ -99,12 +98,12 @@ int main(void) {
 
         ScanCandidatesTXT(input_year ,candidate_list);
 
-        //Uncapping the US Electoral College
+        // Uncapping the US Electoral College
         while (1) {
             fflush(stdin);
             printf("Would you like to uncap the Electoral College (EC) from its current 538 electors? (yes/no)\n");
 
-            //Checking for faulty input
+            // Checking for faulty input
             if (fgets(wyoming_rule_true, sizeof(wyoming_rule_true), stdin) == NULL) {
                 printf("Error reading input. Please try again.\n");
                 continue;
@@ -118,7 +117,7 @@ int main(void) {
                 wyoming_rule_true[i] = tolower(wyoming_rule_true[i]);
             }
 
-            //Checking if input is valid, as well if its possible to uncap the system for that specific year
+            // Checking if input is valid, as well if its possible to uncap the system for that specific year
             if(strcmp(wyoming_rule_true, "yes") == 0 || strcmp(wyoming_rule_true, "y") == 0) {
                 if(full_uncap_systems == NO_SYSTEMS) {
                     printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
@@ -140,7 +139,7 @@ int main(void) {
             }
         }
         printf("\n");
-        //Disbanding all states, so the entire vote is only between the people instead of each state
+        // Disbanding all states, so the entire vote is only between the people instead of each state
         do {
             printf("Would you like to disband all states in the US? (yes/no)\n");
             scanf("%s", &abolish_states_true);
@@ -185,7 +184,7 @@ int main(void) {
                 memset(cap_systems, 0, NO_SYSTEMS * sizeof(cmp));
                 memset(uncap_systems, 0, NO_SYSTEMS * sizeof(cmp));
             }
-            //ask the user if they wish to see the weight of their vote
+            // Ask the user if they wish to see the weight of their vote
             char decide[4];
             int first_run = 0;
             if (abolish_states_true[0] == 'n') {
