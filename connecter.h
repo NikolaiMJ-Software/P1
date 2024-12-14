@@ -33,6 +33,9 @@ typedef struct cmp {
     int REP_electors;
     int TP_electors;
     int year;
+    char DEM_color[10];
+    char REP_color[10];
+    char TP_color[10];
 }cmp;
 
 // Enum for allowed party values
