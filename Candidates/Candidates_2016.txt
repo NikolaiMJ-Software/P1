@@ -1,6 +1,12 @@
 Republican, Donald Trump, President, 100, 0
 Republican, Mike Pence, Vice_President, 0, 100
+Republican, Dummy Candidate1, President, 0, 0
+Republican, Dummy Candidate2, Vice_President, 0, 0
 Democratic, Hillary Clinton, President, 100, 0
 Democratic, Tim Kaine, Vice_President, 0, 100
+Democratic, Dummy Candidate1, President, 0, 0
+Democratic, Dummy Candidate2, Vice_President, 0, 0
 Third_Party, Gary Johnson, President, 100, 0
 Third_Party, Jill Stein, Vice_President, 0, 100
+Third_Party, Dummy Candidate1, President, 0, 0
+Third_Party, Dummy Candidate2, Vice_President, 0, 0

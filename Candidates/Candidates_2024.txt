@@ -1,6 +1,12 @@
 Republican, Donald Trump, President, 100, 0
 Republican, JD Vance, Vice_President, 0, 100
+Republican, Dummy Candidate1, President, 0, 0
+Republican, Dummy Candidate2, Vice_President, 0, 0
 Democratic, Kamala Harris, President, 100, 0
 Democratic, Tim Walz, Vice_President, 0, 100
+Democratic, Dummy Candidate1, President, 0, 0
+Democratic, Dummy Candidate2, Vice_President, 0, 0
 Third_Party, Cornel West, President, 100, 0
 Third_Party, Jill Stein, Both, 0, 100
+Third_Party, Dummy Candidate1, President, 0, 0
+Third_Party, Dummy Candidate2, Vice_President, 0, 0
