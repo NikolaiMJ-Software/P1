@@ -21,8 +21,11 @@ void test_do_next_op_case12(void);
 void test_do_next_op_case13(void);
 void test_do_next_op_case14(void);
 
+
 int main(void) {
     // Run all test functions
+    printf("Initiating test functions\n");
+    printf("----------------------------------------\n");
     printf("test of Scan Data function\n");
         test_do_next_op_case1();
         test_do_next_op_case2();
@@ -30,44 +33,44 @@ int main(void) {
     printf("----------------------------------------\n");
 
     printf("test of the PLPR function\n");
-    printf("PLPR case 1: (2016 capped)\n");
+    printf("---PLPR case 1: (2016 capped)---\n");
         test_do_next_op_case3();
-    printf("\nPLPR case 2: (2024 capped)\n");
+    printf("\n---PLPR case 2: (2024 capped)---\n");
         test_do_next_op_case4();
-    printf("\nPLPR case 3: (2016 uncapped)\n");
+    printf("\n---PLPR case 3: (2016 uncapped)---\n");
         test_do_next_op_case5();
-    printf("\nPLPR case 4: (2024 uncapped)\n");
+    printf("\n---PLPR case 4: (2024 uncapped)---\n");
         test_do_next_op_case6();
     printf("\nAll PLPR tests passed successfully!\n");
     printf("----------------------------------------\n");
 
     printf("test of the STV function\n");
-    printf("STV case 1: (2016 capped)\n");
+    printf("---STV case 1: (2016 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case7();
-    printf("\nSTV case 2: (2024 capped)\n");
+    printf("\n---STV case 2: (2024 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case8();
-    printf("\nSTV case 3: (2016 uncapped)\n");
+    printf("\n---STV case 3: (2016 uncapped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case9();
-    printf("\nSTV case 4: (2024 uncapped)\n");
+    printf("\n---STV case 4: (2024 uncapped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case10();
     printf("\nAll STV tests passed successfully!\n");
     printf("----------------------------------------\n");
 
     printf("test of the BC function\n");
-    printf("BC case 1: (2016 capped)\n");
+    printf("---BC case 1: (2016 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case11();
-    printf("\nBC case 2: (2024 capped)\n");
+    printf("\n---BC case 2: (2024 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case12();
-    printf("\nBC case 3: (2016 uncapped)\n");
+    printf("\n---BC case 3: (2016 uncapped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case13();
-    printf("\nBC case 4: (2024 uncapped)\n");
+    printf("\n---BC case 4: (2024 uncapped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case14();
     printf("\nAll BC tests passed successfully!\n");
@@ -75,3 +78,5 @@ int main(void) {
     printf("All tests passed successfully!\n");
     return 0;
 }
+
+
