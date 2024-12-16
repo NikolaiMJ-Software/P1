@@ -101,7 +101,7 @@ int main(void) {
         // Uncapping the US Electoral College
         while (1) {
             fflush(stdin);
-            printf("Would you like to uncap the Electoral College (EC) from its current 538 electors? (yes/no)\n");
+            printf("Would you like to uncap the Electoral College (EC) from its current 538 electors? (yes/no): ");
 
             // Checking for faulty input
             if (fgets(wyoming_rule_true, sizeof(wyoming_rule_true), stdin) == NULL) {
@@ -141,7 +141,7 @@ int main(void) {
         printf("\n");
         // Disbanding all states, so the entire vote is only between the people instead of each state
         do {
-            printf("Would you like to disband all states in the US? (yes/no)\n");
+            printf("Would you like to disband all states in the US? (yes/no): ");
             scanf("%s", &abolish_states_true);
             printf("\n");
             // Clear the input buffer to handle invalid input
@@ -189,7 +189,7 @@ int main(void) {
             int first_run = 0;
             if (abolish_states_true[0] == 'n') {
                 do {
-                    printf("Do you wish to see the weight of an electors vote? (yes/no):");
+                    printf("Do you wish to see the weight of an electors vote? (yes/no): ");
                     scanf("%s", &decide);
                     printf("\n");
                     while (getchar() != '\n');
@@ -211,7 +211,7 @@ int main(void) {
         // Ask the user if they want to end the program
         char choice[4];
         do {
-            printf("Do you want to end the program? (yes/no):\n");
+            printf("Do you want to end the program? (yes/no): ");
             scanf("%s", &choice);
             printf("\n");
 
@@ -224,6 +224,7 @@ int main(void) {
         // Exit the loop if the user chooses 'yes'
         if (strcmp(choice,"yes") == 0 || strcmp(choice,"y") == 0) {
             printf("Exiting the program. Goodbye!\n");
+            sleep(2);
             break;
         }
     }

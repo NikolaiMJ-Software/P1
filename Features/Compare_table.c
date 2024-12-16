@@ -301,6 +301,8 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
     }
     char system[5] = {'\0'};
     for (int i = 1; i < NO_SYSTEMS; i++) {
+        // Rest data and call from txt again
+        ScanData_TXT(cap_systems[0].year, USA);
         // Locate and calculate missing systems in cap_systems array
         if (cap_systems[i].DEM_electors == 0 && cap_systems[i].REP_electors == 0 && cap_systems[i].TP_electors == 0) {
             // If cap system has a name and no electors, then simulate the system

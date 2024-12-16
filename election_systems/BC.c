@@ -10,9 +10,10 @@ char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progres
 
     // Print a wait message to the user when the states is abolished
     if (states_abolished) {
-        printf("Please wait...\n");
+        printf("\nPlease wait...");
+    } else {
+        printf("\n");
     }
-
     for (int i = 0; i < STATES; i++) {
         int total_votes = USA[i].dem_votes + USA[i].rep_votes + USA[i].third_votes;
 
@@ -54,7 +55,6 @@ char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progres
             printf("\rProgress: %d%%", percentage);
         }
     }
-    printf("\n");
 
     // Adjust missing electors using largest remainder method
     int missing_electors = total_electors - (allocated_dem_electors + allocated_rep_electors + allocated_tp_electors);
@@ -73,7 +73,7 @@ char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progres
     }
 
     // Print results
-    printf("\nDemocrat electors: %d\n", allocated_dem_electors);
+    printf("\n\nDemocrat electors: %d\n", allocated_dem_electors);
     printf("Republican electors: %d\n", allocated_rep_electors);
     printf("Third party electors: %d\n\n", allocated_tp_electors);
     // Save the electors in the cmp systems array

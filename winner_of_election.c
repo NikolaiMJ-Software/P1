@@ -39,7 +39,7 @@ char* Winner_of_election(states* USA, candidates* candidate_list, cmp* cap_syste
         } else if (strcmp(system, "ALL") == 0 && !states_abolished) {
             char decide[4];
             do {
-                printf("It could take up to 1 min, are you sure? (yes/no):");
+                printf("It can take up to several minutes, are you sure? (yes/no):");
                 scanf("%s", &decide);
                 printf("\n");
                 while (getchar() != '\n');

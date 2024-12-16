@@ -38,7 +38,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     while(1) {
         fflush(stdout);
         char input[10];
-        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no):\n");
+        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no): ");
         scanf("%s", &input);
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);

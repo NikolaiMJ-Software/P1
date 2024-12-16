@@ -12,9 +12,10 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
 
     // Print a wait message to the user when the states is abolished
     if (states_abolished) {
-        printf("Please wait...\n");
+        printf("\nPlease wait...");
+    } else {
+        printf("\n");
     }
-
     for (int i = 0; i < STATES; i++) {
         // Firstly we initialize the votes from each state, so we can work with them.
         state_third_party_votes = USA[i].third_votes;
@@ -102,7 +103,7 @@ char* STV(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progre
         }
     }
     // Print the electors for each party
-    printf("\nDemocrat electors: %d\n", dem_electors);
+    printf("\n\nDemocrat electors: %d\n", dem_electors);
     printf("Republican electors: %d\n", rep_electors);
     printf("Third party electors: %d\n\n", tp_electors);
     // Save the electors in the cmp systems array
