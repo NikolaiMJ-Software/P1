@@ -14,20 +14,20 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     double minority_proportionality = 0;
 
     // Data regarding every variable which is gotten from the user.
-    printf("You have chosen to customize the US Electoral System\n");
+    printf("\nYou have chosen to customize the US Electoral System.\n");
     while(1) {
         fflush(stdout);
-        printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters:\n");
+        printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters: ");
         if (scanf("%d", &comprehensibility) == 1 && comprehensibility >= 0 && comprehensibility <= 100) {
             break;
         } else {
-            printf("Invalid input try again!\n");
+            printf("Invalid input try again!\n\n");
             while (getchar() != '\n'); // Clear input buffer
         }
     }
     while(1) {
         fflush(stdout);
-        printf("Now to choose how proportional your system will be, choose an int between 0-100 (base is 0):\n");
+        printf("\nNow to choose how proportional your system will be, choose an int between 0-100 (base is 0): ");
         if (scanf("%lf", &minority_proportionality) == 1 && minority_proportionality >= 0 && minority_proportionality <= 100) {
             break;
         } else {
@@ -38,7 +38,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     while(1) {
         fflush(stdout);
         char input[10];
-        printf("Now choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no): ");
+        printf("\nNow choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no): ");
         scanf("%s", &input);
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);
@@ -56,7 +56,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     }
     while(1) {
         fflush(stdout);
-        printf("Lastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50):\n");
+        printf("\nLastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50): ");
         if (scanf("%d", &legitimacy) == 1 && legitimacy >= 0 && legitimacy <= 100) {
             break;
         } else {
@@ -64,6 +64,7 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
             while (getchar() != '\n'); // Clear input buffer
         }
     }
+    printf("\n");
 
     // The main function then calls each of the functions.
     for (int i = 0; i<STATES; i++) {
@@ -182,7 +183,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     president = candidate_list[i].name;
                     vice_president = candidate_list[i+1].name;
                     printf("The new President of the United States is: %s\n", president);
-                    printf("The New Vice-President of the United States is: %s\n", vice_president);
+                    printf("The New Vice-President of the United States is: %s\n\n", vice_president);
                     break;
                 }
             }
@@ -193,7 +194,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     president = candidate_list[i].name;
                     vice_president = candidate_list[i+1].name;
                     printf("The new President of the United States is: %s\n", president);
-                    printf("The New Vice-President of the United States is: %s\n", vice_president);
+                    printf("The New Vice-President of the United States is: %s\n\n", vice_president);
                     break;
                 }
             }
@@ -204,7 +205,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
                     president = candidate_list[i].name;
                     vice_president = candidate_list[i+1].name;
                     printf("The new President of the United States is: %s\n", president);
-                    printf("The New Vice-President of the United States is: %s\n", vice_president);
+                    printf("The New Vice-President of the United States is: %s\n\n", vice_president);
                     break;
                 }
             }
@@ -358,8 +359,8 @@ void personalization_function(states* state, candidates* candidate_list, int per
         format_number(max_vp_votes, formatted_vp_votes);
         // Display results
         printf("Election Results:\n");
-        printf("Presidential Winner: %s with %s votes\n", President->name, formatted_p_votes);
-        printf("Vice Presidential Winner: %s with %s votes\n", Vice_President->name, formatted_vp_votes);
+        printf("Presidential Winner: %s with %s votes.\n", President->name, formatted_p_votes);
+        printf("Vice Presidential Winner: %s with %s votes.\n\n", Vice_President->name, formatted_vp_votes);
     }
 }
 
@@ -478,11 +479,11 @@ void legitimacy_function(states* state, int legitimacy) {
 
     // Lastly we have a summary of the data from all states, and the data from this function, that are shown to the user.
     if (dem_electors > rep_electors && dem_electors > third_electors) {
-        printf("This democratic president won with %d electors", dem_electors);
+        printf("This democratic president won with %d electors.", dem_electors);
     } else if (rep_electors > dem_electors && rep_electors > third_electors) {
-        printf("This republican president won with %d electors", rep_electors);
+        printf("This republican president won with %d electors.", rep_electors);
     } else if (third_electors > dem_electors && third_electors > rep_electors) {
-        printf("This third party president won with %d electors", third_electors);
+        printf("This third party president won with %d electors.", third_electors);
     }
     // Buffers to hold formatted numbers
     char doesnt_t_votes[30] = "";

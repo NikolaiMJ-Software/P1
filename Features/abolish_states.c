@@ -3,7 +3,7 @@ void abolish_states(states* USA){
   // Make a new temp list
   states* one_state = malloc(STATES*sizeof(states));
   if (!one_state) {
-    fprintf(stderr, "Memory allocation failed\n");
+    fprintf(stderr, "Memory allocation failed.\n");
     return;
   }
   // Define all values in list as 0 or empty, except for stateName[0]

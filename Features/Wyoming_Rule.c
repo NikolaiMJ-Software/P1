@@ -15,6 +15,6 @@ void wyoming_rule(states* USA, cmp* cap_systems, int from_compare_table) {
     // Return voters with commas
     format_number(total_population, tot_pop);
     if (!from_compare_table) {
-        printf("The total population for the dataset %d: %s people, which means the new electoral college has %d electors\n", cap_systems[0].year, tot_pop, new_total_elector_count);
+        printf("The total population for the dataset %d: %s people, which means the new electoral college has %d electors.\n", cap_systems[0].year, tot_pop, new_total_elector_count);
     }
 }

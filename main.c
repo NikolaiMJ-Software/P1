@@ -67,7 +67,7 @@ int main(void) {
             printf("\n");
             // If year already simulated and the comparison is full, user try again
             if (input_year == cap_systems[0].year && full_cap_systems == NO_SYSTEMS && full_uncap_systems == NO_SYSTEMS) {
-                printf("The year %d has already been simulated.\n", input_year);
+                printf("The year %d has just been simulated.\n", input_year);
                 continue;
             }
             // Check if the year is part of the files
@@ -121,7 +121,7 @@ int main(void) {
             // Checking if input is valid, as well if its possible to uncap the system for that specific year
             if(strcmp(wyoming_rule_true, "yes") == 0 || strcmp(wyoming_rule_true, "y") == 0) {
                 if(full_uncap_systems == NO_SYSTEMS) {
-                    printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
+                    printf("Your choice '%s' has already been simulated for all systems.\n", wyoming_rule_true);
                     continue;
                 }else {
                     wyoming_rule(USA, cap_systems, 0);
@@ -130,7 +130,7 @@ int main(void) {
                 }
             } else if (strcmp(wyoming_rule_true, "no") == 0 || strcmp(wyoming_rule_true, "n") == 0) {
                 if (full_cap_systems == NO_SYSTEMS) {
-                    printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
+                    printf("Your choice '%s' has already been simulated for all systems.\n", wyoming_rule_true);
                     continue;
                 }else {
                     break;

@@ -24,15 +24,15 @@ void test_do_next_op_case14(void);
 
 int main(void) {
     // Run all test functions
-    printf("Initiating test functions\n");
+    printf("Initiating test functions.\n");
     printf("----------------------------------------\n");
-    printf("test of Scan Data function\n");
+    printf("Test of Scan Data function.\n");
         test_do_next_op_case1();
         test_do_next_op_case2();
     printf("All Scan Data tests passed successfully!\n");
     printf("----------------------------------------\n");
 
-    printf("test of the PLPR function\n");
+    printf("Test of the PLPR function.\n");
     printf("---PLPR case 1: (2016 capped)---\n");
         test_do_next_op_case3();
     printf("\n---PLPR case 2: (2024 capped)---\n");
@@ -44,7 +44,7 @@ int main(void) {
     printf("\nAll PLPR tests passed successfully!\n");
     printf("----------------------------------------\n");
 
-    printf("test of the STV function\n");
+    printf("Test of the STV function.\n");
     printf("---STV case 1: (2016 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case7();
@@ -60,7 +60,7 @@ int main(void) {
     printf("\nAll STV tests passed successfully!\n");
     printf("----------------------------------------\n");
 
-    printf("test of the BC function\n");
+    printf("Test of the BC function.\n");
     printf("---BC case 1: (2016 capped)---\n");
     printf("\n----please wait----\n");
     test_do_next_op_case11();
