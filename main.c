@@ -123,7 +123,7 @@ int main(void) {
                     printf("Your choice '%s' has already been simulated for all systems\n", wyoming_rule_true);
                     continue;
                 }else {
-                    wyoming_rule(USA, cap_systems);
+                    wyoming_rule(USA, cap_systems, 0);
                     uncapped = 1;
                     break;
                 }

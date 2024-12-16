@@ -74,7 +74,7 @@ char* BC(states* USA, cmp* cap_systems, cmp* uncap_systems, int activate_progres
 void Compare_table(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems, int all_systems);
 void copy_systems_names(cmp* cap_systems, cmp* uncap_systems);
 void monte_carlo(states* USA, int state, int choice, int* new_DEM_votes, int* new_REP_votes, int* new_TP_votes);
-void wyoming_rule(states* USA, cmp* cap_systems);
+void wyoming_rule(states* USA, cmp* cap_systems, int from_compare_table);
 void list_available_files(const char* directory);
 int ScanCandidatesTXT(int input_year, candidates* candidate_list);
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished);

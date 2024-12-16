@@ -54,7 +54,7 @@ void weight(states* USA, int* first_run) {
         format_number(int_pop, pop);
 
         double statePercentage = (double)USA[i].electors / totalElectors * 100;
-        printf("||%-20s: Weight = %s,       Electors = %2d (%5.2f%% of total),  Population = %10s ||\n",
+        printf("||%-20s: Weight = %s        Electors = %2d (%5.2f%% of total)   Population = %10s ||\n",
                USA[i].stateName, weight, USA[i].electors, statePercentage, pop);
     }
 

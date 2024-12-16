@@ -1,5 +1,5 @@
 #include "../connecter.h"
-void wyoming_rule(states* USA, cmp* cap_systems){
+void wyoming_rule(states* USA, cmp* cap_systems, int from_compare_table) {
     int total_population = 0;
     // Defining the population of Wyoming, as its the last dataset in all data
     int wyoming_population = USA[50].population;
@@ -14,5 +14,7 @@ void wyoming_rule(states* USA, cmp* cap_systems){
     char tot_pop[30] = "";
     // Return voters with commas
     format_number(total_population, tot_pop);
-    printf("The total population for the dataset %d: %s people, which means the new electoral college has %d electors\n", cap_systems[0].year, tot_pop, new_total_elector_count);
+    if (!from_compare_table) {
+        printf("The total population for the dataset %d: %s people, which means the new electoral college has %d electors\n", cap_systems[0].year, tot_pop, new_total_elector_count);
+    }
 }

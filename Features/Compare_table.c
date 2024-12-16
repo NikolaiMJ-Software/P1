@@ -1,8 +1,8 @@
 #include "../connecter.h"
-#define RED_TEXT "\033[31m"
-#define BLUE_TEXT "\033[34m"
-#define GREEN_TEXT "\033[32m"
-#define RESET_COLOR "\033[0m"
+#define RED "\033[31m"
+#define BLUE "\033[34m"
+#define GREEN "\033[32m"
+#define WHITE "\033[37m"
 void cap_names(cmp* cap_systems, int counter_cap);
 void uncap_names(cmp* uncap_systems, int counter_uncap);
 void line_DEM(cmp* cap_systems, cmp* uncap_systems, int counter_cap, int counter_uncap);
@@ -45,7 +45,7 @@ void Compare_table(states* USA, candidates* candidate_list, cmp* cap_systems, cm
 }
 // Print spaces between systems name in comparison table, based on the simulated order. If the system has not been compare yet, it will not be printed.
 void cap_names(cmp* cap_systems, int counter_cap) {
-    // Add extra space to system witch year is under 1000
+    // Add extra space to system when year is under 1000
     char year_scale[4] = {'\0'};
     if (cap_systems[0].year < 1000) {
         if(cap_systems[0].year < 100) {
@@ -269,7 +269,7 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
     } else {
         printf("Third party electors: %s%3d\033[0m ", cap_systems[0].TP_color, cap_systems[0].TP_electors);
         for (int i = 1; i <= counter_cap; i++) {
-            printf("%s%6d\033[0m ", cap_systems[0].TP_color, cap_systems[i].TP_electors);
+            printf("%s%6d\033[0m ", cap_systems[i].TP_color, cap_systems[i].TP_electors);
         }
         if (counter_cap == 1) {
             printf("%26s", empty);
@@ -284,7 +284,7 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
         printf("\n\n");
     } else {
         for (int i = 0; i <= counter_uncap; i++) {
-            printf("%s%6d\033[0m ", uncap_systems[0].TP_color, uncap_systems[i].TP_electors);
+            printf("%s%6d\033[0m ", uncap_systems[i].TP_color, uncap_systems[i].TP_electors);
         }
         printf("\n\n");
     }
@@ -292,14 +292,25 @@ void line_TP(cmp* cap_systems, cmp* uncap_systems, int counter_cap , int counter
 // Calculate missing systems
 void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, cmp* uncap_systems) {
     int uncapped = 0, states_abolished = 0;
-    // Rest data and call from txt again
-    ScanData_TXT(cap_systems[0].year, USA);
-    // Calc EC if missing
+    // Calculate cap EC if missing
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
+        // Rest data and call from txt again
+        ScanData_TXT(cap_systems[0].year, USA);
         printf("Simulate election system (capped): %s\n", uncap_systems[0].system_name);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
+    // Calculate uncap EC if missing
+    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
+        // Rest data and call from txt again
+        ScanData_TXT(cap_systems[0].year, USA);
+        // Uncap the electors
+        wyoming_rule(USA, cap_systems, 1);
+        uncapped = 1;
+        printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
+        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
+    }
     char system[5] = {'\0'};
+    // Calculate capped systems
     for (int i = 1; i < NO_SYSTEMS; i++) {
         // Rest data and call from txt again
         ScanData_TXT(cap_systems[0].year, USA);
@@ -331,16 +342,12 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
             }
         }
     }
-    // Rest data and call from txt again
-    ScanData_TXT(cap_systems[0].year, USA);
-    // Uncap the electors
-    wyoming_rule(USA, cap_systems);
-    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
-        uncapped = 1;
-        printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
-        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
-    }
+    // Calculate uncapped systems
     for (int i = 1; i < NO_SYSTEMS; i++) {
+        // Rest data and call from txt again
+        ScanData_TXT(cap_systems[0].year, USA);
+        // Uncap the electors
+        wyoming_rule(USA, cap_systems, 1);
         // Locate and calculate missing systems in uncap_systems array
         if (uncap_systems[i].DEM_electors == 0 && uncap_systems[i].REP_electors == 0 && uncap_systems[i].TP_electors == 0) {
             strcpy(system, cap_systems[i].system_name);
@@ -352,50 +359,36 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
 // Add color to the winner of the simulated system
 void assign_cmp_colors(cmp* cap_systems, cmp* uncap_systems) {
     for (int i = 0; i < NO_SYSTEMS; i++) {
-        // Assign colors to teh winner for each system (cap_systems)
+        // Reset color to white
+        strcpy(cap_systems[i].DEM_color, WHITE);
+        strcpy(cap_systems[i].REP_color, WHITE);
+        strcpy(cap_systems[i].TP_color, WHITE);
+        // Assign colors to the winner for each system (cap_systems)
         if (cap_systems[i].DEM_electors > cap_systems[i].REP_electors && cap_systems[i].DEM_electors > cap_systems[i].TP_electors) {
             // Blue for DEM
-            strcpy(cap_systems[i].DEM_color, BLUE_TEXT);
-            strcpy(cap_systems[i].REP_color, RESET_COLOR);
-            strcpy(cap_systems[i].TP_color, RESET_COLOR);
+            strcpy(cap_systems[i].DEM_color, BLUE);
         } else if (cap_systems[i].REP_electors > cap_systems[i].DEM_electors && cap_systems[i].REP_electors > cap_systems[i].TP_electors) {
             // Red for REP
-            strcpy(cap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(cap_systems[i].REP_color, RED_TEXT);
-            strcpy(cap_systems[i].TP_color, RESET_COLOR);
+            strcpy(cap_systems[i].REP_color, RED);
         } else if (cap_systems[i].TP_electors > cap_systems[i].DEM_electors && cap_systems[i].TP_electors > cap_systems[i].REP_electors) {
             // Green for TP
-            strcpy(cap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(cap_systems[i].REP_color, RESET_COLOR);
-            strcpy(cap_systems[i].TP_color, GREEN_TEXT);
-        } else {
-            // Default color in case of a tie
-            strcpy(cap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(cap_systems[i].REP_color, RESET_COLOR);
-            strcpy(cap_systems[i].TP_color, RESET_COLOR);
+            strcpy(cap_systems[i].TP_color, GREEN);
         }
 
-        // Assign colors to teh winner for each system (uncap_systems)
+        // Reset color to white
+        strcpy(uncap_systems[i].DEM_color, WHITE);
+        strcpy(uncap_systems[i].REP_color, WHITE);
+        strcpy(uncap_systems[i].TP_color, WHITE);
+        // Assign colors to the winner for each system (uncap_systems)
         if (uncap_systems[i].DEM_electors > uncap_systems[i].REP_electors && uncap_systems[i].DEM_electors > uncap_systems[i].TP_electors) {
             // Blue for DEM
-            strcpy(uncap_systems[i].DEM_color, BLUE_TEXT);
-            strcpy(uncap_systems[i].REP_color, RESET_COLOR);
-            strcpy(uncap_systems[i].TP_color, RESET_COLOR);
+            strcpy(uncap_systems[i].DEM_color, BLUE);
         } else if (uncap_systems[i].REP_electors > uncap_systems[i].DEM_electors && uncap_systems[i].REP_electors > uncap_systems[i].TP_electors) {
             // Red for REP
-            strcpy(uncap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(uncap_systems[i].REP_color, RED_TEXT);
-            strcpy(uncap_systems[i].TP_color, RESET_COLOR);
+            strcpy(uncap_systems[i].REP_color, RED);
         } else if (uncap_systems[i].TP_electors > uncap_systems[i].DEM_electors && uncap_systems[i].TP_electors > uncap_systems[i].REP_electors) {
             // Green for TP
-            strcpy(uncap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(uncap_systems[i].REP_color, RESET_COLOR);
-            strcpy(uncap_systems[i].TP_color, GREEN_TEXT);
-        } else {
-            // Default color in case of a tie
-            strcpy(uncap_systems[i].DEM_color, RESET_COLOR);
-            strcpy(uncap_systems[i].REP_color, RESET_COLOR);
-            strcpy(uncap_systems[i].TP_color, RESET_COLOR);
+            strcpy(uncap_systems[i].TP_color, GREEN);
         }
     }
 }
