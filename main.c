@@ -57,9 +57,9 @@ int main(void) {
         while (1) {
             fflush(stdin);
             input_year = 0;
-            printf("Which year do you want to investigate?\n");
+            printf("Which year do you want to investigate? ");
             if(scanf("%d", &input_year) !=1) {
-                printf("Invalid input. Please enter a valid year.\n");
+                printf("Invalid input. Please enter a valid year.\n\n");
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
                 continue;
@@ -67,13 +67,13 @@ int main(void) {
             printf("\n");
             // If year already simulated and the comparison is full, user try again
             if (input_year == cap_systems[0].year && full_cap_systems == NO_SYSTEMS && full_uncap_systems == NO_SYSTEMS) {
-                printf("The year %d has just been simulated.\n", input_year);
+                printf("The year %d has just been simulated.\n\n", input_year);
                 continue;
             }
             // Check if the year is part of the files
             file_loaded = ScanData_TXT(input_year, USA);
             if (!file_loaded) {
-                printf("Invalid year or file not found. Please try again.\n");
+                printf("Invalid year or file not found. Please try again.\n\n");
             } else {
                 break;
             }
@@ -136,7 +136,7 @@ int main(void) {
                     break;
                 }
             } else {
-                printf("Invalid input. Please try again.\n");
+                printf("Invalid input. Please try again.\n\n");
             }
         }
         printf("\n");
@@ -161,7 +161,7 @@ int main(void) {
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
 
         // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information:\n");
+        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information: ");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);

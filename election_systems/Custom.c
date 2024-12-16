@@ -9,7 +9,7 @@ int dem_electors, rep_electors, third_electors, temp_state_third_votes, fully_tr
 void parameters(states* state, candidates* candidate_list, int year, int states_abolished) {
 
     // A list of variables for all states are reset at the beginning of the code.
-    dem_electors = 0, rep_electors = 0, third_electors = 0, doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
+    dem_electors = 0, rep_electors = 0, third_electors = 0;
     int personalization = 0, legitimacy = 0, comprehensibility = 0;
     double minority_proportionality = 0;
 
@@ -365,6 +365,7 @@ void personalization_function(states* state, candidates* candidate_list, int per
 }
 
 void legitimacy_function(states* state, int legitimacy) {
+    int doesnt_trust = 0, slightly_trusts = 0, somewhat_trusts = 0, fully_trusts = 0;
     // This functions determines how many voters of non-winning parties trust the election based on the legitimacy variable.
 
     // Firstly a set of variables, that determine the average amount of trust in the system after losing the election are set up.
@@ -461,19 +462,40 @@ void legitimacy_function(states* state, int legitimacy) {
         }
         if (dem_electors > rep_electors && dem_electors > third_electors) {
             fully_trusts += (state[i].rep_votes * rep_high_trust + state[i].third_votes * third_high_trust) / 100;
+            printf("fully_trust: %d, %d, %d, %d, %d\n", fully_trusts, state[i].rep_votes, rep_high_trust, state[i].third_votes, third_high_trust);
+
             somewhat_trusts += (state[i].rep_votes * rep_med_trust + state[i].third_votes * third_med_trust) / 100;
+            printf("somewhat_trust: %d, %d, %d, %d, %d\n", somewhat_trusts, state[i].rep_votes, rep_med_trust, state[i].third_votes, third_med_trust);
+
             slightly_trusts += (state[i].rep_votes * rep_low_trust + state[i].third_votes * third_low_trust) / 100;
+            printf("slightly_trust: %d, %d, %d, %d, %d\n", slightly_trusts, state[i].rep_votes, rep_low_trust, state[i].third_votes, third_low_trust);
+
             doesnt_trust += (state[i].rep_votes * rep_no_trust + state[i].third_votes * third_no_trust) / 100;
+            printf("doesnt_trust: %d, %d, %d, %d, %d\n", doesnt_trust, state[i].rep_votes, rep_no_trust, state[i].third_votes, third_no_trust);
         } else if (rep_electors > dem_electors && rep_electors > third_electors) {
             fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].third_votes * third_high_trust) / 100;
+            printf("fully_trust: %d, %d, %d, %d, %d\n", fully_trusts, state[i].dem_votes, dem_high_trust, state[i].third_votes, third_high_trust);
+
             somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].third_votes * third_med_trust) / 100;
+            printf("somewhat_trust: %d, %d, %d, %d, %d\n", somewhat_trusts, state[i].dem_votes, dem_med_trust, state[i].third_votes, third_med_trust);
+
             slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].third_votes * third_low_trust) / 100;
+            printf("slightly_trust: %d, %d, %d, %d, %d\n", slightly_trusts, state[i].dem_votes, dem_low_trust, state[i].third_votes, third_low_trust);
+
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].third_votes * third_no_trust) / 100;
+            printf("doesnt_trust: %d, %d, %d, %d, %d\n", doesnt_trust, state[i].dem_votes, dem_no_trust, state[i].third_votes, third_no_trust);
         } else if (third_electors > dem_electors && third_electors > rep_electors) {
             fully_trusts += (state[i].dem_votes * dem_high_trust + state[i].rep_votes * rep_high_trust) / 100;
+            printf("fully_trust: %d, %d, %d, %d, %d\n", fully_trusts, state[i].dem_votes, dem_high_trust, state[i].rep_votes, rep_high_trust);
+
             somewhat_trusts += (state[i].dem_votes * dem_med_trust + state[i].rep_votes * rep_med_trust) / 100;
+            printf("somewhat_trust: %d, %d, %d, %d, %d\n", somewhat_trusts, state[i].dem_votes, dem_med_trust, state[i].rep_votes, rep_med_trust);
+
             slightly_trusts += (state[i].dem_votes * dem_low_trust + state[i].rep_votes * rep_low_trust) / 100;
+            printf("slightly_trust: %d, %d, %d, %d, %d\n", slightly_trusts, state[i].dem_votes, dem_low_trust, state[i].rep_votes, rep_low_trust);
+
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
+            printf("doesnt_trust: %d, %d, %d, %d, %d\n", doesnt_trust, state[i].dem_votes, dem_no_trust, state[i].rep_votes, rep_no_trust);
         }
     }
 
