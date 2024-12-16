@@ -296,17 +296,7 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
     if (cap_systems[0].DEM_electors == 0 && cap_systems[0].REP_electors == 0 && cap_systems[0].TP_electors == 0) {
         // Rest data and call from txt again
         ScanData_TXT(cap_systems[0].year, USA);
-        printf("Simulate election system (capped): %s\n", uncap_systems[0].system_name);
-        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
-    }
-    // Calculate uncap EC if missing
-    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
-        // Rest data and call from txt again
-        ScanData_TXT(cap_systems[0].year, USA);
-        // Uncap the electors
-        wyoming_rule(USA, cap_systems, 1);
-        uncapped = 1;
-        printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
+        printf("Simulate election system (capped): %s\n", cap_systems[0].system_name);
         electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
     char system[5] = {'\0'};
@@ -319,6 +309,7 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
             // If cap system has a name and no electors, then simulate the system
             if (strlen(cap_systems[i].system_name) != 0) {
                 strcpy(system, cap_systems[i].system_name);
+                printf("Simulate election system (capped): %s\n", system);
                 Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, 0, states_abolished, 1);
             } else {
                 // Predefined order BC, PLPR, STV
@@ -341,6 +332,16 @@ void missing_systems(states* USA, candidates* candidate_list, cmp* cap_systems, 
                 }
             }
         }
+    }
+    // Calculate uncap EC if missing
+    if (uncap_systems[0].DEM_electors == 0 && uncap_systems[0].REP_electors == 0 && uncap_systems[0].TP_electors == 0) {
+        // Rest data and call from txt again
+        ScanData_TXT(cap_systems[0].year, USA);
+        // Uncap the electors
+        wyoming_rule(USA, cap_systems, 1);
+        uncapped = 1;
+        printf("Simulate election system (uncapped): %s \n", uncap_systems[0].system_name);
+        electoral_college(USA, cap_systems, uncap_systems, uncapped, states_abolished);
     }
     // Calculate uncapped systems
     for (int i = 1; i < NO_SYSTEMS; i++) {

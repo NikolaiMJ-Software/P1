@@ -42,6 +42,8 @@ char* electoral_college(states* USA, cmp* cap_systems, cmp* uncap_systems, int u
             cap_systems[0].REP_electors = republicans;
             cap_systems[0].TP_electors = third_party;
         }
+        // Copy system names from cap to uncap, and opposite
+        copy_systems_names(cap_systems, uncap_systems);
     }
     // Return winning party
     if (democrats > (electors/2)+1) {
