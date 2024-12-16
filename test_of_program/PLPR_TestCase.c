@@ -59,7 +59,7 @@ void test_do_next_op_case5(void) {
     cap_systems[0].year = 2016;
     // Populate the USA array
     ScanData_TXT(2016, USA);
-    wyoming_rule(USA,cap_systems);
+    wyoming_rule(USA,cap_systems,0);
 
     // Call PLPR with the populated dataset
     char* result = PLPR(USA, cap_systems,  uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
@@ -85,7 +85,7 @@ void test_do_next_op_case6(void) {
     cap_systems[0].year = 2024;
     // Populate the USA array
     ScanData_TXT(2024, USA);
-    wyoming_rule(USA, cap_systems);
+    wyoming_rule(USA, cap_systems,0);
 
     // Call PLPR with the populated dataset
     char* result = PLPR(USA, cap_systems,  uncap_systems, counter_cap, counter_uncap, uncapped, states_abolished);
