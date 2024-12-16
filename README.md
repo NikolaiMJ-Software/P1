@@ -21,7 +21,7 @@
 ![img_3.png](_images/img_3.png)
 
 
-5. Apply the copied path to "Working directory" and check mark at "Run in external console". Click "Apply" then "OK"
+5. Apply the copied path to "Working directory" and check mark at "Run in external console" (For supporting ANSI colors). Click "Apply" then "OK"
 
 ![img_4.png](_images/img_4.png)
 
