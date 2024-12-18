@@ -475,7 +475,7 @@ void legitimacy_function(states* state, int legitimacy) {
             doesnt_trust += (state[i].dem_votes * dem_no_trust + state[i].rep_votes * rep_no_trust) / 100;
         }
     }
-
+    // Make a negativ to positive
     if (fully_trusts<0) {fully_trusts *= -1;}
     if (somewhat_trusts<0) {somewhat_trusts *= -1;}
     if (slightly_trusts<0) {slightly_trusts *= -1;}
