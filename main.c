@@ -160,8 +160,8 @@ int main(void) {
         char* result = Winner_of_election(USA, candidate_list, cap_systems, uncap_systems, system, uncapped, states_abolished, 0);
         printf("With the Electoral college (%s system), the winner was the %s.\n\n", system, result);
 
-        // User chose a new system
-        printf("Chose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information: ");
+        // User Choose a new system
+        printf("Choose a new system: STV, PLPR, BC, Custom or All\nor 'INFO' for further information: ");
         scanf("%s", system);
         for (int i = 0; system[i] != '\0'; i++) {
             system[i] = toupper(system[i]);

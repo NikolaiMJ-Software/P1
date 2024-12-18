@@ -17,28 +17,32 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
     printf("\nYou have chosen to customize the US Electoral System.\n");
     while(1) {
         fflush(stdout);
-        printf("First lets choose an int between 0-100 (base is 50), to determine the amount of informed voters: ");
+        printf("Choose an int between 0-100 (base is 50), to determine the amount of informed voters: ");
         if (scanf("%d", &comprehensibility) == 1 && comprehensibility >= 0 && comprehensibility <= 100) {
+            // Clear the rest of the input buffer, after reading integer
+            while (getchar() != '\n');
             break;
         } else {
-            printf("Invalid input try again!\n\n");
+            printf("Invalid input, try again!\n\n");
             while (getchar() != '\n'); // Clear input buffer
         }
     }
     while(1) {
         fflush(stdout);
-        printf("\nNow to choose how proportional your system will be, choose an int between 0-100 (base is 0): ");
+        printf("\nChoose how proportional your system will be, choose an int between 0-100 (base is 0): ");
         if (scanf("%lf", &minority_proportionality) == 1 && minority_proportionality >= 0 && minority_proportionality <= 100) {
+            // Clear the rest of the input buffer, after reading double
+            while (getchar() != '\n');
             break;
         } else {
-            printf("Invalid input try again!\n");
+            printf("Invalid input, try again!\n\n");
             while (getchar() != '\n'); // Clear input buffer
         }
     }
     while(1) {
         fflush(stdout);
         char input[10];
-        printf("\nNow choose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no): ");
+        printf("\nChoose if the system should be more personalized, which would mean the voters would be allowed to vote for their\npresident of choice, instead of a pre selected one (yes/no): ");
         scanf("%s", &input);
         for (int i = 0; input[i]; i++) {
             input[i] = tolower(input[i]);
@@ -50,17 +54,19 @@ void parameters(states* state, candidates* candidate_list, int year, int states_
             personalization = 0;
             break;
         } else {
-            printf("Invalid input. Please enter 'yes' or 'no'.\n");
+            printf("Invalid input. Please enter 'yes' or 'no'.\n\n");
             while (getchar() != '\n'); // Clear input buffer
         }
     }
     while(1) {
         fflush(stdout);
-        printf("\nLastly pick the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50): ");
+        printf("\nChoose the legitimacy of your system, to determine the amount of satisfied voters from the opposing parties,\nby giving an int from 0-100 (base is 50): ");
         if (scanf("%d", &legitimacy) == 1 && legitimacy >= 0 && legitimacy <= 100) {
+            // Clear the rest of the input buffer, after reading double
+            while (getchar() != '\n');
             break;
         } else {
-            printf("Invalid input try again!\n");
+            printf("Invalid input try again!\n\n");
             while (getchar() != '\n'); // Clear input buffer
         }
     }

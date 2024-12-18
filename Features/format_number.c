@@ -2,7 +2,7 @@
 // Helper function to format numbers with commas
 void format_number(int number, char* buffer) {
     char temp[20];
-    // Convert the number to a string
+    // Convert the 'number' to a string
     sprintf(temp, "%d", number);
     int len = strlen(temp);
     // Check if buffer is large enough
